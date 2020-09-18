@@ -28,8 +28,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # github_username:  jekyll
 
 # Build settings
-remote_theme: thelehhman/texture
-# theme: minima
+markdown: kramdown
+theme: texture
 plugins:
   - jekyll-feed
 

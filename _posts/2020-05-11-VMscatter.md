@@ -1,15 +1,10 @@
 ---
 layout: post
-title: "将空间分集引入无缘通信设备上的首次尝试：VMscatter"
+title: "将空间分集引入无源通信设备上的首次尝试：VMscatter"
 lang: zh
+usemathjax: true
 ---
 
-
-# 前言
-
-论文通常是对一项研究最全面的总结，所以需要了解一项研究阅读论文是最好的方法。然而，由于多种原因，比如缺少相关基础，或者作者写作和视角问题，论文中的一些对其他人来说的疑难点，以及研究中的问题在论文中很少有体现。所以，需要有其他的一些文章作为注释或者补充，这篇博客的目的就在于此。就像后人对《论语》等古文的各种注释。
-
-VMscatter是今年发表在NSDI会议（计算机网络领域的A类会议）上的一篇关于Wi-Fi backscatter的最新论文，论文全名为：VMscatter: A Versatile MIMO Backscatter。通讯作者是University of Maryland的Ting Zhu教授。他们团队在Wi-Fi,BLE等协议方面做了很多工作，这是他们第一篇关于Backscatter的论文。
 
 # 研究背景
 
