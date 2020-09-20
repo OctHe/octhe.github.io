@@ -20,11 +20,13 @@ Fortunately, we can get the information from both the [Linux kernel documentatio
 In summary, all these packets from *apt*. 
 I have follow the [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel), and run the following command
 ```
+sudo apt-get build-dep linux linux-image-$(uname -r)
+
 sudo apt-get install libncurses-dev flex bison openssl libssl-dev \
 dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
 ```
-It is worth to note that the wiki says that the above command only install part of the prerequisites, but after installing them, I can compile the kernel successfully. 
-However, directly following [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel) has some problems.
+
+It is worth to note that directly following [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel) has some problems.
 When we run the command
 ```
 sudo apt-get build-dep linux linux-image-$(uname -r)
@@ -41,7 +43,10 @@ deb-src http://cn.archive.ubuntu.com/ubuntu/ focal-updates main restricted
 ```
 I have checked my */etc/apt/source.list* file, and make sure that the URLs have been added, but it still does not work.
 
-# Build the linux kernel
+Then I uncomment all commands with *deb-src* in the *sources.list* file, and run *sudo apt update*. 
+The error is fixed. 
+
+# Build and install the linux kernel
 
 After installing the prerequisites, the compiling is simple enough.
 The linux kernel has built-in Makefiles, so we can compile the kernel with the *make* program.
@@ -53,6 +58,18 @@ This command tell the compiler that we use the configuration for the new kernel 
 
 Then, we only need to input *make* under the *linux-5.8.7* directory.
 The compile will build the kernel with all the chosen modules, so it will take some hours (3 hours in my laptop) to complete the compiling.
+
+After the compile complete, we use the following command to install
+```
+sudo make install
+sudo make modules_install
+```
+
+The final step is to update grub, so the new kernel can be found when reboot the system.
+```
+sudo update-grub
+sudo grub-install
+```
 
 # Build the wireless driver
 
