@@ -21,6 +21,7 @@
 
 # Build settings
 markdown: kramdown
+remote_theme: thelehhman/texture
 theme: texture
 plugins:
   - jekyll-feed
