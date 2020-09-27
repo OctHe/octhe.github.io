@@ -6,19 +6,22 @@ usemathjax: true
 
 # Introduction
 
-This is a brief introduction about the first prcess of linux kernel development -- Compile a customized linux kernel.
-The compiling process has been successfully run on the distribution of Ubuntu 20.04 (Focal Fossa), and the release of the kernel is *linux-5.8.7*.
+Linux kernel composes of hundreds of modules.
+The user can compile and load modules according to the requirement.
+Additionally, independently compiling the module will save lots of time because compile the whole kernel usually needs three or four hours.
 
-The Linux kernel can be download from the [website](https://www.kernel.org/).
-The downloaded files are under the *linux-5.8.7* directory in my case.
+This is a brief introduction about how to independently compile each kernel module with the kernel source code.
+
 
 # Prerequisites
 
 There are some packets that are necessary to compile the kernel. 
-It is hard to obtain all the packets manually.
-Fortunately, we can get the information from both the [Linux kernel documentations](https://www.kernel.org/doc/html/latest/kbuild/kbuild.html) and the Ubuntu [BuildYourOwnKernel wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel).
-In summary, all these packets from *apt*. 
+All these packets can be get from *apt*. 
 I have follow the [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel), and run the following command
+
+Specifically, first open the */etc/apt/source.list* with *sudo* and uncomment add commands with *deb-src* in this file.
+After saving the file, run *sudo apt update* to update the packet list.
+Then, run the following command to install all the dependents.
 ```
 sudo apt-get build-dep linux linux-image-$(uname -r)
 
@@ -26,54 +29,103 @@ sudo apt-get install libncurses-dev flex bison openssl libssl-dev \
 dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
 ```
 
-It is worth to note that directly following [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel) has some problems.
-When we run the command
+The next step is to download the kernel source code. 
+One can download the newest kernel from [the official website](https://www.kernel.org/).
+However, in this website is difficult to download the old version. 
+
+Instead, we choose to download the source code by using *apt*.
 ```
-sudo apt-get build-dep linux linux-image-$(uname -r)
+sudo apt install linux-source-5.4.0
 ```
-it reports an error as follows
-```
-E: You must put some 'deb-src' URIs in your sources.list
-```
-I have followed the wiki to add the contents
+Then the corresponding version of the source code can be downloaded. 
+Our version is 5.4.0, which is the kernel version of Ubuntu 20.04.
+The director of this source code can be found in */usr/src/linux-source-5.4.0*.
+The source code is a compressed file, and run `sudo tar jvxf linux-source-5.4.0.tar.bz2` to uncompress it.
+
+# Compile a module
+
+Compile a module is very simple.
+Linux kernel uses *Kbuild* to compile the kernel. 
+We can use this tool by using *make* like other programs.
+*Kbuild* is at the root directory of the source code (i.e., at ./linux-source-5.4.0/ in my case).
+To compile a module, we first need to know the subdirectory of that module, and use *make* command at the root directory of the source code.
 
 ```
-deb-src http://cn.archive.ubuntu.com/ubuntu/ focal-updates main restricted
-deb-src http://cn.archive.ubuntu.com/ubuntu/ focal-updates main restricted
-```
-I have checked my */etc/apt/source.list* file, and make sure that the URLs have been added, but it still does not work.
-
-Then I uncomment all commands with *deb-src* in the *sources.list* file, and run *sudo apt update*. 
-The error is fixed. 
-
-# Build and install the linux kernel
-
-After installing the prerequisites, the compiling is simple enough.
-The linux kernel has built-in Makefiles, so we can compile the kernel with the *make* program.
-
-In specific, we need to config some modules of the kernel. 
-Since Linux kernel supports hundreds of modules, it is hard to config them one-by-one.
-In stead, we only run `make xconfig` to config our linux kernel.
-This command tell the compiler that we use the configuration for the new kernel the same as the configuration for the current kernel.
-
-Then, we only need to input *make* under the *linux-5.8.7* directory.
-The compile will build the kernel with all the chosen modules, so it will take some hours (3 hours in my laptop) to complete the compiling.
-
-After the compile complete, we use the following command to install
-```
-sudo make install
-sudo make modules_install
+Note: compile the module also need to at the ./linux-source-5.4.0/ directory, 
+or the compiling process would lack some files.
 ```
 
-The final step is to update grub, so the new kernel can be found when reboot the system.
+As an example, we use the compilinig process of *iwlwifi* module, which is the wireless Linux driver of Intel wireless network card.
+
+The source code of this module is at */usr/src/linux-source-5.4.0/linux-source-5.4.0/drivers/net/wireless/intel/iwlwifi/* in my case. 
+To compile it, we use 
+
 ```
-sudo update-grub
-sudo grub-install
+sudo make M=./drivers/net/wireless/intel/iwlwifi modules
 ```
 
-# Build the wireless driver
+It worth to note that this command is inputted at */usr/src/linux-source-5.4.0/linux-source-5.4.0/*.
+After the compiling process is over, we can find a file named *iwlwifi.ko* at the *iwlwifi* directory.
 
-(TBD)
+To install it, we can use the following command
+```
+cd ./drivers/net/wireless/intel/iwlwifi
+insmod iwlwifi.ko
+```
+`insmod` means "insert module".
+This is a command to install Linux kernel module.
 
-# Independently make the module
-(TBD)
+If *iwlwifi* module has been installed in the kernel, you need to remove it from the kernel with `sudo modprobe -r iwlwifi`.
+Then, run the `insmod` to install the compiled module.
+
+# Some command about the Linux module
+
+All the usage are an example of the *iwlwifi* module.
+
+## lsmod
+
+`lsmod` is a command to list all installed module in the kernel.
+It contains some information such as name, dependencies, etc.
+
+Usage: `lsmod`
+
+## modinfo
+
+`modinfo` can display details about a specific module.
+It can display the information of either a installed module or a compiled module.
+
+Usage:
+
+`modinfo iwlwifi`
+
+This command display the information of the installed module *iwlwifi*, not the compiled module.
+
+`modinfo iwlwifi.ko`
+
+This command display the information of the compiled module, so the command need to be run at the *iwlwifi/* directory.
+
+## modprobe
+
+`modprobe` is usually used to install or remove a module.
+
+Usage: 
+
+`sudo modprobe -r iwlwifi`
+
+Remove the iwlwifi module.
+
+`sudo modprobe iwlwifi`
+
+Install the iwlwifi module.
+
+
+## insmod
+
+`insmod` can install a customized module.
+If the module with the same name has been installed, `sudo modprobe -r iwlwifi` is needed to remove the pre-installed module.
+
+Usage:
+
+`
+insmod iwlwifi.ko
+`
