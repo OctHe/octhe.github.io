@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Source Code of Ath9k HTC Driver"
+title: "Source Code Analysis of ath9k_htc Driver"
 usemathjax: true
 ---
 
@@ -26,6 +26,19 @@ That means ath9k_htc is based on other ath drivers.
 If someone wants to install ath9k_htc driver, he must install ath9k, ath9k_hw, ath9k_common first.
 
 The description of all drivers can found in [Atheros Linux wireless drivers](http://linuxwireless.sipsolutions.net/en/users/Drivers/Atheros/__v22.html).
+
+# Download
+
+The most importance is to download the correct version of ath9k_htc driver. 
+If the downloaded driver is mismatched with the Linux kernel version, the *insmod* command will report an error with invalid module format.
+
+In my way, *apt* can be used to download the Linux kernel source code with the current kernel version  by using
+
+    apt source linux-image-unsigned-$(uname -r)
+
+After changing into the kernel file, the source code of ath9k_htc is in 
+    
+    /driver/net/wireless/ath/ath9k/
 
 # Source Code
 
