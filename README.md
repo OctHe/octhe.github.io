@@ -5,7 +5,7 @@ The blog can access with [https://octhe.github.io/](https://octhe.github.io/).
 
 ## Installation
 
-This blog is based on [github page]() and [jekyll]().
+This blog is based on [github page](https://pages.github.com/) and [jekyll](https://jekyllrb.com/).
 It requires Ruby, RubyGems, and bundler.
 
 Install the prerequisites, please run
