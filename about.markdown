@@ -4,15 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Shiyue He is currently pursuing his Ph.D degree at School of 
+Electronics and Information Engineering, Huazhong University
+of Science and Technology, Hubei, China. His research interests
+include 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+- Low-power communications
+- Distributed multiple-input-multiple-output (MIMO)
+- Wireless power transfer
+- Backscatter networks
