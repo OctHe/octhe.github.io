@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to compile the newest linux kernel on Ubuntu 20.04"
+title: "Newest Linux Kernel Compilation on Ubuntu 20.04"
 usemathjax: true
 ---
 
@@ -9,11 +9,10 @@ usemathjax: true
 ```
 Note: 
 The new kernel has been successfully compiled by following these steps. 
-The installed kernel has shown in the grub.
-However, the OS cannot load by the grub.
-It blocked and shows "loading initial ramdisk".
-The OS cannot load with the newest kernel, while it can load with an older version.
-This bug still need to be fixed.
+The installed kernel has shown in the grub. However, the OS cannot load 
+by the grub. It blocked and shows "loading initial ramdisk". The OS 
+cannot load with the newest kernel, while it can load with an older 
+version. This bug still need to be fixed.
 ```
 
 This is a brief introduction about the first prcess of linux kernel development -- Compile a customized linux kernel.
@@ -80,10 +79,3 @@ The final step is to update grub, so the new kernel can be found when reboot the
 sudo update-grub
 sudo grub-install
 ```
-
-# Build the wireless driver
-
-(TBD)
-
-# Independently make the module
-(TBD)

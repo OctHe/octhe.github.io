@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to compile the kernel module on Ubuntu 20.04"
+title: "Kernel Module Compilation on Ubuntu 20.04"
 usemathjax: true
 ---
 
@@ -126,6 +126,4 @@ If the module with the same name has been installed, `sudo modprobe -r iwlwifi` 
 
 Usage:
 
-`
-insmod iwlwifi.ko
-`
+`insmod iwlwifi.ko`
