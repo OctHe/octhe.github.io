@@ -6,15 +6,6 @@ usemathjax: true
 
 # Introduction
 
-```
-Note: 
-The new kernel has been successfully compiled by following these steps. 
-The installed kernel has shown in the grub. However, the OS cannot load 
-by the grub. It blocked and shows "loading initial ramdisk". The OS 
-cannot load with the newest kernel, while it can load with an older 
-version. This bug still need to be fixed.
-```
-
 This is a brief introduction about the first prcess of linux kernel development -- Compile a customized linux kernel.
 The compiling process has been successfully run on the distribution of Ubuntu 20.04 (Focal Fossa), and the release of the kernel is *linux-5.8.7*.
 
@@ -27,7 +18,7 @@ There are some packets that are necessary to compile the kernel.
 It is hard to obtain all the packets manually.
 Fortunately, we can get the information from both the [Linux kernel documentations](https://www.kernel.org/doc/html/latest/kbuild/kbuild.html) and the Ubuntu [BuildYourOwnKernel wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel).
 In summary, all these packets from *apt*. 
-I have follow the [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel), and run the following command
+I have followed the [Ubuntu wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel), and run the following command
 ```
 sudo apt-get build-dep linux linux-image-$(uname -r)
 
@@ -65,6 +56,17 @@ Since Linux kernel supports hundreds of modules, it is hard to config them one-b
 In stead, we only run `make xconfig` to config our linux kernel.
 This command tell the compiler that we use the configuration for the new kernel the same as the configuration for the current kernel.
 
+
+```
+Note: 
+The new kernel has been successfully compiled by following these steps. 
+The installed kernel has shown in the grub. However, the OS cannot load 
+by the grub. It blocked and shows "loading initial ramdisk". The OS 
+cannot load with the newest kernel, while it can load with an older 
+version. This problem may be caused by a kernel bug for Intel devices.
+The details can be found in [this page](https://askubuntu.com/questions/1374282/stuck-on-loading-initial-ramdisk-after-kernel-upgrade).
+```
+
 Then, we only need to input *make* under the *linux-5.8.7* directory.
 The compile will build the kernel with all the chosen modules, so it will take some hours (3 hours in my laptop) to complete the compiling.
 
@@ -79,3 +81,16 @@ The final step is to update grub, so the new kernel can be found when reboot the
 sudo update-grub
 sudo grub-install
 ```
+
+# Remove complied kernel
+
+The complied kernel with `make install` contains the following files:
+
+    /boot/vmlinuz*KERNEL-VERSION*
+    /boot/initrd*KERNEL-VERSION*
+    /boot/System-map*KERNEL-VERSION*
+    /boot/config-*KERNEL-VERSION*
+    /lib/modules/*KERNEL-VERSION*/
+    /var/lib/initramfs-tools/*KERNEL-VERSION*/
+
+It can be manually removed by *sudo rm -rf* command.
