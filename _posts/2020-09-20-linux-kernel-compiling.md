@@ -57,15 +57,15 @@ In stead, we only run `make xconfig` to config our linux kernel.
 This command tell the compiler that we use the configuration for the new kernel the same as the configuration for the current kernel.
 
 
-```
 Note: 
 The new kernel has been successfully compiled by following these steps. 
-The installed kernel has shown in the grub. However, the OS cannot load 
-by the grub. It blocked and shows "loading initial ramdisk". The OS 
-cannot load with the newest kernel, while it can load with an older 
-version. This problem may be caused by a kernel bug for Intel devices.
+The installed kernel has shown in the grub. However, the OS cannot load by the grub. 
+It blocked and shows "loading initial ramdisk". 
+The OS cannot load with the newest kernel, while it can load with an older version. 
+This problem may be caused by a kernel bug for Intel devices.
 The details can be found in [this page](https://askubuntu.com/questions/1374282/stuck-on-loading-initial-ramdisk-after-kernel-upgrade).
-```
+Otherwise, building the kernel in the [Ubuntu way](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel) may fix this problem.
+But I still not try it now.
 
 Then, we only need to input *make* under the *linux-5.8.7* directory.
 The compile will build the kernel with all the chosen modules, so it will take some hours (3 hours in my laptop) to complete the compiling.
