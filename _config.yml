@@ -8,13 +8,13 @@ title: "Shiyue's Blog"
 description: > # this means to ignore newlines until "email:"
    Shiyue's blog about wireless network
 
-email: a-mail@mail.mail
+email: hsy1995313@gmail.com
 #blog logo
-logo: "/assets/images/df_logo.jpg"
+logo: "/assets/images/author.jpg"
 float_logo: true # true, false (default)
 
 # blog cover
-cover: "/assets/images/cA4aKEIPQrerBnp1yGHv_IMG_9534-3-2.jpg"
+cover: "/assets/images/wuhan.jpg"
 
 name: 'Shiyue He'
 author: 'Shiyue He'
