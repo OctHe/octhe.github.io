@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "Customized ath9k on Ubuntu 22.04"
