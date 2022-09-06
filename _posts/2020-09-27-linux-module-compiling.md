@@ -61,6 +61,9 @@ The source code of this module is at */usr/src/linux-source-5.4.0/linux-source-5
 To compile it, we use 
 
 ```
+make oldconfig && make prepare
+make # This command is to compile the kernel
+     # which is the prerequisit of the module compilation
 sudo make M=./drivers/net/wireless/intel/iwlwifi modules
 ```
 
