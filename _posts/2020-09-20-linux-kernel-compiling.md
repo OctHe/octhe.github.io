@@ -53,8 +53,14 @@ The linux kernel has built-in Makefiles, so we can compile the kernel with the *
 
 In specific, we need to config some modules of the kernel. 
 Since Linux kernel supports hundreds of modules, it is hard to config them one-by-one.
-In stead, we only run `make xconfig` to config our linux kernel.
+In stead, we only run 
+
+    make oldconfig
+
+to config our linux kernel.
 This command tell the compiler that we use the configuration for the new kernel the same as the configuration for the current kernel.
+All the new features of the new kernel will be set as the default value.
+We only need to put *enter* for all these options.
 
 
 Note: 
