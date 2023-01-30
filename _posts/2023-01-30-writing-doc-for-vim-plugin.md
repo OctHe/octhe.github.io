@@ -22,13 +22,13 @@ With this symbol, the user can type `:help example` to show this documentation.
 `=` and `-` are two symbols to indicate the sections and subsections of the help document.
 The first section is usually the content, that can be writing as
 
-    ==============================================================================
-    CONTENTS                                                       *clam-contents*
+    ===================================================================
+    CONTENTS                                            *clam-contents*
 
         1. Usage ........................... |ExampleUsage|
         2. Mappings ........................ |ExampleMappings|
 
-    ==============================================================================
+    ===================================================================
 
 Similarly, the `*` symbol is a tag.
 In addition, the word in `|` means a link that can go to the corresponding tag by typing `<c-]>` in normal mode.
@@ -41,8 +41,8 @@ This is a basic example of the help document.
     Author: 
     License:
 
-    ==============================================================================
-    CONTENTS                                                       *clam-contents*
+    ===================================================================
+    CONTENTS                                            *clam-contents*
 
         1. Usage ........................... |ExampleUsage|
         2. Mappings ........................ |ExampleMappings|
@@ -50,14 +50,14 @@ This is a basic example of the help document.
         4. Contributing .................... |ExampleContributing|
         5. Changelog ....................... |ExampleChangelog|
 
-    ==============================================================================
-    1. Usage                                                        *ExampleUsage*
+    ===================================================================
+    1. Usage                                             *ExampleUsage*
 
     That's the introduction about the usage of the plugin.
 
-    ==============================================================================
-    2. Mappings                                                  *ExampleMappings*
+    ===================================================================
+    2. Mappings                                       *ExampleMappings*
 
     That section contains the mapping of the plugin.
 
-    ==============================================================================
+    ===================================================================
