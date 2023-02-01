@@ -8,14 +8,23 @@ The blog can access with [https://octhe.github.io/](https://octhe.github.io/).
 This blog is based on [github page](https://pages.github.com/) and [jekyll](https://jekyllrb.com/).
 It requires Ruby, RubyGems, and bundler.
 
-Running the following command to install the prerequisites
+The following command can install the prerequisites
 
     sudo apt install ruby-full build-essential zlib1g-dev
 
-Then, running the follows install jekyll and bundler
+The follow installs jekyll and bundler
 
     gem install jekyll bundler
 
 ## Jekyll Themes
 
 The blog is based on [mediator](https://jekyllthemes.io/theme/mediator) theme.
+Download the theme and copy it into my own git directory by
+
+    git clone https://github.com/dirkfabisch/mediator
+
+## Running
+
+Run the blog from source uses `bundle`
+
+    bundle exec jekyll server
