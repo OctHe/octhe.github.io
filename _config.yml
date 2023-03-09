@@ -4,9 +4,11 @@ plugins:
   - jekyll-paginate
 
 # Site settings
-title: "Shiyue's Blog"
+title: "Snippet"
 description: > # this means to ignore newlines until "email:"
-   Shiyue's blog about wireless network
+   This website includes "snippet" about kernel and vim and software-defined radio.
+   I call the blogs as snippet because most of them are extremely short, simple, and irrelevant ideas.
+   I don't know what the point of these ideas is for now, but I'll try to put them together into logical posts or projects.
 
 email: hsy1995313@gmail.com
 #blog logo
