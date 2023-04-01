@@ -37,3 +37,17 @@ For example, `<ctrl>+<alt>+F2` can change to the GUI, and `<ctrl>+<alt>+F3` is t
 Virtual console is the default interface from Linux kernel and does not support Unicode.
 By default, the startup program, i.e., systemd in Ubuntu, will initialize the GUI desktop.
 However, if someone want to open it in manual, he can type `sudo startx` to open the GUI in the virtual console.
+
+## Openbox
+
+Install openbox with apt
+
+    sudo apt install openbox
+
+By default, openbox has a refresh issue in Ubuntu.
+The applications will not automatic refresh after opening them.
+To fix this, you need to change the configuration file
+
+    sudo vim /usr/lib/x86_64-linux-gnu/openbox-autostart
+
+Uncommand the line `test -z $BG || $BG -solid "#303030"`
