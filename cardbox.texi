@@ -1,0 +1,15 @@
+\input texinfo.tex @c -*- texinfo -*-
+
+@setfilename index.html
+@settitle Shiyue's Cardbox
+
+@node index 
+@top Cardbox Index
+
+@include distribution.texi
+@include blog.texi
+@include vim.texi
+@include network.texi
+@include input_method.texi
+
+@bye

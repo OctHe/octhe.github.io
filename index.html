@@ -1,95 +1,515 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Shiyue&rsquo;s Cardbox</title>
 
-<div class="teaserimage">
-    <div class="teaserimage-image" {% if site.cover %}style="background-image: url({{ site.cover | prepend: site.baseurl }})"{% endif %}>
-        Teaser Image
-    </div>
+<meta name="description" content="Shiyue&rsquo;s Cardbox">
+<meta name="keywords" content="Shiyue&rsquo;s Cardbox">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#index" rel="start" title="index">
+<link href="#Distribution" rel="next" title="Distribution">
+<style type="text/css">
+<!--
+ul.mark-bullet {list-style-type: disc}
+ul.mark-minus {list-style-type: "\2212"}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+
+<div class="top-level-extent" id="index">
+<div class="nav-panel">
+<p>
+Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; </p>
+</div>
+<h1 class="top" id="Cardbox-Index">Cardbox Index</h1>
+
+<ul class="mini-toc">
+<li><a href="#Distribution" accesskey="1">Distribution</a></li>
+<li><a href="#Desktop-Enviornment" accesskey="2">Desktop Environment</a></li>
+<li><a href="#Blog" accesskey="3">Blog</a></li>
+<li><a href="#Vim" accesskey="4">Vim</a></li>
+<li><a href="#network" accesskey="5">network</a></li>
+<li><a href="#Input-Method" accesskey="6">Input Method</a></li>
+</ul>
+<hr>
+<div class="chapter-level-extent" id="Distribution">
+<div class="nav-panel">
+<p>
+Next: <a href="#Desktop-Enviornment" accesskey="n" rel="next">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Distribution-1">1 Distribution</h2>
+
+<p>Linux contains lots of well-known distributions.
+A Linux distribtuion comprises multiple drivers to support different hardware architectures and a collections of softwares in the user sapce.
+The follow tables summarize the main different between these awesome distributions and the programs.
+</p>
+<table class="multitable">
+<thead><tr><th width="10%"></th><th width="18%">Arch</th><th width="18%">Debian</th><th width="18%">openSUSE</th><th width="18%">Fedora</th><th width="18%">NixOS</th></tr></thead>
+<tbody><tr><td width="10%">Default desktop</td><td width="18%">-</td><td width="18%">GNOME</td><td width="18%">KDE</td><td width="18%">GNOME</td><td width="18%">GNOME</td></tr>
+<tr><td width="10%">Init system</td><td width="18%">systemd</td><td width="18%">systemd</td><td width="18%">systemd</td><td width="18%">systemd</td><td width="18%">systemd</td></tr>
+<tr><td width="10%">Package manager</td><td width="18%">pacman</td><td width="18%">apt</td><td width="18%">zypper</td><td width="18%">dnf</td><td width="18%">Nix</td></tr>
+<tr><td width="10%">C library</td><td width="18%">glibc</td><td width="18%">glibc</td><td width="18%">glibc</td><td width="18%">glibc</td><td width="18%">glibc</td></tr>
+<tr><td width="10%">Utility</td><td width="18%">coreutils</td><td width="18%">coreutils</td><td width="18%">coreutils</td><td width="18%">coreutils</td><td width="18%">coreutils</td></tr>
+<tr><td width="10%">Installer</td><td width="18%">CLI</td><td width="18%">Debian-Installer</td><td width="18%">YaST</td><td width="18%">Anaconda</td><td width="18%">Calamares</td></tr>
+</tbody>
+</table>
+
+<table class="multitable">
+<thead><tr><th width="10%"></th><th width="30%">Void</th><th width="30%">Alpine</th><th width="30%">Deepin</th></tr></thead>
+<tbody><tr><td width="10%">Default desktop</td><td width="30%">xfce</td><td width="30%">-</td><td width="30%">DDE</td></tr>
+<tr><td width="10%">Init system</td><td width="30%">runit</td><td width="30%">OpenRC</td><td width="30%">systemd</td></tr>
+<tr><td width="10%">Package manager</td><td width="30%">xbps</td><td width="30%">apk</td><td width="30%">-</td></tr>
+<tr><td width="10%">C library</td><td width="30%">musl</td><td width="30%">musl</td><td width="30%">glibc</td></tr>
+<tr><td width="10%">Utility</td><td width="30%">coreutils</td><td width="30%">Busybox</td><td width="30%">coreutils</td></tr>
+<tr><td width="10%">Installer</td><td width="30%">CLI</td><td width="30%">CLI</td><td width="30%">deepin-installer</td></tr>
+</tbody>
+</table>
+
+<hr>
+</div>
+<div class="chapter-level-extent" id="Desktop-Enviornment">
+<div class="nav-panel">
+<p>
+Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#Distribution" accesskey="p" rel="prev">Distribution</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Desktop-Environment">2 Desktop Environment</h2>
+
+<p>A Linux distribution usually has two types of interfaces.
+One of them is virtual console (CLI) and the other is GUI.
+Virtual console is the default interface from Linux kernel and does not support Unicode.
+For example, in Debian/Ubuntu, type <code class="code">&lt;ctrl&gt;+&lt;alt&gt;+F{1-6}</code> can change between virtual console and GUI.
+Specifically, <code class="code">&lt;ctrl&gt;+&lt;alt&gt;+F2</code> can change to the GUI, and <code class="code">&lt;ctrl&gt;+&lt;alt&gt;+F{3,4,5,6}</code> are different virtual consoles.
+Desktop environment is a collection of GUI programs that replaces CLI and is one of the most complicated subsystem in Linux.
+It breaks up the limitation of shell and provides a more flexiable interface for users.
+By default, the startup program, i.e., systemd, will initialize the GUI desktop.
+The desktop also can be opened manually. 
+For example, <code class="code">sudo startx</code> is the command to start an x11 service.
+x11 and Wayland are two communication protocol that relates a display server and the client.
+Most of the desktop and libraries are based on them.
+</p>
+<p>Graphicless compares the follow open-source desktop environments.
+</p>
+<table class="multitable">
+<thead><tr><th width="25%"></th><th width="25%">KDE</th><th width="25%">GNOME</th><th width="25%">xfce</th></tr></thead>
+<tbody><tr><td width="25%">Toolkit</td><td width="25%">QT</td><td width="25%">GTK</td><td width="25%">GTK</td></tr>
+<tr><td width="25%">Display manager</td><td width="25%">SDDM</td><td width="25%">gdm</td><td width="25%">LightDM</td></tr>
+<tr><td width="25%">Session manager</td><td width="25%">ksmserver</td><td width="25%">gnome-session</td><td width="25%">xfce4-session</td></tr>
+<tr><td width="25%">Windows manager</td><td width="25%">KWin</td><td width="25%">gnome-shell</td><td width="25%">xfwm4</td></tr>
+<tr><td width="25%">Desktop manager</td><td width="25%">-</td><td width="25%">-</td><td width="25%">xfdesktop</td></tr>
+<tr><td width="25%">File manager</td><td width="25%">Dolphin</td><td width="25%">Nautilus</td><td width="25%">Thunar</td></tr>
+<tr><td width="25%">Launcher</td><td width="25%">Kickoff</td><td width="25%">-</td><td width="25%">xfce-panel</td></tr>
+<tr><td width="25%">Editor</td><td width="25%">Kate</td><td width="25%">gnome-text-editor</td><td width="25%">Mousepad</td></tr>
+<tr><td width="25%">Terminal</td><td width="25%">Konsole</td><td width="25%">gnome-terminal</td><td width="25%">xfce4-terminal</td></tr>
+<tr><td width="25%">Network</td><td width="25%">Network Manager</td><td width="25%">Network Manager</td><td width="25%">-</td></tr>
+<tr><td width="25%">Capturer</td><td width="25%">Spectacle</td><td width="25%">GNOME Screenshot</td><td width="25%">xfce4-screenshooter</td></tr>
+<tr><td width="25%">Document viewer</td><td width="25%">Okular</td><td width="25%">Evince</td><td width="25%">-</td></tr>
+<tr><td width="25%">Image viewer</td><td width="25%">Gwenview</td><td width="25%">Loupe</td><td width="25%">Ristretto</td></tr>
+<tr><td width="25%">Input method</td><td width="25%">-</td><td width="25%">-</td><td width="25%">-</td></tr>
+<tr><td width="25%">Advanced setting</td><td width="25%">-</td><td width="25%">gnome-tweaks</td><td width="25%">-</td></tr>
+<tr><td width="25%">Development</td><td width="25%">KDevelop</td><td width="25%">GNOME Builder</td><td width="25%">-</td></tr>
+</tbody>
+</table>
+
+<table class="multitable">
+<thead><tr><th width="20%"></th><th width="40%">LXQT</th><th width="40%">DDE</th></tr></thead>
+<tbody><tr><td width="20%">Toolkit</td><td width="40%">QT</td><td width="40%">QT</td></tr>
+<tr><td width="20%">Display manager</td><td width="40%">SDDM</td><td width="40%">LightDM</td></tr>
+<tr><td width="20%">Session manager</td><td width="40%">lxqt-session</td><td width="40%">dde-session</td></tr>
+<tr><td width="20%">Windows manager</td><td width="40%">Openbox</td><td width="40%">deepin-kwin</td></tr>
+<tr><td width="20%">Desktop manager</td><td width="40%">-</td><td width="40%">-</td></tr>
+<tr><td width="20%">File manager</td><td width="40%">PcManFm-qt</td><td width="40%">dde-file-manager</td></tr>
+<tr><td width="20%">Launcher</td><td width="40%">lxqt-runner</td><td width="40%">dde-launcher</td></tr>
+<tr><td width="20%">Editor</td><td width="40%">-</td><td width="40%">deepin-editor</td></tr>
+<tr><td width="20%">Terminal</td><td width="40%">QTerminal</td><td width="40%">deepin-terminal</td></tr>
+<tr><td width="20%">Network</td><td width="40%">-</td><td width="40%">-</td></tr>
+<tr><td width="20%">Capturer</td><td width="40%">Screengrab</td><td width="40%">deepin-screenshot</td></tr>
+<tr><td width="20%">Document viewer</td><td width="40%">-</td><td width="40%">deepin-reader</td></tr>
+<tr><td width="20%">Image viewer</td><td width="40%">Lximage-qt</td><td width="40%">deepin-image-viewer</td></tr>
+<tr><td width="20%">Input method</td><td width="40%">-</td><td width="40%">deepin-im</td></tr>
+<tr><td width="20%">Advanced setting</td><td width="40%">-</td><td width="40%">deepin-tweak</td></tr>
+<tr><td width="20%">Development</td><td width="40%">-</td><td width="40%">Deepin-IDE</td></tr>
+</tbody>
+</table>
+
+<ul class="mini-toc">
+<li><a href="#xfce4" accesskey="1">xfce4</a></li>
+<li><a href="#Window-Manager" accesskey="2">Window Manager</a></li>
+<li><a href="#Linux-To-Go" accesskey="3">Linux To Go</a></li>
+</ul>
+<div class="section-level-extent" id="xfce4">
+<h3 class="section">2.1 xfce4</h3>
+
+<p>Graphicless tests xfce4 in Debian 12.
+It uses xfce4-terminal and firefox as the default applications for terminal and web browser, respectively.
+</p>
+</div>
+<div class="section-level-extent" id="Window-Manager">
+<h3 class="section">2.2 Window Manager</h3>
+
+<table class="multitable">
+<thead><tr><th width="20%"></th><th width="20%">Openbox</th><th width="20%">i3</th><th width="20%">xmonad</th><th width="20%">sway</th></tr></thead>
+<tbody><tr><td width="20%">Protocol</td><td width="20%">x11</td><td width="20%">x11</td><td width="20%">Wayland</td><td width="20%">Wayland</td></tr>
+</tbody>
+</table>
+
+<ul class="mini-toc">
+<li><a href="#Openbox" accesskey="1">Openbox</a></li>
+</ul>
+<div class="subsection-level-extent" id="Openbox">
+<h4 class="subsection">2.2.1 Openbox</h4>
+
+<p>Install Openbox with apt
+</p>
+<p><code class="code">sudo apt install openbox</code>
+</p>
+<p>By default, openbox has a refresh issue in Ubuntu.
+The applications will not automatic refresh after opening them.
+To fix this, change the configuration file
+</p>
+<p><code class="code">sudo vim /usr/lib/x86_64-linux-gnu/openbox-autostart</code>
+</p>
+<p>Uncommand the line 
+<code class="code">test -z $BG || $BG -solid &quot;#303030&quot;</code>
+</p>
+</div>
+</div>
+<div class="section-level-extent" id="Linux-To-Go">
+<h3 class="section">2.3 Linux To Go</h3>
+
+<p>Linux To Go (LTG) is a method to install Linux in external USB disk.
+The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
+</p>
+<p>The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
+The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
+In addition, install the bootloader to the USB disk.
+After that, the installation process is the same as a normal installation in any disk.
+</p><hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Blog">
+<div class="nav-panel">
+<p>
+Next: <a href="#Vim" accesskey="n" rel="next">Vim</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Blog-1">3 Blog</h2>
+
+<p>This blog is based on <a class="url" href="https://pages.github.com/">Github page</a> and <a class="url" href="https://jekyllrb.com/">jekyll</a>.
+</p>
+<ul class="mini-toc">
+<li><a href="#Installation" accesskey="1">Installation</a></li>
+<li><a href="#Jekyll-Themes" accesskey="2">Jekyll Themes</a></li>
+<li><a href="#Usage" accesskey="3">Usage</a></li>
+<li><a href="#Upgrade" accesskey="4">Upgrade</a></li>
+</ul>
+<div class="section-level-extent" id="Installation">
+<h3 class="section">3.1 Installation</h3>
+
+<p>It requires Ruby, RubyGems, and bundler.
+</p>
+<p>The following command can install the prerequisites
+</p>
+<p><code class="code">sudo apt install ruby-full build-essential zlib1g-dev</code>
+</p>
+<p>Sometimes gem is hard to access in some regions.
+It is recommended to change the source link.
+As an example, 
+</p>
+<p><code class="code">sudo gem source --add &lt;https://mirror.com&gt; --remove https://rubygems.org/</code>
+</p>
+<p>where <code class="code">&lt;https://mirror.com&gt;</code> is the host of a mirror.
+The follow installs jekyll and bundler
+</p>
+<p><code class="code">sudo gem install jekyll bundler</code>
+</p>
+</div>
+<div class="section-level-extent" id="Jekyll-Themes">
+<h3 class="section">3.2 Jekyll Themes</h3>
+
+<p>The blog is based on [mediator](https://jekyllthemes.io/theme/mediator) theme.
+Download the theme and copy it into my own git directory by
+</p>
+<p><code class="code">git clone https://github.com/dirkfabisch/mediator</code>
+</p>
+</div>
+<div class="section-level-extent" id="Usage">
+<h3 class="section">3.3 Usage</h3>
+
+<p>The blog can be used from source with &lsquo;bundle&lsquo;
+</p>
+<p><code class="code">bundle exec jekyll server</code>
+</p>
+</div>
+<div class="section-level-extent" id="Upgrade">
+<h3 class="section">3.4 Upgrade</h3>
+
+<p>Bundler and Jekyll requires the correct version of Ruby.
+If Ruby is updated within the system upgrade, bundler and Jekyll both need to reinstall from gem.
+For example, when Ubuntu 22.04 is upgraded from Ubuntu 20.04, Ruby 3.0 would be installed, but bundler and Jekyll both requires Ruby 2.7.
+So the two programs would not processing correctly anymore.
+</p>
+<p>To fix this problem, the direct approach is to reinstall bundle with gem.
+</p>
+<p><code class="code">sudo gem install bundler</code>
+</p>
+<p>Then, bundle can install all required packages by &lsquo;bundle install&lsquo; except *webrick* because webrick is no longer in the standard library of bundle.
+However, I have a network issue when run &lsquo;bundle add webrick&lsquo;.
+It shows &quot;Could not reach host index.rubygems.org. Check your network connection and try again.&quot;
+The straightforward method is to set a mirror by
+</p>
+<p><code class="code">bundle config mirror.https://rubygems.org &lt;https://mirror.com&gt;</code>
+</p>
+<p>where <code class="code">&lt;https://mirror.com&gt;</code> is the host of a mirror.
+However, it still does not work for me, while the mirror still can be reached by ping, curl, and the browser with ipv4.
+So the problem is strange, but I fix it with root command.
+</p>
+<p><code class="code">sudo bundle config mirror.https://rubygems.org &lt;https://mirror.com&gt;</code>
+<code class="code">sudo bundle install</code>
+<code class="code">sudo bundle add webrick</code>
+</p>
+<p>The ipv6 is also cloased because it seems that bundle only supports ipv4, but it is not sure if this process works.
+</p><hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Vim">
+<div class="nav-panel">
+<p>
+Next: <a href="#network" accesskey="n" rel="next">network</a>, Previous: <a href="#Blog" accesskey="p" rel="prev">Blog</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Vim-1">4 Vim</h2>
+
+<ul class="mini-toc">
+<li><a href="#Vim-Distribution" accesskey="1">Vim Distribution</a></li>
+</ul>
+<div class="section-level-extent" id="Vim-Distribution">
+<h3 class="section">4.1 Vim Distribution</h3>
+
+<p>Vim is one of the most famous editors in the world with powerful scalability.
+However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
+NeoVim is a new version of Vim.
+It is community-driven and deprecates lots of old-fashions in Vim.
+</p>
+<p>Due to the extensibility of Vim and Neovim, lots of developers contribute thousands of plugins for them.
+So many plugins give both Vim and Neovim unlimited possibilities, but they also dazzle newbies who want to try these famous editors and don&rsquo;t know how to select a suitable configuration that meet their requirements.
+</p>
+<p>To solve this problem, recently, multiple developers and open source projects provide community-driven out-of-box configurations for Vim.
+The relationship between these projects and Vim (or Neovim) is like the relationship between a Linux distribution and the kernel.
+Therefore, I call these projects as &quot;Vim distributions&quot;, which means they use Vim (or Neovim) as the &quot;editor kernel&quot;.
+The development of Vim distribution is more easier then before, thanks to the language server protocol (LSP).
+The follows are some Vim distributions.
+</p>
+<ul class="mini-toc">
+<li><a href="#SpaceVim" accesskey="1">SpaceVim</a></li>
+<li><a href="#LunarVim" accesskey="2">LunarVim</a></li>
+<li><a href="#NvChad" accesskey="3">NvChad</a></li>
+<li><a href="#Doom_002dnvim" accesskey="4">Doom-nvim</a></li>
+</ul>
+<div class="subsection-level-extent" id="SpaceVim">
+<h4 class="subsection">4.1.1 SpaceVim</h4>
+
+<p><a class="url" href="https://spacevim.org">SpaceVim</a> is inspired by spacemacs.
+It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
+Each layer in SpaceVim indicates a collection of plugins that provides a similar function.
+Users can choose different plugins for the layer.
+However, although SpaceVim change the &lt;leader&gt; to &lt;Space&gt;, it lacks a local easy-to-use document about all the keybindings (like vim).
+SpaceVim provides a new configuration interface that uses &lsquo;.toml&lsquo; in the directory &lsquo;~/.Spacevim.d/&lsquo;.
+SpaceVim is only distribution that can support both Vim and NeoVim.
+</p>
+</div>
+<div class="subsection-level-extent" id="LunarVim">
+<h4 class="subsection">4.1.2 LunarVim</h4>
+
+<p><a class="url" href="https://www.lunarvim.org/">LunarVim</a>, or lvim in short, is another distribution that only supports Neovim.
+It needs npm, node, and cargo as the prerequisites.
+LunarVim is also community-driven and provides good support for multiple languages.
+It provides a shortcut named as lvim in &lsquo;.local/bin/&lsquo;.
+</p>
+</div>
+<div class="subsection-level-extent" id="NvChad">
+<h4 class="subsection">4.1.3 NvChad</h4>
+
+<p><a class="url" href="https://nvchad.com/">NvChad</a> is a pure lua distribution with a customized colorscheme.
+The aim of NvChad is to be a &quot;basic configuration&quot;, so the configuration logic of NvChad is pretty simple.
+It is quitely easy to extend.
+</p>
+</div>
+<div class="subsection-level-extent" id="Doom_002dnvim">
+<h4 class="subsection">4.1.4 Doom-nvim</h4>
+
+<p><a class="url" href="https://github.com/doom-neovim/doom-nvim">Doom-nvim</a> is also inspired by an emacs-based project.
+It also proposes modules that includes plugins and keybindings.
+The prerequisites includes npm and tree-sitter, which are both based on javascript.
+If the Linux does not contains the prerequisites, the installation would have some problem.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div class="chapter-level-extent" id="network">
+<div class="nav-panel">
+<p>
+Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Vim" accesskey="p" rel="prev">Vim</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="network-1">5 network</h2>
+
+<ul class="mini-toc">
+<li><a href="#iw" accesskey="1">iw</a></li>
+<li><a href="#Clash" accesskey="2">Clash</a></li>
+<li><a href="#Clash-for-LAN" accesskey="3">Clash for LAN</a></li>
+<li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
+</ul>
+<div class="section-level-extent" id="iw">
+<h3 class="section">5.1 iw</h3>
+
+<p>iw is a configuration tool for mac80211 in Linux kernel with netlink
+The code tree of <code class="code">iw.c</code> in iw is
+</p>
+<ul class="itemize mark-bullet">
+<li>main
+    <ul class="itemize mark-minus">
+<li>version
+    </li><li>nl80211_init
+        <ul class="itemize mark-minus">
+<li>nl_socket_alloc
+        </li><li>nl_socket_free
+        </li><li>nl_socket_set_buffer_size
+        </li></ul>
+</li><li>usage
+        <ul class="itemize mark-minus">
+<li>__usage_cmd
+        </li><li>usage_options
+        </li></ul>
+</li><li>__handle_cmd
+        <ul class="itemize mark-minus">
+<li>error_handler
+        </li><li>finish_handler
+        </li><li>ack_handler
+        </li><li>register_handler
+        </li><li>valid_handler
+        </li><li>phy_lookup
+        </li></ul>
+</li><li>phy_lookup
+    </li><li>nl80211_cleanup
+    </li></ul>
+</li><li>TOPLEVEL
+    <ul class="itemize mark-minus">
+<li>print_help
+    </li></ul>
+</li><li>handle_cmd
+    <ul class="itemize mark-minus">
+<li>__handle_cmd
+    </li></ul>
+</li><li>usage_cmd
+    <ul class="itemize mark-minus">
+<li>__usage_cmd
+    </li></ul>
+</li></ul>
+
+</div>
+<div class="section-level-extent" id="Clash">
+<h3 class="section">5.2 Clash</h3>
+
+<p>clash is a tunnel in Go.
+</p>
+<ul class="mini-toc">
+<li><a href="#Installation-1" accesskey="1">Installation</a></li>
+<li><a href="#Basic-Usage" accesskey="2">Basic Usage</a></li>
+<li><a href="#Autostart" accesskey="3">Autostart</a></li>
+</ul>
+<div class="subsection-level-extent" id="Installation-1">
+<h4 class="subsection">5.2.1 Installation</h4>
+
+<p>openSUSE contains clash in its repository, so it can be downloaded directly
+</p>
+<p><code class="code">sudo zypper in clash</code>
+</p>
+<p>Debian repository does not contain clash, so it can be downloaded from [Github release](https://github.com/Dreamacro/clash/releases).
+It also can be downloaded in command.
+As an example
+</p>
+<p><code class="code">wget https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v1.18.0.gz</code>
+<code class="code">mv clash-linux-amd64-v1.18.0.gz clash</code>
+</p>
+</div>
+<div class="subsection-level-extent" id="Basic-Usage">
+<h4 class="subsection">5.2.2 Basic Usage</h4>
+
+<p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
+</p>
+<p><code class="code">clash</code>
+</p>
+<p>Clash will download the <code class="code">Country.mmdb</code> file by itselef and load the configuration in <code class="code">~/.config/clash/</code>.
+</p>
+</div>
+<div class="subsection-level-extent" id="Autostart">
+<h4 class="subsection">5.2.3 Autostart</h4>
+
+<p>Clash support auto-start after opening the system.
+In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
+This service is based on systemd, so it works for openSUSE and other distributions that uses systemd as the init process.
+Different from manually run clash, the systemd will load the configuration in the directory <code class="code">/etc/clash/</code> by default.
+So move the configuration file and mmdb file in the above directory by
+</p>
+<p><code class="code">sudo mv /path/to/config/file /etc/clash/</code>
+<code class="code">sudo mv /path/to/Country.mmdb /etc/clash</code>
+</p>
+<p>Then, enable and start clash service
+</p>
+<p><code class="code">systemclt enable clash</code>
+<code class="code">systemclt start clash</code>
+</p>
+<p>The final process is to config the system-level network setting or program-level network setting to use the clash service.
+</p>
+</div>
+</div>
+<div class="section-level-extent" id="Clash-for-LAN">
+<h3 class="section">5.3 Clash for LAN</h3>
+ 
+<p>Clash can support connection from devices in the local area network (LAN).
+To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
+Then open clash with manual
+</p>
+<p><code class="code">clash -d ~/.config/clash/</code>
+</p>
+</div>
+<div class="section-level-extent" id="snapdrop_002enet">
+<h3 class="section">5.4 snapdrop.net</h3>
+
+<p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
+Open the link of snapdrop in the same network.
+The website can identify all devices in the same network. 
+Just drop the file to the target.
+</p><hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Input-Method">
+<div class="nav-panel">
+<p>
+Previous: <a href="#network" accesskey="p" rel="prev">network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Input-Method-1">6 Input Method</h2>
+
+<p>This README is related to the chinese input method.
+In openSUSE, the fcitx5 framework can be installed from the repository with command
+</p>
+<p><code class="code">sudo zypper in fcitx5</code>
+</p>
+<p>This command will install a GUI configuration tool <code class="code">fcitx5-configtool</code>.
+The chinese input method can be chosen from it.
+</p>
+</div>
 </div>
 
-<header class="blog-header">
-    {% if site.logo %}
-      <a class="blog-logo" href="{{site.url}}{{site.baseurl}}" style="background-image: url('{{ site.logo | prepend: site.baseurl }}')">{{ site.title }}</a>
-    {% endif %}
-    <h1 class="blog-title">{{ site.title }}</h1>
-    <h2 class="blog-description">{{ site.description }}</h2>
-    <div class="custom-links">
-      {% for social in site.social %}
-        {% if social.url %}
-            <a class="icon-{{ social.icon }}" href="{{ social.url }}" {% if social.desc %} title="{{ social.desc }}"{% endif %}">
-              <i class="fa fa-{{ social.icon }}"></i>
-            </a>
-            &nbsp;&nbsp;·&nbsp;&nbsp;
-        {% endif %}
-      {% endfor %}
-      <a href={{ "/about/" | prepend: site.baseurl }}>About</a>
-    </div>
-</header>
 
 
-<main class="content" role="main">
-
-    {% if site.tags.featured %}
-    <h5 class="index-headline featured"><span>Featured</span></h5>
-
-    <div class="container featured">
-      {% for post in site.tags.featured %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-  <!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <h5 class="index-headline normal"><span>Regular</span></h5>
-    {% endif %}
-
-    <div class="cf frame">
-      {% for post in paginator.posts %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-<!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <nav class="pagination" role="navigation">
-      {% if paginator.next_page %}
-        <a class="newer-posts" href={{ "/page" | prepend: site.baseurl | append: paginator.next_page }}>&larr; Older posts</a>
-      {% endif %}
-      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.previous_page %}
-        {% if paginator.page == 2 %}
-          <a class="older-posts" href={{ "/" | prepend: site.baseurl }}>Newer posts &rarr;</a>
-        {% else %}
-          <a class="older-posts" href={{ "/page" | prepend: site.baseurl | append: paginator.previous_page }}>Newer posts &rarr;</a>
-        {% endif %}
-      {% endif %}
-    </nav>
-
-
-    <!-- {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}} -->
-
-</main>
+</body>
+</html>

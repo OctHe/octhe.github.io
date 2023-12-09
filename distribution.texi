@@ -1,0 +1,121 @@
+@node Distribution
+@chapter Distribution
+
+Linux contains lots of well-known distributions.
+A Linux distribtuion comprises multiple drivers to support different hardware architectures and a collections of softwares in the user sapce.
+The follow tables summarize the main different between these awesome distributions and the programs.
+
+@multitable @columnfractions .1 .18 .18 .18 .18 .18
+@headitem             @tab    Arch   @tab      Debian      @tab  openSUSE @tab   Fedora  @tab   NixOS   
+@item Default desktop @tab     -     @tab       GNOME      @tab    KDE    @tab   GNOME   @tab   GNOME   
+@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  @tab  systemd  @tab  systemd  
+@item Package manager @tab   pacman  @tab        apt       @tab   zypper  @tab    dnf    @tab    Nix    
+@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   @tab   glibc   @tab   glibc   
+@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils @tab coreutils @tab coreutils 
+@item    Installer    @tab    CLI    @tab Debian-Installer @tab    YaST   @tab  Anaconda @tab Calamares 
+@end multitable
+
+@multitable @columnfractions .1 .3 .3 .3
+@headitem             @tab    Void   @tab  Alpine @tab      Deepin      
+@item Default desktop @tab    xfce   @tab    -    @tab        DDE       
+@item   Init system   @tab   runit   @tab  OpenRC @tab      systemd     
+@item Package manager @tab    xbps   @tab   apk   @tab         -        
+@item    C library    @tab    musl   @tab   musl  @tab       glibc      
+@item     Utility     @tab coreutils @tab Busybox @tab     coreutils    
+@item    Installer    @tab    CLI    @tab   CLI   @tab deepin-installer 
+@end multitable
+
+@node Desktop Enviornment
+@chapter Desktop Environment
+
+A Linux distribution usually has two types of interfaces.
+One of them is virtual console (CLI) and the other is GUI.
+Virtual console is the default interface from Linux kernel and does not support Unicode.
+For example, in Debian/Ubuntu, type @code{<ctrl>+<alt>+F@{1-6@}} can change between virtual console and GUI.
+Specifically, @code{<ctrl>+<alt>+F2} can change to the GUI, and @code{<ctrl>+<alt>+F@{3,4,5,6@}} are different virtual consoles.
+Desktop environment is a collection of GUI programs that replaces CLI and is one of the most complicated subsystem in Linux.
+It breaks up the limitation of shell and provides a more flexiable interface for users.
+By default, the startup program, i.e., systemd, will initialize the GUI desktop.
+The desktop also can be opened manually. 
+For example, @code{sudo startx} is the command to start an x11 service.
+x11 and Wayland are two communication protocol that relates a display server and the client.
+Most of the desktop and libraries are based on them.
+
+Graphicless compares the follow open-source desktop environments.
+
+@multitable @columnfractions .25 .25 .25 .25
+@headitem              @tab        KDE         @tab       GNOME       @tab         xfce
+@item      Toolkit     @tab         QT         @tab        GTK        @tab         GTK
+@item  Display manager @tab        SDDM        @tab        gdm        @tab       LightDM
+@item  Session manager @tab      ksmserver     @tab   gnome-session   @tab    xfce4-session
+@item  Windows manager @tab        KWin        @tab    gnome-shell    @tab        xfwm4
+@item  Desktop manager @tab          -         @tab         -         @tab      xfdesktop
+@item   File manager   @tab       Dolphin      @tab     Nautilus      @tab        Thunar
+@item     Launcher     @tab       Kickoff      @tab         -         @tab      xfce-panel
+@item      Editor      @tab        Kate        @tab gnome-text-editor @tab       Mousepad
+@item     Terminal     @tab       Konsole      @tab   gnome-terminal  @tab    xfce4-terminal
+@item      Network     @tab   Network Manager  @tab  Network Manager  @tab          -
+@item     Capturer     @tab      Spectacle     @tab  GNOME Screenshot @tab xfce4-screenshooter
+@item  Document viewer @tab       Okular       @tab       Evince      @tab          -
+@item   Image viewer   @tab      Gwenview      @tab       Loupe       @tab      Ristretto
+@item   Input method   @tab          -         @tab         -         @tab          -
+@item Advanced setting @tab          -         @tab    gnome-tweaks   @tab          -
+@item    Development   @tab      KDevelop      @tab   GNOME Builder   @tab          -
+@end multitable
+
+@multitable @columnfractions .2 .4 .4
+@headitem                   @tab    LXQT      @tab         DDE
+@item      Toolkit          @tab      QT      @tab          QT
+@item  Display manager      @tab     SDDM     @tab       LightDM
+@item  Session manager      @tab lxqt-session @tab     dde-session
+@item  Windows manager      @tab    Openbox   @tab     deepin-kwin
+@item  Desktop manager      @tab       -      @tab          -
+@item   File manager        @tab  PcManFm-qt  @tab   dde-file-manager
+@item     Launcher          @tab  lxqt-runner @tab     dde-launcher
+@item      Editor           @tab       -      @tab    deepin-editor
+@item     Terminal          @tab   QTerminal  @tab   deepin-terminal
+@item      Network          @tab       -      @tab          -
+@item     Capturer          @tab  Screengrab  @tab  deepin-screenshot
+@item  Document viewer      @tab       -      @tab    deepin-reader
+@item   Image viewer        @tab  Lximage-qt  @tab deepin-image-viewer
+@item   Input method        @tab       -      @tab      deepin-im 
+@item Advanced setting      @tab       -      @tab     deepin-tweak
+@item    Development        @tab       -      @tab      Deepin-IDE
+@end multitable
+
+@section xfce4
+
+Graphicless tests xfce4 in Debian 12.
+It uses xfce4-terminal and firefox as the default applications for terminal and web browser, respectively.
+
+@section Window Manager
+
+@multitable @columnfractions .2 .2 .2 .2 .2
+@headitem @tab Openbox @tab i3 @tab xmonad @tab sway
+@item Protocol @tab x11 @tab x11 @tab Wayland @tab Wayland
+@end multitable
+
+@subsection Openbox
+
+Install Openbox with apt
+
+@code{sudo apt install openbox}
+
+By default, openbox has a refresh issue in Ubuntu.
+The applications will not automatic refresh after opening them.
+To fix this, change the configuration file
+
+@code{sudo vim /usr/lib/x86_64-linux-gnu/openbox-autostart}
+
+Uncommand the line 
+@code{test -z $BG || $BG -solid "#303030"}
+
+@section Linux To Go
+
+Linux To Go (LTG) is a method to install Linux in external USB disk.
+The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
+
+The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
+The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
+In addition, install the bootloader to the USB disk.
+After that, the installation process is the same as a normal installation in any disk.
