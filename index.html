@@ -37,9 +37,10 @@ Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; <
 <li><a href="#Distribution" accesskey="1">Distribution</a></li>
 <li><a href="#Desktop-Enviornment" accesskey="2">Desktop Environment</a></li>
 <li><a href="#Blog" accesskey="3">Blog</a></li>
-<li><a href="#Vim" accesskey="4">Vim</a></li>
-<li><a href="#network" accesskey="5">network</a></li>
-<li><a href="#Input-Method" accesskey="6">Input Method</a></li>
+<li><a href="#Shell" accesskey="4">Shell</a></li>
+<li><a href="#Editor" accesskey="5">Editor</a></li>
+<li><a href="#network" accesskey="6">network</a></li>
+<li><a href="#Input-Method" accesskey="7">Input Method</a></li>
 </ul>
 <hr>
 <div class="chapter-level-extent" id="Distribution">
@@ -75,7 +76,69 @@ The follow tables summarize the main different between these awesome distributio
 </tbody>
 </table>
 
+<ul class="mini-toc">
+<li><a href="#Package-Manager" accesskey="1">Package Manager</a></li>
+</ul>
+<div class="section-level-extent" id="Package-Manager">
+<h3 class="section">1.1 Package Manager</h3>
+
+<p>The follow lists common package managers that in different distributions.
+</p><ul class="itemize mark-bullet">
+<li>apt
+</li><li>zypper
+</li><li>dnf
+</li><li>pacman
+</li><li>Flatpak
+</li><li>AppImage
+</li></ul>
+
+<ul class="mini-toc">
+<li><a href="#zypper" accesskey="1">zypper</a></li>
+<li><a href="#Flatpak" accesskey="2">Flatpak</a></li>
+</ul>
+<div class="subsection-level-extent" id="zypper">
+<h4 class="subsection">1.1.1 zypper</h4>
+
+<p>openSUSE uses <code class="code">zypper</code> as the default package manager.
+It is based on RPM, which is similar to Fedora.
+Besides installation of the built programs, zypper also provides an offical repository for the source code.
+As an example, the download and build process for the <code class="code">hostapd</code> is
+</p>
+<p><code class="code">sudo zypper source-install hostapd</code>
+<code class="code"># or `sudo zypper si hostapd`</code>
+<code class="code">cd /usr/src/packages/       # cd to the default directory for source code</code>
+<code class="code">ls SOURCES</code>
+<code class="code">ls SPECS</code>
+<code class="code">sudo zypper in rpmbuild     # The build tool of the download source code</code>
+<code class="code">sudo rpmbuild -ba SPECS/hostapd.spec</code>
+<code class="code">                            # -ba means to perform a full build. </code>
+<code class="code">ls RPMS/x86_64              # The built program in the x86 architecture</code>
+<code class="code">sudo rpmbuild -ba --noclean SPECS/hostapd.spec</code>
+<code class="code">                            # It does not remove the extracted source code</code>
+<code class="code">ls BUILD                    # The extracted source code</code>
+</p>
+<p>However, openSUSE also provides a command-line tool for package download, building and packaging.
+The name of the tool is osc, which means openSUSE commander.
+To use it, run
+</p>
+<p><code class="code">sudo zypper install osc</code>
+</p>
+</div>
+<div class="subsection-level-extent" id="Flatpak">
+<h4 class="subsection">1.1.2 Flatpak</h4>
+
+<p>Flatpak is a cross-platform package manager that run applications in a sandbox.
+It can download apps from FlatHub, which is the official repository of Flatpak.
+</p>
+<p><code class="code">flatpak install &lt;package name/ID&gt;</code>
+</p>
+<p>Different from apt/zypper/dnf/pacman, you cannot run the applications from flatpak directly.
+</p>
+<p><code class="code">flatpak run &lt;package name/ID&gt;</code>
+</p>
 <hr>
+</div>
+</div>
 </div>
 <div class="chapter-level-extent" id="Desktop-Enviornment">
 <div class="nav-panel">
@@ -142,19 +205,40 @@ Most of the desktop and libraries are based on them.
 </table>
 
 <ul class="mini-toc">
-<li><a href="#xfce4" accesskey="1">xfce4</a></li>
-<li><a href="#Window-Manager" accesskey="2">Window Manager</a></li>
-<li><a href="#Linux-To-Go" accesskey="3">Linux To Go</a></li>
+<li><a href="#GNOME" accesskey="1">GNOME</a></li>
+<li><a href="#xfce4" accesskey="2">xfce4</a></li>
+<li><a href="#Window-Manager" accesskey="3">Window Manager</a></li>
+<li><a href="#Linux-To-Go" accesskey="4">Linux To Go</a></li>
 </ul>
+<div class="section-level-extent" id="GNOME">
+<h3 class="section">2.1 GNOME</h3>
+
+<ul class="mini-toc">
+<li><a href="#Advanced-Setting" accesskey="1">Advanced Setting</a></li>
+</ul>
+<div class="subsection-level-extent" id="Advanced-Setting">
+<h4 class="subsection">2.1.1 Advanced Setting</h4>
+
+<p>gnome-tweaks gives advanced settings for gnome.
+It support swap of Caplock and Ctrl.
+Download it in Debian with
+</p>
+<p><code class="code">sudo apt install gnome-tweaks</code>
+</p>
+<p>This swap is only useful in gnome-based GUI.
+Windows has a similar tool that named as [PowerToys](https://github.com/microsoft/PowerToys).
+</p>
+</div>
+</div>
 <div class="section-level-extent" id="xfce4">
-<h3 class="section">2.1 xfce4</h3>
+<h3 class="section">2.2 xfce4</h3>
 
 <p>Graphicless tests xfce4 in Debian 12.
 It uses xfce4-terminal and firefox as the default applications for terminal and web browser, respectively.
 </p>
 </div>
 <div class="section-level-extent" id="Window-Manager">
-<h3 class="section">2.2 Window Manager</h3>
+<h3 class="section">2.3 Window Manager</h3>
 
 <table class="multitable">
 <thead><tr><th width="20%"></th><th width="20%">Openbox</th><th width="20%">i3</th><th width="20%">xmonad</th><th width="20%">sway</th></tr></thead>
@@ -166,7 +250,7 @@ It uses xfce4-terminal and firefox as the default applications for terminal and 
 <li><a href="#Openbox" accesskey="1">Openbox</a></li>
 </ul>
 <div class="subsection-level-extent" id="Openbox">
-<h4 class="subsection">2.2.1 Openbox</h4>
+<h4 class="subsection">2.3.1 Openbox</h4>
 
 <p>Install Openbox with apt
 </p>
@@ -184,7 +268,7 @@ To fix this, change the configuration file
 </div>
 </div>
 <div class="section-level-extent" id="Linux-To-Go">
-<h3 class="section">2.3 Linux To Go</h3>
+<h3 class="section">2.4 Linux To Go</h3>
 
 <p>Linux To Go (LTG) is a method to install Linux in external USB disk.
 The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
@@ -199,7 +283,7 @@ After that, the installation process is the same as a normal installation in any
 <div class="chapter-level-extent" id="Blog">
 <div class="nav-panel">
 <p>
-Next: <a href="#Vim" accesskey="n" rel="next">Vim</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="Blog-1">3 Blog</h2>
 
@@ -280,18 +364,103 @@ So the problem is strange, but I fix it with root command.
 </p><hr>
 </div>
 </div>
-<div class="chapter-level-extent" id="Vim">
+<div class="chapter-level-extent" id="Shell">
 <div class="nav-panel">
 <p>
-Next: <a href="#network" accesskey="n" rel="next">network</a>, Previous: <a href="#Blog" accesskey="p" rel="prev">Blog</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Editor" accesskey="n" rel="next">Editor</a>, Previous: <a href="#Blog" accesskey="p" rel="prev">Blog</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Vim-1">4 Vim</h2>
+<h2 class="chapter" id="Shell-1">4 Shell</h2>
 
 <ul class="mini-toc">
-<li><a href="#Vim-Distribution" accesskey="1">Vim Distribution</a></li>
+<li><a href="#Terminal-emulator" accesskey="1">Terminal emulator</a></li>
+<li><a href="#Swap-keys" accesskey="2">Swap keys</a></li>
 </ul>
-<div class="section-level-extent" id="Vim-Distribution">
-<h3 class="section">4.1 Vim Distribution</h3>
+<div class="section-level-extent" id="Terminal-emulator">
+<h3 class="section">4.1 Terminal emulator</h3>
+
+<p>Terminal emulator is the prerequisite of shell.
+An open-source terminal emulator is terminator.
+Install it with
+</p>
+<p><code class="code">sudo apt install terminator</code>
+</p>
+<p>The terminal emulator provides color and font support for shell.
+For example, the <a class="url" href="https://github.com/agnoster/agnoster-zsh-theme">agnoster theme</a> of zsh requires the powerline font.
+To install it, run
+</p>
+<p><code class="code">sudo apt install fonts-powerline</code>
+</p>
+<p>and then set the fonts in the terminator.
+</p>
+</div>
+<div class="section-level-extent" id="Swap-keys">
+<h3 class="section">4.2 Swap keys</h3>
+
+<p>Usually, if someone wants to swap Caplock and left Ctrl since the latter is more useful, some desktop provides an GUI tool such as gnome-tweak in GNOME or the setting in KDE that support this function.
+For the desktops that do not have an GUI tool, a shell method is to use xmodmap and the GUI helper xkeycaps.
+After change the keys in xkeycaps, write out the configuration file of xmodmap in the HOME diretory, and add the follows in the shell
+</p>
+<p><code class="code">xmodmap ~/.xmodmap-`uname -n`</code>
+</p>
+<p>xmodmap will trigger the key swap when open a terminal.
+</p>
+<hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Editor">
+<div class="nav-panel">
+<p>
+Next: <a href="#network" accesskey="n" rel="next">network</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Editor-1">5 Editor</h2>
+
+<ul class="mini-toc">
+<li><a href="#Vim" accesskey="1">Vim</a></li>
+<li><a href="#Micro-Editor" accesskey="2">Micro Editor</a></li>
+</ul>
+<div class="section-level-extent" id="Vim">
+<h3 class="section">5.1 Vim</h3>
+
+<ul class="mini-toc">
+<li><a href="#Test-Vim-Script" accesskey="1">Test Vim Script</a></li>
+<li><a href="#Vim-Distribution" accesskey="2">Vim Distribution</a></li>
+</ul>
+<div class="subsection-level-extent" id="Test-Vim-Script">
+<h4 class="subsection">5.1.1 Test Vim Script</h4>
+
+<p>Vim is an awesome editor with powerful plugin ecosystems.
+Most of the time, the plugin can be directly used by downloading them into the directory.
+The plugin manager, which is also a plugin, can add the other plugins in to the runtime directory of vim.
+</p>
+<p>This subsection is not about how to install and use plugins, but is related to how to write a plugin.
+The goal of this post is to give a brief introduction on test Vim plugins like test a command line.
+Specifically, test is the basic function if someone wants to write their custom plugin.
+Test the source code of a well-known plugin is also a good way to learn the idea of other developers&rsquo; plugins.
+</p>
+<p>The plugin language of writing plugins is Vimscript.
+There are at least two vim processes, one for edit, and the other for running test.
+Although vim is an editor, it provides a non-interactive mode to run Vim scripts without open the window.
+Redirect the output of vim to other command with pipeline in shell like this
+</p>
+<p><code class="code">vim -u NONE --not-a-term -c &quot;echoconsole \&quot;hello world \&quot;  | q&quot; &gt;&gt; vim2stdout.txt</code>
+</p>
+<p>where <code class="code">-u</code>, <code class="code">-c</code>, <code class="code">--not-a-term</code> are vim options.
+The detail can be found in <code class="code">vim --help</code>.
+<code class="code">echoconsole</code> is a vim command can be used to output a message, which is &quot;hello world&quot; in this case, to the terminal.
+The output is redirect to a file vim2stdout.txt and the string &quot;hello world&quot; can be found in the file, with some other strings.
+</p>
+<p>In addition, a recommand method for unit test is to write a script with a test case, and redirect the output to the awk tool, such as
+</p>
+<p>vim -u -NOME &ndash;not-a-term -S &lt;run_test_file&gt; &lt;test_case&gt; | awk &lt;pattern&gt;
+</p>
+<p>Note that there must be <code class="code">echoconsole</code> and <code class="code">quit</code> in the &lt;run_test_file&gt;.
+</p>
+<p>Debug the unit test of vim plugin can be implemented by the <code class="code">clientserver</code> feature of Vim.
+There is a good plugin <a class="url" href="https://github.com/vim-scripts/BreakPts">breakpts</a>.
+</p>
+</div>
+<div class="subsection-level-extent" id="Vim-Distribution">
+<h4 class="subsection">5.1.2 Vim Distribution</h4>
 
 <p>Vim is one of the most famous editors in the world with powerful scalability.
 However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
@@ -313,8 +482,8 @@ The follows are some Vim distributions.
 <li><a href="#NvChad" accesskey="3">NvChad</a></li>
 <li><a href="#Doom_002dnvim" accesskey="4">Doom-nvim</a></li>
 </ul>
-<div class="subsection-level-extent" id="SpaceVim">
-<h4 class="subsection">4.1.1 SpaceVim</h4>
+<div class="subsubsection-level-extent" id="SpaceVim">
+<h4 class="subsubsection">5.1.2.1 SpaceVim</h4>
 
 <p><a class="url" href="https://spacevim.org">SpaceVim</a> is inspired by spacemacs.
 It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
@@ -325,8 +494,8 @@ SpaceVim provides a new configuration interface that uses &lsquo;.toml&lsquo; in
 SpaceVim is only distribution that can support both Vim and NeoVim.
 </p>
 </div>
-<div class="subsection-level-extent" id="LunarVim">
-<h4 class="subsection">4.1.2 LunarVim</h4>
+<div class="subsubsection-level-extent" id="LunarVim">
+<h4 class="subsubsection">5.1.2.2 LunarVim</h4>
 
 <p><a class="url" href="https://www.lunarvim.org/">LunarVim</a>, or lvim in short, is another distribution that only supports Neovim.
 It needs npm, node, and cargo as the prerequisites.
@@ -334,32 +503,63 @@ LunarVim is also community-driven and provides good support for multiple languag
 It provides a shortcut named as lvim in &lsquo;.local/bin/&lsquo;.
 </p>
 </div>
-<div class="subsection-level-extent" id="NvChad">
-<h4 class="subsection">4.1.3 NvChad</h4>
+<div class="subsubsection-level-extent" id="NvChad">
+<h4 class="subsubsection">5.1.2.3 NvChad</h4>
 
 <p><a class="url" href="https://nvchad.com/">NvChad</a> is a pure lua distribution with a customized colorscheme.
 The aim of NvChad is to be a &quot;basic configuration&quot;, so the configuration logic of NvChad is pretty simple.
 It is quitely easy to extend.
 </p>
 </div>
-<div class="subsection-level-extent" id="Doom_002dnvim">
-<h4 class="subsection">4.1.4 Doom-nvim</h4>
+<div class="subsubsection-level-extent" id="Doom_002dnvim">
+<h4 class="subsubsection">5.1.2.4 Doom-nvim</h4>
 
 <p><a class="url" href="https://github.com/doom-neovim/doom-nvim">Doom-nvim</a> is also inspired by an emacs-based project.
 It also proposes modules that includes plugins and keybindings.
 The prerequisites includes npm and tree-sitter, which are both based on javascript.
 If the Linux does not contains the prerequisites, the installation would have some problem.
 </p>
-<hr>
 </div>
+</div>
+</div>
+<div class="section-level-extent" id="Micro-Editor">
+<h3 class="section">5.2 Micro Editor</h3>
+
+<p>Micro is a easily used terminal editor with intuitive key bindings as well as modern build-in features, including command line, auto-pair and linter.
+</p>
+<p>Install it in Debian (Test on Debian 12)
+</p>
+<p><code class="code">sudo apt install micro</code>
+</p>
+<p>A universal installation method for most Linux distributions
+</p>
+<p><code class="code">mkdir ~/bin</code>
+<code class="code">cd ~/bin</code>
+<code class="code">curl https://getmic.ro | bash</code>
+</p>
+<p>The configuration files are in <code class="code">~/.config/micro/*</code>
+</p>
+<p>The recommended plugins are follows
+</p><ul class="itemize mark-bullet">
+<li>linter (default installation)
+</li><li>filemanager
+</li><li>wc
+</li><li>quickfix
+</li></ul>
+
+<p>The linter requires out-of-box support for each language (see, <code class="code">help linter</code> in the command line mode).
+Enter the command line mode by typing <code class="code">&lt;C-e&gt;</code>, run
+</p>
+<p>plugin install filemanager wc quickfix
+</p><hr>
 </div>
 </div>
 <div class="chapter-level-extent" id="network">
 <div class="nav-panel">
 <p>
-Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Vim" accesskey="p" rel="prev">Vim</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="network-1">5 network</h2>
+<h2 class="chapter" id="network-1">6 network</h2>
 
 <ul class="mini-toc">
 <li><a href="#iw" accesskey="1">iw</a></li>
@@ -368,7 +568,7 @@ Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previou
 <li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
 </ul>
 <div class="section-level-extent" id="iw">
-<h3 class="section">5.1 iw</h3>
+<h3 class="section">6.1 iw</h3>
 
 <p>iw is a configuration tool for mac80211 in Linux kernel with netlink
 The code tree of <code class="code">iw.c</code> in iw is
@@ -416,7 +616,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 
 </div>
 <div class="section-level-extent" id="Clash">
-<h3 class="section">5.2 Clash</h3>
+<h3 class="section">6.2 Clash</h3>
 
 <p>clash is a tunnel in Go.
 </p>
@@ -426,7 +626,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 <li><a href="#Autostart" accesskey="3">Autostart</a></li>
 </ul>
 <div class="subsection-level-extent" id="Installation-1">
-<h4 class="subsection">5.2.1 Installation</h4>
+<h4 class="subsection">6.2.1 Installation</h4>
 
 <p>openSUSE contains clash in its repository, so it can be downloaded directly
 </p>
@@ -441,7 +641,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Basic-Usage">
-<h4 class="subsection">5.2.2 Basic Usage</h4>
+<h4 class="subsection">6.2.2 Basic Usage</h4>
 
 <p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
 </p>
@@ -451,7 +651,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Autostart">
-<h4 class="subsection">5.2.3 Autostart</h4>
+<h4 class="subsection">6.2.3 Autostart</h4>
 
 <p>Clash support auto-start after opening the system.
 In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
@@ -472,7 +672,7 @@ So move the configuration file and mmdb file in the above directory by
 </div>
 </div>
 <div class="section-level-extent" id="Clash-for-LAN">
-<h3 class="section">5.3 Clash for LAN</h3>
+<h3 class="section">6.3 Clash for LAN</h3>
  
 <p>Clash can support connection from devices in the local area network (LAN).
 To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
@@ -482,7 +682,7 @@ Then open clash with manual
 </p>
 </div>
 <div class="section-level-extent" id="snapdrop_002enet">
-<h3 class="section">5.4 snapdrop.net</h3>
+<h3 class="section">6.4 snapdrop.net</h3>
 
 <p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
 Open the link of snapdrop in the same network.
@@ -496,7 +696,7 @@ Just drop the file to the target.
 <p>
 Previous: <a href="#network" accesskey="p" rel="prev">network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1">6 Input Method</h2>
+<h2 class="chapter" id="Input-Method-1">7 Input Method</h2>
 
 <p>This README is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command

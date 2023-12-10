@@ -25,6 +25,55 @@ The follow tables summarize the main different between these awesome distributio
 @item    Installer    @tab    CLI    @tab   CLI   @tab deepin-installer 
 @end multitable
 
+@section Package Manager
+
+The follow lists common package managers that in different distributions.
+@itemize @bullet
+@item apt
+@item zypper
+@item dnf
+@item pacman
+@item Flatpak
+@item AppImage
+@end itemize
+
+@subsection zypper
+
+openSUSE uses @code{zypper} as the default package manager.
+It is based on RPM, which is similar to Fedora.
+Besides installation of the built programs, zypper also provides an offical repository for the source code.
+As an example, the download and build process for the @code{hostapd} is
+
+@code{sudo zypper source-install hostapd}
+@code{# or `sudo zypper si hostapd`}
+@code{cd /usr/src/packages/       # cd to the default directory for source code}
+@code{ls SOURCES}
+@code{ls SPECS}
+@code{sudo zypper in rpmbuild     # The build tool of the download source code}
+@code{sudo rpmbuild -ba SPECS/hostapd.spec}
+@code{                            # -ba means to perform a full build. }
+@code{ls RPMS/x86_64              # The built program in the x86 architecture}
+@code{sudo rpmbuild -ba --noclean SPECS/hostapd.spec}
+@code{                            # It does not remove the extracted source code}
+@code{ls BUILD                    # The extracted source code}
+
+However, openSUSE also provides a command-line tool for package download, building and packaging.
+The name of the tool is osc, which means openSUSE commander.
+To use it, run
+
+@code{sudo zypper install osc}
+
+@subsection Flatpak
+
+Flatpak is a cross-platform package manager that run applications in a sandbox.
+It can download apps from FlatHub, which is the official repository of Flatpak.
+
+@code{flatpak install <package name/ID>}
+
+Different from apt/zypper/dnf/pacman, you cannot run the applications from flatpak directly.
+
+@code{flatpak run <package name/ID>}
+
 @node Desktop Enviornment
 @chapter Desktop Environment
 
@@ -82,6 +131,19 @@ Graphicless compares the follow open-source desktop environments.
 @item Advanced setting      @tab       -      @tab     deepin-tweak
 @item    Development        @tab       -      @tab      Deepin-IDE
 @end multitable
+
+@section GNOME
+
+@subsection Advanced Setting
+
+gnome-tweaks gives advanced settings for gnome.
+It support swap of Caplock and Ctrl.
+Download it in Debian with
+
+@code{sudo apt install gnome-tweaks}
+
+This swap is only useful in gnome-based GUI.
+Windows has a similar tool that named as [PowerToys](https://github.com/microsoft/PowerToys).
 
 @section xfce4
 

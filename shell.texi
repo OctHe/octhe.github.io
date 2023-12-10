@@ -1,0 +1,29 @@
+@node Shell
+@chapter Shell
+
+@section Terminal emulator
+
+Terminal emulator is the prerequisite of shell.
+An open-source terminal emulator is terminator.
+Install it with
+
+@code{sudo apt install terminator}
+
+The terminal emulator provides color and font support for shell.
+For example, the @url{https://github.com/agnoster/agnoster-zsh-theme, agnoster theme} of zsh requires the powerline font.
+To install it, run
+
+@code{sudo apt install fonts-powerline}
+
+and then set the fonts in the terminator.
+
+@section Swap keys
+
+Usually, if someone wants to swap Caplock and left Ctrl since the latter is more useful, some desktop provides an GUI tool such as gnome-tweak in GNOME or the setting in KDE that support this function.
+For the desktops that do not have an GUI tool, a shell method is to use xmodmap and the GUI helper xkeycaps.
+After change the keys in xkeycaps, write out the configuration file of xmodmap in the HOME diretory, and add the follows in the shell
+
+@code{xmodmap ~/.xmodmap-`uname -n`}
+
+xmodmap will trigger the key swap when open a terminal.
+

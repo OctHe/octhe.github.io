@@ -1,0 +1,111 @@
+@node Editor
+@chapter Editor
+
+@section Vim
+
+@subsection Test Vim Script
+
+Vim is an awesome editor with powerful plugin ecosystems.
+Most of the time, the plugin can be directly used by downloading them into the directory.
+The plugin manager, which is also a plugin, can add the other plugins in to the runtime directory of vim.
+
+This subsection is not about how to install and use plugins, but is related to how to write a plugin.
+The goal of this post is to give a brief introduction on test Vim plugins like test a command line.
+Specifically, test is the basic function if someone wants to write their custom plugin.
+Test the source code of a well-known plugin is also a good way to learn the idea of other developers' plugins.
+
+The plugin language of writing plugins is Vimscript.
+There are at least two vim processes, one for edit, and the other for running test.
+Although vim is an editor, it provides a non-interactive mode to run Vim scripts without open the window.
+Redirect the output of vim to other command with pipeline in shell like this
+
+@code{vim -u NONE --not-a-term -c "echoconsole \"hello world \"  | q" >> vim2stdout.txt}
+
+where @code{-u}, @code{-c}, @code{--not-a-term} are vim options.
+The detail can be found in @code{vim --help}.
+@code{echoconsole} is a vim command can be used to output a message, which is "hello world" in this case, to the terminal.
+The output is redirect to a file vim2stdout.txt and the string "hello world" can be found in the file, with some other strings.
+
+In addition, a recommand method for unit test is to write a script with a test case, and redirect the output to the awk tool, such as
+
+    vim -u -NOME --not-a-term -S <run_test_file> <test_case> | awk <pattern>
+
+Note that there must be @code{echoconsole} and @code{quit} in the <run_test_file>.
+
+Debug the unit test of vim plugin can be implemented by the @code{clientserver} feature of Vim.
+There is a good plugin @url{https://github.com/vim-scripts/BreakPts, breakpts}.
+
+@subsection Vim Distribution
+
+Vim is one of the most famous editors in the world with powerful scalability.
+However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
+NeoVim is a new version of Vim.
+It is community-driven and deprecates lots of old-fashions in Vim.
+
+Due to the extensibility of Vim and Neovim, lots of developers contribute thousands of plugins for them.
+So many plugins give both Vim and Neovim unlimited possibilities, but they also dazzle newbies who want to try these famous editors and don't know how to select a suitable configuration that meet their requirements.
+
+To solve this problem, recently, multiple developers and open source projects provide community-driven out-of-box configurations for Vim.
+The relationship between these projects and Vim (or Neovim) is like the relationship between a Linux distribution and the kernel.
+Therefore, I call these projects as "Vim distributions", which means they use Vim (or Neovim) as the "editor kernel".
+The development of Vim distribution is more easier then before, thanks to the language server protocol (LSP).
+The follows are some Vim distributions.
+
+@subsubsection SpaceVim
+
+@url{https://spacevim.org, SpaceVim} is inspired by spacemacs.
+It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
+Each layer in SpaceVim indicates a collection of plugins that provides a similar function.
+Users can choose different plugins for the layer.
+However, although SpaceVim change the <leader> to <Space>, it lacks a local easy-to-use document about all the keybindings (like vim).
+SpaceVim provides a new configuration interface that uses `.toml` in the directory `~/.Spacevim.d/`.
+SpaceVim is only distribution that can support both Vim and NeoVim.
+
+@subsubsection LunarVim
+
+@url{https://www.lunarvim.org/, LunarVim}, or lvim in short, is another distribution that only supports Neovim.
+It needs npm, node, and cargo as the prerequisites.
+LunarVim is also community-driven and provides good support for multiple languages.
+It provides a shortcut named as lvim in `.local/bin/`.
+
+@subsubsection NvChad
+
+@url{https://nvchad.com/, NvChad} is a pure lua distribution with a customized colorscheme.
+The aim of NvChad is to be a "basic configuration", so the configuration logic of NvChad is pretty simple.
+It is quitely easy to extend.
+
+@subsubsection Doom-nvim
+
+@url{https://github.com/doom-neovim/doom-nvim, Doom-nvim} is also inspired by an emacs-based project.
+It also proposes modules that includes plugins and keybindings.
+The prerequisites includes npm and tree-sitter, which are both based on javascript.
+If the Linux does not contains the prerequisites, the installation would have some problem.
+
+@section Micro Editor
+
+Micro is a easily used terminal editor with intuitive key bindings as well as modern build-in features, including command line, auto-pair and linter.
+
+Install it in Debian (Test on Debian 12)
+
+@code{sudo apt install micro}
+
+A universal installation method for most Linux distributions
+
+@code{mkdir ~/bin}
+@code{cd ~/bin}
+@code{curl https://getmic.ro | bash}
+
+The configuration files are in @code{~/.config/micro/*}
+
+The recommended plugins are follows
+@itemize @bullet
+@item linter (default installation)
+@item filemanager
+@item wc
+@item quickfix
+@end itemize
+
+The linter requires out-of-box support for each language (see, @code{help linter} in the command line mode).
+Enter the command line mode by typing @code{<C-e>}, run
+
+	plugin install filemanager wc quickfix
