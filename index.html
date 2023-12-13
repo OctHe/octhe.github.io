@@ -16,6 +16,7 @@
 <link href="#Distribution" rel="next" title="Distribution">
 <style type="text/css">
 <!--
+div.example {margin-left: 3.2em}
 ul.mark-bullet {list-style-type: disc}
 ul.mark-minus {list-style-type: "\2212"}
 -->
@@ -40,7 +41,8 @@ Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; <
 <li><a href="#Shell" accesskey="4">Shell</a></li>
 <li><a href="#Editor" accesskey="5">Editor</a></li>
 <li><a href="#network" accesskey="6">network</a></li>
-<li><a href="#Input-Method" accesskey="7">Input Method</a></li>
+<li><a href="#SDR" accesskey="7">SDR</a></li>
+<li><a href="#Input-Method" accesskey="8">Input Method</a></li>
 </ul>
 <hr>
 <div class="chapter-level-extent" id="Distribution">
@@ -78,6 +80,8 @@ The follow tables summarize the main different between these awesome distributio
 
 <ul class="mini-toc">
 <li><a href="#Package-Manager" accesskey="1">Package Manager</a></li>
+<li><a href="#Linux-To-Go" accesskey="2">Linux To Go</a></li>
+<li><a href="#Multi_002dOS-Installation" accesskey="3">Multi-OS Installation</a></li>
 </ul>
 <div class="section-level-extent" id="Package-Manager">
 <h3 class="section">1.1 Package Manager</h3>
@@ -135,6 +139,114 @@ It can download apps from FlatHub, which is the official repository of Flatpak.
 <p>Different from apt/zypper/dnf/pacman, you cannot run the applications from flatpak directly.
 </p>
 <p><code class="code">flatpak run &lt;package name/ID&gt;</code>
+</p>
+</div>
+</div>
+<div class="section-level-extent" id="Linux-To-Go">
+<h3 class="section">1.2 Linux To Go</h3>
+
+<p>Linux To Go (LTG) is a method to install Linux in external USB disk.
+The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
+</p>
+<p>The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
+The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
+In addition, install the bootloader to the USB disk.
+After that, the installation process is the same as a normal installation in any disk.
+</p>
+</div>
+<div class="section-level-extent" id="Multi_002dOS-Installation">
+<h3 class="section">1.3 Multi-OS Installation</h3>
+
+<p>Install multiple OSs is simple since lots-of OSs have a GUI installer.
+In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
+This section summarizes the content about Live USB and Disk layout.
+</p>
+<ul class="mini-toc">
+<li><a href="#Live-USB" accesskey="1">Live USB</a></li>
+<li><a href="#Disk-Partition" accesskey="2">Disk Partition</a></li>
+<li><a href="#Update-grub" accesskey="3">Update grub</a></li>
+<li><a href="#Reinstallation" accesskey="4">Reinstallation</a></li>
+</ul>
+<div class="subsection-level-extent" id="Live-USB">
+<h4 class="subsection">1.3.1 Live USB</h4>
+
+<p>The first thing of installation OSs is having a Live USB that contains multiple ISOs.
+<a class="url" href="https://www.ventoy.net/en/index.html">Vectoy</a> is an open-source tool that can load multiple Live USBs
+The USB with Ventoy also can be used for backup files.
+</p>
+<p>The only drawback of ventoy is the grub may have a incorrect boot configuration.
+This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
+To avoid this, just edit the grub (type &lsquo;e&lsquo; when boot) and delete the command &lsquo;rdinit=/vtoy/vtoy&lsquo;.
+</p>
+</div>
+<div class="subsection-level-extent" id="Disk-Partition">
+<h4 class="subsection">1.3.2 Disk Partition</h4>
+
+<p>Most Linux distributions provides a GUI installer, so the installation is quite easy.
+The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
+Usually, all the home directories of all OSs can be listed in the same partition with different folders.
+An example partition can be as follows
+</p>
+<ul class="itemize mark-bullet">
+<li>nvme0n1
+    <ul class="itemize mark-minus">
+<li>nvme0n1p1 (512 MB)
+        <ul class="itemize mark-minus">
+<li>/boot/efi
+        </li></ul>
+</li><li>nvme0n1p2 (16 GB)
+        <ul class="itemize mark-minus">
+<li>/swap
+        </li></ul>
+</li><li>nvme0n1p3 (500 GB)
+        <ul class="itemize mark-minus">
+<li>/home
+            <ul class="itemize mark-minus">
+<li>/home/user_ubuntu
+            </li><li>/home/user_suse
+            </li><li>/home/user_arch
+            </li><li>... 
+            </li></ul>
+</li></ul>
+</li><li>nvme0n1p4 (100 GB)
+        <ul class="itemize mark-minus">
+<li>/       # root for Ubuntu
+        </li></ul>
+</li><li>nvme0n1p5 (100 GB)
+        <ul class="itemize mark-minus">
+<li>/       # root for OpenSUSE
+        </li></ul>
+</li><li>...
+    </li></ul>
+</li></ul>
+
+<p>The most important thing is: DON&rsquo;T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
+This partition can provide the capability to reinstall all OSs without affecting the user data.
+</p>
+</div>
+<div class="subsection-level-extent" id="Update-grub">
+<h4 class="subsection">1.3.3 Update grub</h4>
+
+<p>After a new installation, it is better to update the grub at any OSs.
+The follow command can be used only once at one of the OSs.
+In Debian, use
+</p>    
+<p><code class="code">sudo grub-mkconfig -o /boot/grub/grub.cfg</code>
+<code class="code">sudo grub-install /nvme0n1</code>
+</p>
+<p>In OpenSUSE, use
+</p>    
+<p><code class="code">sudo grub2-mkconfig -o /boot/grub/grub.cfg</code>
+<code class="code">sudo grub2-install /nvme0n1</code>
+</p>
+</div>
+<div class="subsection-level-extent" id="Reinstallation">
+<h4 class="subsection">1.3.4 Reinstallation</h4>
+
+<p>Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
+In this time, the OS can be reinstalled with the same partition and user name as the old version.
+For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
+The user name is &rsquo;user_ubuntu&rsquo;, so the configuration of the old OS can be reused for the new OS.
 </p>
 <hr>
 </div>
@@ -208,7 +320,6 @@ Most of the desktop and libraries are based on them.
 <li><a href="#GNOME" accesskey="1">GNOME</a></li>
 <li><a href="#xfce4" accesskey="2">xfce4</a></li>
 <li><a href="#Window-Manager" accesskey="3">Window Manager</a></li>
-<li><a href="#Linux-To-Go" accesskey="4">Linux To Go</a></li>
 </ul>
 <div class="section-level-extent" id="GNOME">
 <h3 class="section">2.1 GNOME</h3>
@@ -265,19 +376,8 @@ To fix this, change the configuration file
 <p>Uncommand the line 
 <code class="code">test -z $BG || $BG -solid &quot;#303030&quot;</code>
 </p>
+<hr>
 </div>
-</div>
-<div class="section-level-extent" id="Linux-To-Go">
-<h3 class="section">2.4 Linux To Go</h3>
-
-<p>Linux To Go (LTG) is a method to install Linux in external USB disk.
-The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
-</p>
-<p>The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
-The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
-In addition, install the bootloader to the USB disk.
-After that, the installation process is the same as a normal installation in any disk.
-</p><hr>
 </div>
 </div>
 <div class="chapter-level-extent" id="Blog">
@@ -557,7 +657,7 @@ Enter the command line mode by typing <code class="code">&lt;C-e&gt;</code>, run
 <div class="chapter-level-extent" id="network">
 <div class="nav-panel">
 <p>
-Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="network-1">6 network</h2>
 
@@ -691,12 +791,124 @@ Just drop the file to the target.
 </p><hr>
 </div>
 </div>
+<div class="chapter-level-extent" id="SDR">
+<div class="nav-panel">
+<p>
+Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#network" accesskey="p" rel="prev">network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="SDR-1">7 SDR</h2>
+
+<ul class="mini-toc">
+<li><a href="#GNURadio-Period-transmisstion" accesskey="1">GNURadio Period transmisstion</a></li>
+</ul>
+<div class="section-level-extent" id="GNURadio-Period-transmisstion">
+<h3 class="section">7.1 GNURadio Period transmisstion</h3>
+
+<ul class="mini-toc">
+<li><a href="#Introduction" accesskey="1">Introduction</a></li>
+<li><a href="#GNURadio-Tag" accesskey="2">GNURadio Tag</a></li>
+<li><a href="#USRP-Time-Control" accesskey="3">USRP Time Control</a></li>
+</ul>
+<div class="subsection-level-extent" id="Introduction">
+<h4 class="subsection">7.1.1 Introduction</h4>
+
+<p>Period transmission in GNURadio/USRP platform is the basic function to support time-related systems, such as 
+</p><ul class="itemize mark-minus">
+<li>Time delay measurement between multiple USRPs
+</li><li>Time synchronization in designing distributed MIMO systems
+</li><li>TX/RX switch at the same antenna
+</li><li>Feedback design
+</li></ul>
+
+<p>The period transmission is based on <a class="url" href="https://wiki.gnuradio.org/index.php/USRP_Sink">burst transmission</a> with &quot;tx_time&quot; tag.
+All the functions have been tested on USRP N310 with GNURadio 3.7.13 and UHD 3.15.
+</p>
+</div>
+<div class="subsection-level-extent" id="GNURadio-Tag">
+<h4 class="subsection">7.1.2 GNURadio Tag</h4>
+
+<p><a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">GNURadio tag</a> is an isosynchronous data that runs parallel to the main data stream. 
+</p>
+<p>uhd_sink block supports two tags &quot;tx_sob&quot; and &quot;tx_eob&quot; for burst transmission.
+&quot;tx_sob&quot; tag means &quot;start of burst&quot; that should be added into the first sample of a frame burst.
+&quot;tx_eob&quot; means &quot;end of burst&quot; that should be added into the last sample.
+If UHD receives &quot;tx_eob&quot;, the TX mode of USRP will be done, until it receives a &quot;tx_sob&quot; tag.
+The &quot;tx_sob&quot; and &quot;tx_eob&quot; value should simply be PMT_T.
+As an example, user can use &lsquo;add_item_tag&lsquo; provided by GNURadio to add the &quot;tx_sob&quot; tag in C++.
+</p>
+<div class="example">
+<pre class="example-preformatted">add_item_tag(0, // Port number
+             nitems_written(0) + i, // Offset
+             pmt::mp(&quot;tx_sob&quot;), // Key
+             pmt::PMT_T // Value
+        );
+</pre></div>
+
+<p>In the above code, the &quot;tx_sob&quot; tag will be added at port 0 with <code class="code">nitems_written(0) + i</code> offset.
+Note that add tag can also in python.
+</p>
+<p>Please refer to <a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">this page</a> for a detail description about GNURadio tag.
+</p>
+<p>The third important tag is &quot;tx_time&quot; which is a PMT encoded tuple with two components. 
+The first item in the tuple is the PMT encoded uint64 epoch time in seconds. 
+The second item in the tuple is the PMT encoded double fractional epoch time. 
+The following example can be used to transfer the time from double to a PMT tuple in C++.
+</p>
+<div class="example">
+<pre class="example-preformatted">double d_next_time = 1.0;
+uint64_t t_int = (uint64_t)d_next_time;
+double t_double = d_next_time - t_int;
+pmt::pmt_t tstamp_tuple = pmt::make_tuple(pmt::from_uint64(t_int), pmt::from_double(t_double));
+</pre></div>
+
+<p>The &quot;tx_time&quot; tag will be added at port 0 with <code class="code">nitems_written(0) + i</code> offset.
+</p>
+<div class="example">
+<pre class="example-preformatted">add_item_tag(0, // Port number
+             nitems_written(0) + i, // Offset
+             pmt::mp(&quot;tx_time&quot;), // Key
+             tstamp_tuple // Value
+        );
+</pre></div>
+
+<p>Note that if the user directly add the &quot;tx_time&quot; tag with the offset is zero, the USRP will have a bug with unknown reason that the first two burst frames are not sent with the predefined time by &quot;tx_time&quot;.
+</p>
+<p>With the help of the above tags, the user can control the transmit time of a burst frame with a fix length, so it can be used to implement period transmission.
+</p>
+</div>
+<div class="subsection-level-extent" id="USRP-Time-Control">
+<h4 class="subsection">7.1.3 USRP Time Control</h4>
+
+<p>The last things is to set the time of USRP with gr-uhd, if the time has error, you may get a &quot;L&quot; error in the transmitter. 
+&quot;L&quot; means a late packet in the TX chain. 
+More details please refer to <a class="url" href="https://files.ettus.com/manual/page_usrp_x3x0_config.html">System Configuration for USRP X3x0 Series</a>.
+</p>
+<p>The following code snapshot is used for time setting for both the USRP source and sink in python API.
+</p>
+<div class="example">
+<pre class="example-preformatted"># Set time to 0 for each USRP
+self.uhd_usrp_sink_0.set_time_next_pps(uhd.time_spec(0.0))
+self.uhd_usrp_source_0.set_time_next_pps(uhd.time_spec(0.0))
+
+time.sleep(1) # Wait for the PPS signal
+
+# USRP sink sends at time 2.0
+# USRP source receives at time 1.0
+# This time can be set to any other times
+self.uhd_usrp_sink_0.set_start_time(uhd.time_spec(2.0))
+self.uhd_usrp_source_0.set_start_time(uhd.time_spec(1.0))
+</pre></div>
+
+<hr>
+</div>
+</div>
+</div>
 <div class="chapter-level-extent" id="Input-Method">
 <div class="nav-panel">
 <p>
-Previous: <a href="#network" accesskey="p" rel="prev">network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Previous: <a href="#SDR" accesskey="p" rel="prev">SDR</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1">7 Input Method</h2>
+<h2 class="chapter" id="Input-Method-1">8 Input Method</h2>
 
 <p>This README is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command

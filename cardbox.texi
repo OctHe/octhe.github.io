@@ -11,6 +11,7 @@
 @include shell.texi
 @include editor.texi
 @include network.texi
+@include sdr.texi
 @include input_method.texi
 
 @bye

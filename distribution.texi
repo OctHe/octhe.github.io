@@ -74,6 +74,125 @@ Different from apt/zypper/dnf/pacman, you cannot run the applications from flatp
 
 @code{flatpak run <package name/ID>}
 
+@section Init Process
+
+In Linux, the first process is usually *init* or *systemd*.
+They both work to manage the initialization of the system before the login shell.
+The PID of them is 1, which means the first process after the kernel.
+
+@subsection System V and init
+
+init is the initial script in System V project.
+In a early version of a Linux distribution, it usually uses init as the initalization system.
+It finds the configuration file in @code{/etc/inittab} and runs the scripts in @code{/etc/rc} according to the runlevel.
+Different runlevels means different modes of init.
+It will run the corresponding runlevel scripts in @code{/etc/rcN.d/}, where N means the runlevel.
+The value of N is from 0 to 6.
+All scripts under these directories are a symbolic link to a file in @code{etc/init.d/}.
+The file started with "S" means "start it", while "K" means "kill it".
+The feature of init is run all script in a fixed order one-by-one, so it is easy to find the error, while costs lots of time.
+
+@subsection systemd
+
+In contrast, systemd concurrently runs all scripts.
+Ubuntu and OpenSUSE have been support systemd and their would have other distributions.
+In a system that initialized with systemd.
+The init file, which is @code{/usr/sbin/init} will be a symbolic to the @code{/lib/systemd/systemd}.
+The default configuration file of systemd is @code{/usr/lib/systemd/system/default.target}, which is also a symbolic link to @code{/usr/lib/systemd/system/graphical.target}.
+You can find the default target with
+
+@code{systemctl get-default}
+
+@section Linux To Go
+
+Linux To Go (LTG) is a method to install Linux in external USB disk.
+The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
+
+The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
+The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
+In addition, install the bootloader to the USB disk.
+After that, the installation process is the same as a normal installation in any disk.
+
+@section Multi-OS Installation
+
+Install multiple OSs is simple since lots-of OSs have a GUI installer.
+In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
+This section summarizes the content about Live USB and Disk layout.
+
+@subsection Live USB
+
+The first thing of installation OSs is having a Live USB that contains multiple ISOs.
+@url{https://www.ventoy.net/en/index.html, Vectoy} is an open-source tool that can load multiple Live USBs
+The USB with Ventoy also can be used for backup files.
+
+The only drawback of ventoy is the grub may have a incorrect boot configuration.
+This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
+To avoid this, just edit the grub (type `e` when boot) and delete the command `rdinit=/vtoy/vtoy`.
+
+@subsection Disk Partition
+
+Most Linux distributions provides a GUI installer, so the installation is quite easy.
+The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
+Usually, all the home directories of all OSs can be listed in the same partition with different folders.
+An example partition can be as follows
+
+@itemize @bullet
+@item nvme0n1
+    @itemize @minus
+    @item nvme0n1p1 (512 MB)
+        @itemize @minus
+        @item /boot/efi
+        @end itemize
+    @item nvme0n1p2 (16 GB)
+        @itemize @minus
+        @item /swap
+        @end itemize
+    @item nvme0n1p3 (500 GB)
+        @itemize @minus
+        @item /home
+            @itemize @minus
+            @item /home/user_ubuntu
+            @item /home/user_suse
+            @item /home/user_arch
+            @item ... 
+            @end itemize
+        @end itemize
+    @item nvme0n1p4 (100 GB)
+        @itemize @minus
+        @item /       # root for Ubuntu
+        @end itemize
+    @item nvme0n1p5 (100 GB)
+        @itemize @minus
+        @item /       # root for OpenSUSE
+        @end itemize
+    @item ...
+    @end itemize
+@end itemize
+
+The most important thing is: DON'T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
+This partition can provide the capability to reinstall all OSs without affecting the user data.
+
+@subsection Update grub
+
+After a new installation, it is better to update the grub at any OSs.
+The follow command can be used only once at one of the OSs.
+In Debian, use
+    
+@code{sudo grub-mkconfig -o /boot/grub/grub.cfg}
+@code{sudo grub-install /nvme0n1}
+
+In OpenSUSE, use
+    
+@code{sudo grub2-mkconfig -o /boot/grub/grub.cfg}
+@code{sudo grub2-install /nvme0n1}
+
+@subsection Reinstallation
+
+Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
+In this time, the OS can be reinstalled with the same partition and user name as the old version.
+For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
+The user name is 'user_ubuntu', so the configuration of the old OS can be reused for the new OS.
+
 @node Desktop Enviornment
 @chapter Desktop Environment
 
@@ -172,12 +291,3 @@ To fix this, change the configuration file
 Uncommand the line 
 @code{test -z $BG || $BG -solid "#303030"}
 
-@section Linux To Go
-
-Linux To Go (LTG) is a method to install Linux in external USB disk.
-The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
-
-The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
-The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
-In addition, install the bootloader to the USB disk.
-After that, the installation process is the same as a normal installation in any disk.
