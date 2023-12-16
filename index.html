@@ -37,12 +37,13 @@ Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; <
 <ul class="mini-toc">
 <li><a href="#Distribution" accesskey="1">Distribution</a></li>
 <li><a href="#Desktop-Enviornment" accesskey="2">Desktop Environment</a></li>
-<li><a href="#Blog" accesskey="3">Blog</a></li>
-<li><a href="#Shell" accesskey="4">Shell</a></li>
-<li><a href="#Editor" accesskey="5">Editor</a></li>
-<li><a href="#network" accesskey="6">network</a></li>
-<li><a href="#SDR" accesskey="7">SDR</a></li>
-<li><a href="#Input-Method" accesskey="8">Input Method</a></li>
+<li><a href="#Kernel" accesskey="3">Kernel</a></li>
+<li><a href="#Blog" accesskey="4">Blog</a></li>
+<li><a href="#Shell" accesskey="5">Shell</a></li>
+<li><a href="#Editor" accesskey="6">Editor</a></li>
+<li><a href="#Network" accesskey="7">Network</a></li>
+<li><a href="#SDR" accesskey="8">SDR</a></li>
+<li><a href="#Input-Method" accesskey="9">Input Method</a></li>
 </ul>
 <hr>
 <div class="chapter-level-extent" id="Distribution">
@@ -80,8 +81,9 @@ The follow tables summarize the main different between these awesome distributio
 
 <ul class="mini-toc">
 <li><a href="#Package-Manager" accesskey="1">Package Manager</a></li>
-<li><a href="#Linux-To-Go" accesskey="2">Linux To Go</a></li>
-<li><a href="#Multi_002dOS-Installation" accesskey="3">Multi-OS Installation</a></li>
+<li><a href="#Init-Process" accesskey="2">Init Process</a></li>
+<li><a href="#Linux-To-Go" accesskey="3">Linux To Go</a></li>
+<li><a href="#Multi_002dOS-Installation" accesskey="4">Multi-OS Installation</a></li>
 </ul>
 <div class="section-level-extent" id="Package-Manager">
 <h3 class="section">1.1 Package Manager</h3>
@@ -142,8 +144,47 @@ It can download apps from FlatHub, which is the official repository of Flatpak.
 </p>
 </div>
 </div>
+<div class="section-level-extent" id="Init-Process">
+<h3 class="section">1.2 Init Process</h3>
+
+<p>In Linux, the first process is usually *init* or *systemd*.
+They both work to manage the initialization of the system before the login shell.
+The PID of them is 1, which means the first process after the kernel.
+</p>
+<ul class="mini-toc">
+<li><a href="#System-V-and-init" accesskey="1">System V and init</a></li>
+<li><a href="#systemd" accesskey="2">systemd</a></li>
+</ul>
+<div class="subsection-level-extent" id="System-V-and-init">
+<h4 class="subsection">1.2.1 System V and init</h4>
+
+<p>init is the initial script in System V project.
+In a early version of a Linux distribution, it usually uses init as the initalization system.
+It finds the configuration file in <code class="code">/etc/inittab</code> and runs the scripts in <code class="code">/etc/rc</code> according to the runlevel.
+Different runlevels means different modes of init.
+It will run the corresponding runlevel scripts in <code class="code">/etc/rcN.d/</code>, where N means the runlevel.
+The value of N is from 0 to 6.
+All scripts under these directories are a symbolic link to a file in <code class="code">etc/init.d/</code>.
+The file started with &quot;S&quot; means &quot;start it&quot;, while &quot;K&quot; means &quot;kill it&quot;.
+The feature of init is run all script in a fixed order one-by-one, so it is easy to find the error, while costs lots of time.
+</p>
+</div>
+<div class="subsection-level-extent" id="systemd">
+<h4 class="subsection">1.2.2 systemd</h4>
+
+<p>In contrast, systemd concurrently runs all scripts.
+Ubuntu and OpenSUSE have been support systemd and their would have other distributions.
+In a system that initialized with systemd.
+The init file, which is <code class="code">/usr/sbin/init</code> will be a symbolic to the <code class="code">/lib/systemd/systemd</code>.
+The default configuration file of systemd is <code class="code">/usr/lib/systemd/system/default.target</code>, which is also a symbolic link to <code class="code">/usr/lib/systemd/system/graphical.target</code>.
+You can find the default target with
+</p>
+<p><code class="code">systemctl get-default</code>
+</p>
+</div>
+</div>
 <div class="section-level-extent" id="Linux-To-Go">
-<h3 class="section">1.2 Linux To Go</h3>
+<h3 class="section">1.3 Linux To Go</h3>
 
 <p>Linux To Go (LTG) is a method to install Linux in external USB disk.
 The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
@@ -155,7 +196,7 @@ After that, the installation process is the same as a normal installation in any
 </p>
 </div>
 <div class="section-level-extent" id="Multi_002dOS-Installation">
-<h3 class="section">1.3 Multi-OS Installation</h3>
+<h3 class="section">1.4 Multi-OS Installation</h3>
 
 <p>Install multiple OSs is simple since lots-of OSs have a GUI installer.
 In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
@@ -168,7 +209,7 @@ This section summarizes the content about Live USB and Disk layout.
 <li><a href="#Reinstallation" accesskey="4">Reinstallation</a></li>
 </ul>
 <div class="subsection-level-extent" id="Live-USB">
-<h4 class="subsection">1.3.1 Live USB</h4>
+<h4 class="subsection">1.4.1 Live USB</h4>
 
 <p>The first thing of installation OSs is having a Live USB that contains multiple ISOs.
 <a class="url" href="https://www.ventoy.net/en/index.html">Vectoy</a> is an open-source tool that can load multiple Live USBs
@@ -180,7 +221,7 @@ To avoid this, just edit the grub (type &lsquo;e&lsquo; when boot) and delete th
 </p>
 </div>
 <div class="subsection-level-extent" id="Disk-Partition">
-<h4 class="subsection">1.3.2 Disk Partition</h4>
+<h4 class="subsection">1.4.2 Disk Partition</h4>
 
 <p>Most Linux distributions provides a GUI installer, so the installation is quite easy.
 The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
@@ -225,7 +266,7 @@ This partition can provide the capability to reinstall all OSs without affecting
 </p>
 </div>
 <div class="subsection-level-extent" id="Update-grub">
-<h4 class="subsection">1.3.3 Update grub</h4>
+<h4 class="subsection">1.4.3 Update grub</h4>
 
 <p>After a new installation, it is better to update the grub at any OSs.
 The follow command can be used only once at one of the OSs.
@@ -241,7 +282,7 @@ In Debian, use
 </p>
 </div>
 <div class="subsection-level-extent" id="Reinstallation">
-<h4 class="subsection">1.3.4 Reinstallation</h4>
+<h4 class="subsection">1.4.4 Reinstallation</h4>
 
 <p>Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
 In this time, the OS can be reinstalled with the same partition and user name as the old version.
@@ -255,7 +296,7 @@ The user name is &rsquo;user_ubuntu&rsquo;, so the configuration of the old OS c
 <div class="chapter-level-extent" id="Desktop-Enviornment">
 <div class="nav-panel">
 <p>
-Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#Distribution" accesskey="p" rel="prev">Distribution</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Kernel" accesskey="n" rel="next">Kernel</a>, Previous: <a href="#Distribution" accesskey="p" rel="prev">Distribution</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="Desktop-Environment">2 Desktop Environment</h2>
 
@@ -380,12 +421,449 @@ To fix this, change the configuration file
 </div>
 </div>
 </div>
+<div class="chapter-level-extent" id="Kernel">
+<div class="nav-panel">
+<p>
+Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Kernel-1">3 Kernel</h2>
+
+<ul class="mini-toc">
+<li><a href="#Building-the-Kernel" accesskey="1">Building the Kernel</a></li>
+<li><a href="#Kernel-Modules" accesskey="2">Kernel Modules</a></li>
+<li><a href="#mac80211" accesskey="3">mac80211</a></li>
+<li><a href="#ath9k_005fhtc-driver" accesskey="4">ath9k_htc driver</a></li>
+</ul>
+<div class="section-level-extent" id="Building-the-Kernel">
+<h3 class="section">3.1 Building the Kernel</h3>
+
+<p>This is a brief introduction about build a customized linux kernel.
+The compiling process has been successfully run on the distribution of Ubuntu 20.04 (Focal Fossa), and the release of the kernel is &quot;linux-5.8.7&quot;.
+</p>
+<p>The Linux kernel can be download from the <a class="url" href="https://www.kernel.org/">website</a>.
+The downloaded files are under the &quot;linux-5.8.7&quot; directory.
+</p>
+<ul class="mini-toc">
+<li><a href="#Prerequisites" accesskey="1">Prerequisites</a></li>
+<li><a href="#Build-and-install-the-linux-kernel" accesskey="2">Build and install the linux kernel</a></li>
+<li><a href="#Remove-Kernel" accesskey="3">Remove Kernel</a></li>
+</ul>
+<div class="subsection-level-extent" id="Prerequisites">
+<h4 class="subsection">3.1.1 Prerequisites</h4>
+
+<p>There are some packets that are necessary to compile the kernel. 
+It is hard to obtain all the packets manually.
+Fortunately, we can get the information from both the <a class="url" href="https://www.kernel.org/doc/html/latest/kbuild/kbuild.html">Linux kernel documentations</a> and the Ubuntu <a class="url" href="https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel">BuildYourOwnKernel Wiki</a>.
+Run the following command
+</p>
+<div class="example">
+<pre class="example-preformatted">sudo apt-get build-dep linux linux-image-$(uname -r)
+
+sudo apt-get install libncurses-dev flex bison openssl libssl-dev \
+dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
+</pre></div>
+
+<p>It is worth to note that directly following <a class="url" href="https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel">BuildYourOwnKernel Wiki</a> has some problems.
+When run the command
+</p>
+<div class="example">
+<pre class="example-preformatted">sudo apt-get build-dep linux linux-image-$(uname -r)
+sudo apt-get build-dep linux linux-image-$(uname -r)
+</pre></div>
+
+<p>it reports an error as follows
+</p>
+<div class="example">
+<pre class="example-preformatted">E: You must put some 'deb-src' URIs in your sources.list
+</pre></div>
+
+<p>Please add the contents
+</p>
+<div class="example">
+<pre class="example-preformatted">deb-src http://cn.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+</pre></div>
+
+<p>Then uncomment all commands with &quot;deb-src&quot; in the <code class="code">/etc/apt/sources.list</code> file, and run <code class="code">sudo apt update</code>. 
+The error is fixed. 
+</p>
+</div>
+<div class="subsection-level-extent" id="Build-and-install-the-linux-kernel">
+<h4 class="subsection">3.1.2 Build and install the linux kernel</h4>
+
+<p>After installing the prerequisites, the building process is simple enough.
+The linux kernel has built-in Makefiles.
+In specific, the first process is to config some modules of the kernel. 
+Since Linux kernel supports hundreds of modules, it is hard to config them one-by-one.
+In stead,  run <code class="code">make oldconfig</code> to config our the kernel.
+This command tell the compiler that use the configuration for the new kernel the same as the configuration for the current kernel.
+All the new features of the new kernel will be set as the default value, so type &quot;enter&quot; for all these options is enough.
+</p>
+<p>Note: 
+The new kernel has been successfully compiled by following these steps. 
+The installed kernel has shown in the grub. However, the OS cannot load by the grub. 
+It blocked and shows &quot;loading initial ramdisk&quot;. 
+The OS cannot load with the newest kernel, while it can load with an older version. 
+This problem may be caused by a kernel bug for Intel devices.
+The details can be found in <a class="url" href="https://askubuntu.com/questions/1374282/stuck-on-loading-initial-ramdisk-after-kernel-upgrade">this page</a>.
+Otherwise, building the kernel in the <a class="url" href="https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel">Ubuntu way</a> can fix this problem.
+</p>
+<p>However, during the building process, if the error occurs with <code class="code">llvm-strip:not found</code>.
+This message is due to the command <code class="code">llvm-strip</code> does not exist in <code class="code">/usr/bin/</code> directory.
+On the other hand, in the directory we can find a command named as <code class="code">llvm-strip-10</code>.
+To fix this, we can create a symbolic link (i.e., soft link) with
+</p>
+<p><code class="code">sudo ln -s /usr/bin/llvm-strip-10 /usr/bin/llvm-strip</code>
+</p>
+<p>The command will build the kernel with all the chosen modules, so it will take some hours to complete the compiling.
+</p>
+<p>After the compile complete, the following command will install the kernel
+</p>
+<div class="example">
+<pre class="example-preformatted">sudo make install
+sudo make modules_install
+</pre></div>
+
+
+<p>The final step is to update grub, so the new kernel can be found when reboot the system.
+</p><div class="example">
+<pre class="example-preformatted">sudo update-grub
+sudo grub-install
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Remove-Kernel">
+<h4 class="subsection">3.1.3 Remove Kernel</h4>
+
+<p>The built kernel contains the following files:
+</p>
+<div class="example">
+<pre class="example-preformatted">/boot/vmlinuz*KERNEL-VERSION*
+/boot/initrd*KERNEL-VERSION*
+/boot/System-map*KERNEL-VERSION*
+/boot/config-*KERNEL-VERSION*
+/lib/modules/*KERNEL-VERSION*/
+/var/lib/initramfs-tools/*KERNEL-VERSION*/
+</pre></div>
+
+<p>It can be manually removed by <code class="code">sudo rm -rf &lt;kernel_files&gt;</code> command.
+</p>
+</div>
+</div>
+<div class="section-level-extent" id="Kernel-Modules">
+<h3 class="section">3.2 Kernel Modules</h3>
+
+<p>Linux kernel composes of hundreds of modules.
+The user can compile and load modules according to the requirement.
+Additionally, independently compiling the module will save lots of time because compile the whole kernel usually needs three or four hours.
+</p>
+<ul class="mini-toc">
+<li><a href="#Prerequisites-1" accesskey="1">Prerequisites</a></li>
+<li><a href="#Build-the-Modules" accesskey="2">Build the Modules</a></li>
+<li><a href="#Command-about-Module" accesskey="3">Command about Module</a></li>
+</ul>
+<div class="subsection-level-extent" id="Prerequisites-1">
+<h4 class="subsection">3.2.1 Prerequisites</h4>
+
+<p>There are some packets that are necessary to compile the kernel. 
+All these packets can be get from apt. 
+Please follow the <a class="url" href="https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel">Ubuntu wiki</a> (if use Ubuntu), and run the commands.
+</p>
+<p>Specifically, first open the &quot;/etc/apt/source.list&quot; with <code class="code">sudo</code> and uncomment commands with &quot;deb-src&quot; in this file.
+After saving the file, run <code class="code">sudo apt update</code> to update the packet list.
+Then, run the following command to install all the dependents.
+</p>
+<div class="example">
+<pre class="example-preformatted">sudo apt-get build-dep linux linux-image-$(uname -r)
+
+sudo apt-get install libncurses-dev flex bison openssl libssl-dev \
+dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
+</pre></div>
+
+<p>The next step is to download the kernel source code. 
+One can download the newest kernel from <a class="url" href="https://www.kernel.org/">the official website</a>.
+However, in this website is difficult to download the old version. 
+</p>
+<p>Instead, the aternative method is to download the source code by using &quot;apt&quot;.
+</p>
+<p><code class="code">sudo apt install linux-source-5.4.0</code>
+</p>
+<p>Then the corresponding version of the source code can be downloaded. 
+The kernel version of Ubuntu 20.04 is 5.4.0.
+The  of this source code can be found in &quot;/usr/src/linux-source-5.4.0&quot;.
+The source code is a compressed file, and run <code class="code">sudo tar jvxf linux-source-5.4.0.tar.bz2</code> to uncompress it.
+</p>
+</div>
+<div class="subsection-level-extent" id="Build-the-Modules">
+<h4 class="subsection">3.2.2 Build the Modules</h4>
+
+<p>Build a module or modules is very simple.
+Linux kernel uses &quot;Kbuild&quot; to compile the kernel. 
+&quot;Kbuild&quot; is at the root directory of the source code (i.e., at ./linux-source-5.4.0/ in my case).
+Build the module needs to at the ./linux-source-5.4.0/ directory.
+</p>
+<p>As an example, we use the compilinig process of &quot;iwlwifi&quot; module, which is the wireless Linux driver of Intel wireless network card.
+</p>
+<p>The source code of this module is at <code class="code">/usr/src/linux-source-5.4.0/linux-source-5.4.0/drivers/net/wireless/intel/iwlwifi/</code> in this case. 
+</p>
+<div class="example">
+<pre class="example-preformatted">make oldconfig &amp;&amp; make prepare
+make # This command is to compile the kernel
+     # which is the prerequisit of the module compilation
+sudo make M=./drivers/net/wireless/intel/iwlwifi modules
+</pre></div>
+
+<p>After the compiling process is complete, a file named as &quot;iwlwifi.ko&quot; at he iwlwifi directory can be found.
+</p>
+<p>To install it, use the following command
+</p>
+<div class="example">
+<pre class="example-preformatted">cd ./drivers/net/wireless/intel/iwlwifi
+insmod iwlwifi.ko
+</pre></div>
+
+<p><code class="code">insmod</code> means &quot;insert module&quot;.
+This is a command to install Linux kernel module.
+</p>
+<p>If the iwlwifi module has been installed in the kernel, the old modules can be removed from the kernel with <code class="code">sudo modprobe -r iwlwifi</code>.
+Then, run the <code class="code">insmod</code> command to install the compiled module.
+</p>
+</div>
+<div class="subsection-level-extent" id="Command-about-Module">
+<h4 class="subsection">3.2.3 Command about Module</h4>
+
+<p>All the usage are an example of the *iwlwifi* module.
+</p>
+<ul class="mini-toc">
+<li><a href="#lsmod" accesskey="1">lsmod</a></li>
+<li><a href="#modinfo" accesskey="2">modinfo</a></li>
+<li><a href="#modprobe" accesskey="3">modprobe</a></li>
+<li><a href="#insmod" accesskey="4">insmod</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="lsmod">
+<h4 class="subsubsection">3.2.3.1 lsmod</h4>
+
+<p><code class="code">lsmod</code> is a command to list all installed module in the kernel.
+It contains some information such as name, dependencies, etc.
+</p>
+<p>Usage: <code class="code">lsmod</code>
+</p>
+</div>
+<div class="subsubsection-level-extent" id="modinfo">
+<h4 class="subsubsection">3.2.3.2 modinfo</h4>
+
+<p><code class="code">modinfo</code> can display details about a specific module.
+It can display the information of either a installed module or a compiled module.
+</p>
+<p>Usage: <code class="code">modinfo iwlwifi</code>
+</p>
+<p>This command display the information of the installed module &quot;iwlwifi&quot;, not the compiled module.
+</p>
+<p>Usage: <code class="code">modinfo iwlwifi.ko</code>
+</p>
+<p>This command display the information of the compiled module.
+</p>
+</div>
+<div class="subsubsection-level-extent" id="modprobe">
+<h4 class="subsubsection">3.2.3.3 modprobe</h4>
+
+<p><code class="code">modprobe</code> is usually used to install or remove a module.
+</p>
+<p>Usage: <code class="code">sudo modprobe -r iwlwifi</code>
+</p>
+<p>Remove the iwlwifi module.
+</p>
+<p>Usage: <code class="code">sudo modprobe iwlwifi</code>
+</p>
+<p>Install the iwlwifi module.
+</p>
+</div>
+<div class="subsubsection-level-extent" id="insmod">
+<h4 class="subsubsection">3.2.3.4 insmod</h4>
+
+<p><code class="code">insmod</code> can install a customized module.
+If the module with the same name has been installed, <code class="code">sudo modprobe -r iwlwifi</code> is needed to remove the pre-installed module.
+</p>
+<p>Usage: <code class="code">insmod iwlwifi.ko</code>
+</p>
+</div>
+</div>
+</div>
+<div class="section-level-extent" id="mac80211">
+<h3 class="section">3.3 mac80211</h3>
+
+<ul class="mini-toc">
+<li><a href="#Rate-Control" accesskey="1">Rate Control</a></li>
+</ul>
+<div class="subsection-level-extent" id="Rate-Control">
+<h4 class="subsection">3.3.1 Rate Control</h4>
+
+<p>Rate control (or rate adaptation) is an important algorithm for wireless devices to select the optimal bit rate under different wireless channel conditions.
+In mac80211 subsystem in Linux kernel, rate control is part of the subsystem, and it can be self-designed by each wireless driver.
+For example, ath9k driver uses the default rate control (i.e., <code class="code">https://wireless.wiki.kernel.org/en/developers/documentation/mac80211/ratecontrol/minstrel, minstrel</code>), while iwlwifi uses a custom rate control named <code class="code">https://wiki.gentoo.org/wiki/Iwlwifi, &quot;iwl-agn-rs&quot;</code>.
+</p>
+<p>mac80211 provides a struct <code class="code">https://docs.huihoo.com/doxygen/linux/kernel/3.7/structrate__control__ops.html, &quot;rate_control_ops&quot;</code> with multiple callbacks.
+To implement a new rate control algorithm, someone must define these callbacks in <code class="code">rate_control_ops</code>.
+For example, minstrel includes two types of algorithm, one is in the file <code class="code">rc80211_minstrel.c</code> (mac80211_minstrel) and the other is in the file <code class="code">rc80211_minstrel_ht.c</code> (mac80211_minstrel_ht).
+</p>
+<p>For iwlwifi driver, <code class="code">rate_control_ops</code> is defined in <code class="code">dvm/mac80211.c</code> (rs_ops) and <code class="code">mvm.mac80211.c</code> (rs_mvm_ops_drv), depend on different types of drivers.
+</p>
+<p><code class="code">rate.c</code> defines all rate control functions for different drivers.
+Ideally, the developer does not need to change the function in <code class="code">rate.c</code>.
+</p>
+<p>Two basic functions in this file is <code class="code">ieee80211_rate_control_register</code> and <code class="code">ieee80211_rate_control_unregister</code>.
+The driver loads different rate control algorithms by calling the two functions.
+</p>
+</div>
+</div>
+<div class="section-level-extent" id="ath9k_005fhtc-driver">
+<h3 class="section">3.4 ath9k_htc driver</h3>
+
+<p><a class="url" href="https://wireless.wiki.kernel.org/en/users/drivers/ath9k_htcl">ath9k_htc</a> driver is a wireless driver for IEEE 802.11n devices with USB port.
+It can support AR9271 USB devices.
+Atheros provides an open source version of the firmware, i.e., <a class="url" href="https://github.com/qca/open-ath9k-htc-firmware">open-ath9k-htc-firmware</a>.
+</p>
+<p>This document is a simple analysis about the RX pipeline of ath9k_htc.
+</p>
+<p>ath9k_htc is based on other ath drivers, you can find the drivers and all relations with
+</p>
+<div class="example">
+<pre class="example-preformatted">    $lsmod | grep ath
+    ath9k_htc              77824  0
+    ath9k_common           36864  1 ath9k_htc
+    ath9k_hw              483328  2 ath9k_htc,ath9k_common
+    ath                    36864  3 ath9k_htc,ath9k_common,ath9k_hw
+    mac80211             1024000  2 ath9k_htc,iwlmvm
+    cfg80211              888832  6 ath9k_htc,ath9k_common,iwlmvm,ath,iwlwifi,mac80211
+</pre></div>
+
+<p>The description of all drivers can found in <a class="url" href="http://linuxwireless.sipsolutions.net/en/users/Drivers/Atheros/__v22.html">Atheros Linux wireless drivers</a>.
+</p>
+
+<p>In Ubuntu, &quot;apt&quot; can be used to download the Linux kernel source code with the current kernel version  by using
+</p>
+<p><code class="code">apt source linux-image-unsigned-$(uname -r)</code>
+</p>
+<p>After changing into the kernel file, the source code of ath9k_htc is in 
+</p>    
+<p><code class="code">/driver/net/wireless/ath/ath9k/</code>
+</p>
+<p>If the downloaded driver is mismatched with the Linux kernel version, the &quot;insmod&quot; command will report an error with invalid module format.
+</p>
+<p>All htc related codes are listed in the following files.
+</p>
+<div class="example">
+<pre class="example-preformatted">    htc_drv_init.c
+    htc_drv_main.c
+    htc_drv_txrx.c
+    htc_drv_beacon.c  
+    htc_drv_gpio.c    
+    htc_hst.c
+    hif_usb.c
+    htc_drv_debug.c
+</pre></div>
+
+<p>In particular, &quot;htc_drv_main.c&quot; is the entry point of HTC driver with &quot;module_init&quot; and &quot;module_exit&quot;.
+Other files related to receive data is &quot;htc_drv_txrx.c&quot;, &quot;htc_hst.c&quot;, and &quot;hif_usb.c&quot;
+</p>
+<p>AR9271 chips connect to the device with USB port, so it uses USB subsystem in Linux kernel to transmit and receive data.
+As a USB device, it uses USB Request Block (URB) to receive data.
+</p>
+<p>All functions about URB reception are in &quot;hif_usb.c&quot; file.
+In specific, the following functions is the main process for the data reception.
+</p>
+<div class="example">
+<pre class="example-preformatted">    hif_usb.c
+        |
+        |---ath9k_hif_usb_alloc_rx_urbs(struct hif_device_usb *hif_dev)
+            |
+            |---usb_fill_bulk_urb(urb, hif_dev-&gt;udev,
+            |             usb_rcvbulkpipe(hif_dev-&gt;udev,
+            |                     USB_WLAN_RX_PIPE),
+            |             skb-&gt;data, MAX_RX_BUF_SIZE,
+            |             ath9k_hif_usb_rx_cb, rx_buf);
+            |
+            |---usb_anchor_urb(urb, &amp;hif_dev-&gt;rx_submitted);
+            |
+            |---ret = usb_submit_urb(urb, GFP_KERNEL);
+            |
+        |---ath9k_hif_usb_rx_cb(struct urb *urb)
+        |---ath9k_hif_usb_rx_stream(struct hif_device_usb *hif_dev, struct sk_buff *skb)
+
+    htc_hst.c
+        |
+        |---ath9k_htc_rx_msg(struct htc_target *htc_handle, 
+        |                       struct sk_buff *skb, 
+        |                       u32 len, u8 pipe_id)
+
+    htc_drv_txrx.c
+        |
+        |---ath9k_htc_rxep(void *drv_priv, struct sk_buff *skb, htc_endpoint_id ep_id)
+            |
+            |---tasklet_schedule(&amp;priv-&gt;rx_tasklet)
+            |---ath9k_rx_tasklet(struct tasklet_struct *t)
+</pre></div>
+
+<p>In <code class="code">ath9k_hif_usb_alloc_rx_urbs</code>, it allocates a usb bulk URB for signal reception, the callback function is <code class="code">ath9k_hif_usb_rx_cb</code>. 
+It will submit the URB to the USB core and call the callback function.
+If you are new to Linux USB, for a detailed description about <a class="url" href="https://manpages.debian.org/testing/linux-manual-4.8/usb_fill_bulk_urb.9.en.html">usb_fill_bulk_urb</a> and <a class="url" href="https://manpages.debian.org/testing/linux-manual-4.9/usb_submit_urb.9">usb_submit_urb</a>, please refer to <a class="url" href="https://www.kernel.org/doc/html/v4.15/driver-api/usb/index.html">Linux USB API</a>.
+</p>
+<p>In <code class="code">ath9k_hif_usb_rx_cb</code>, it will process skb, if it has new data, the data will pass to <code class="code">ath9k_hif_usb_rx_stream</code>.
+After that, it will call itself by resubmitting the URB. 
+The resubmit ensure that USB core will repeatedly poll the buffer to receive data.
+</p>
+<p>In <code class="code">ath9k_hif_usb_rx_stream</code>, it will packetize the data in buffer. Each packet will push into <code class="code">ath9k_htc_rx_msg</code> in <code class="code">htc_hst.c</code> file.
+</p>
+<p><code class="code">ath9k_htc_rx_msg</code> will handle different types of packets.
+For a data packet, it will call <code class="code">endpoint-&gt;ep_callbacks.rx</code>, which is also a callback function. 
+The callback handler is defined in <code class="code">htc_drv_txrx.c</code>, which is named as <code class="code">ath9k_htc_rxep</code>.
+</p>
+<p>Finally, <code class="code">ath9k_htc_rxep</code> will check that whether the buffer is valid, and call <code class="code">tasklet_schedule</code>.
+<a class="url" href="http://books.gigatux.nl/mirror/kerneldevelopment/0672327201/ch07lev1sec3.html">Tasklet</a> is an interrupt in Linux Kernel.
+In this tasklet, ath9k_htc defines a callback for reception named as <code class="code">ath9k_rx_tasklet</code>, which is the final process of signal reception. 
+The data will pass to mac80211 subsystem by calling <a class="url" href="https://elixir.bootlin.com/linux/latest/ident/ieee80211_rx">ieee80211_rx</a>.
+</p>
+<ul class="mini-toc">
+<li><a href="#Customized-ath9k" accesskey="1">Customized ath9k</a></li>
+</ul>
+<div class="subsection-level-extent" id="Customized-ath9k">
+<h4 class="subsection">3.4.1 Customized ath9k</h4>
+
+<p>ath9k is a kernel driver that works as a kernel module for Atheros wireless IEEE802.11n NICs.
+Compilation of the kernel module is the prerequisite to investigate the rate adaptation algorithm.
+However, the driver (and the kernel module) highly depends on the version of the kernel, so it is difficult to compile and install even a simple driver.
+</p>
+<p>This subsection introduces a basic and simple method to build it on the newest Ubuntu 22.04.
+</p>
+<p>First, change to the directory of ath driver, which is in the <code class="code">./drivers/net/wireless/ath/</code> if the working directory is the root of the kernel source code.
+Note that ath9k driver is based on the ath module, so we better compile is at the same time.
+</p>
+<p>In the directory, build the driver for the current kernel with
+</p>
+<p><code class="code">make -C /lib/modules/`uname -r`/build M=$PWD</code>  
+</p>
+<p>where <code class="code">$PWD</code> means print work directory.
+</p>
+<p>Now, the compilation is complete, we can load the modules with 
+</p>
+<div class="example">
+<pre class="example-preformatted">    insmod ath.ko
+    insmod ./ath9k_common.ko
+    insmod ./ath9k_hw.ko
+    insmod ./ath9k.ko
+</pre></div>
+ 
+<p>Use <code class="code">sudo modprobe -r &lt;MODULE_NAME&gt;</code> to remove the old versions of them.
+</p><hr>
+</div>
+</div>
+</div>
 <div class="chapter-level-extent" id="Blog">
 <div class="nav-panel">
 <p>
-Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#Kernel" accesskey="p" rel="prev">Kernel</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Blog-1">3 Blog</h2>
+<h2 class="chapter" id="Blog-1">4 Blog</h2>
 
 <p>This blog is based on <a class="url" href="https://pages.github.com/">Github page</a> and <a class="url" href="https://jekyllrb.com/">jekyll</a>.
 </p>
@@ -396,7 +874,7 @@ Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#D
 <li><a href="#Upgrade" accesskey="4">Upgrade</a></li>
 </ul>
 <div class="section-level-extent" id="Installation">
-<h3 class="section">3.1 Installation</h3>
+<h3 class="section">4.1 Installation</h3>
 
 <p>It requires Ruby, RubyGems, and bundler.
 </p>
@@ -417,7 +895,7 @@ The follow installs jekyll and bundler
 </p>
 </div>
 <div class="section-level-extent" id="Jekyll-Themes">
-<h3 class="section">3.2 Jekyll Themes</h3>
+<h3 class="section">4.2 Jekyll Themes</h3>
 
 <p>The blog is based on [mediator](https://jekyllthemes.io/theme/mediator) theme.
 Download the theme and copy it into my own git directory by
@@ -426,7 +904,7 @@ Download the theme and copy it into my own git directory by
 </p>
 </div>
 <div class="section-level-extent" id="Usage">
-<h3 class="section">3.3 Usage</h3>
+<h3 class="section">4.3 Usage</h3>
 
 <p>The blog can be used from source with &lsquo;bundle&lsquo;
 </p>
@@ -434,7 +912,7 @@ Download the theme and copy it into my own git directory by
 </p>
 </div>
 <div class="section-level-extent" id="Upgrade">
-<h3 class="section">3.4 Upgrade</h3>
+<h3 class="section">4.4 Upgrade</h3>
 
 <p>Bundler and Jekyll requires the correct version of Ruby.
 If Ruby is updated within the system upgrade, bundler and Jekyll both need to reinstall from gem.
@@ -469,14 +947,14 @@ So the problem is strange, but I fix it with root command.
 <p>
 Next: <a href="#Editor" accesskey="n" rel="next">Editor</a>, Previous: <a href="#Blog" accesskey="p" rel="prev">Blog</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Shell-1">4 Shell</h2>
+<h2 class="chapter" id="Shell-1">5 Shell</h2>
 
 <ul class="mini-toc">
 <li><a href="#Terminal-emulator" accesskey="1">Terminal emulator</a></li>
 <li><a href="#Swap-keys" accesskey="2">Swap keys</a></li>
 </ul>
 <div class="section-level-extent" id="Terminal-emulator">
-<h3 class="section">4.1 Terminal emulator</h3>
+<h3 class="section">5.1 Terminal emulator</h3>
 
 <p>Terminal emulator is the prerequisite of shell.
 An open-source terminal emulator is terminator.
@@ -494,7 +972,7 @@ To install it, run
 </p>
 </div>
 <div class="section-level-extent" id="Swap-keys">
-<h3 class="section">4.2 Swap keys</h3>
+<h3 class="section">5.2 Swap keys</h3>
 
 <p>Usually, if someone wants to swap Caplock and left Ctrl since the latter is more useful, some desktop provides an GUI tool such as gnome-tweak in GNOME or the setting in KDE that support this function.
 For the desktops that do not have an GUI tool, a shell method is to use xmodmap and the GUI helper xkeycaps.
@@ -510,23 +988,23 @@ After change the keys in xkeycaps, write out the configuration file of xmodmap i
 <div class="chapter-level-extent" id="Editor">
 <div class="nav-panel">
 <p>
-Next: <a href="#network" accesskey="n" rel="next">network</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Editor-1">5 Editor</h2>
+<h2 class="chapter" id="Editor-1">6 Editor</h2>
 
 <ul class="mini-toc">
 <li><a href="#Vim" accesskey="1">Vim</a></li>
 <li><a href="#Micro-Editor" accesskey="2">Micro Editor</a></li>
 </ul>
 <div class="section-level-extent" id="Vim">
-<h3 class="section">5.1 Vim</h3>
+<h3 class="section">6.1 Vim</h3>
 
 <ul class="mini-toc">
 <li><a href="#Test-Vim-Script" accesskey="1">Test Vim Script</a></li>
 <li><a href="#Vim-Distribution" accesskey="2">Vim Distribution</a></li>
 </ul>
 <div class="subsection-level-extent" id="Test-Vim-Script">
-<h4 class="subsection">5.1.1 Test Vim Script</h4>
+<h4 class="subsection">6.1.1 Test Vim Script</h4>
 
 <p>Vim is an awesome editor with powerful plugin ecosystems.
 Most of the time, the plugin can be directly used by downloading them into the directory.
@@ -560,7 +1038,7 @@ There is a good plugin <a class="url" href="https://github.com/vim-scripts/Break
 </p>
 </div>
 <div class="subsection-level-extent" id="Vim-Distribution">
-<h4 class="subsection">5.1.2 Vim Distribution</h4>
+<h4 class="subsection">6.1.2 Vim Distribution</h4>
 
 <p>Vim is one of the most famous editors in the world with powerful scalability.
 However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
@@ -583,7 +1061,7 @@ The follows are some Vim distributions.
 <li><a href="#Doom_002dnvim" accesskey="4">Doom-nvim</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="SpaceVim">
-<h4 class="subsubsection">5.1.2.1 SpaceVim</h4>
+<h4 class="subsubsection">6.1.2.1 SpaceVim</h4>
 
 <p><a class="url" href="https://spacevim.org">SpaceVim</a> is inspired by spacemacs.
 It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
@@ -595,7 +1073,7 @@ SpaceVim is only distribution that can support both Vim and NeoVim.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="LunarVim">
-<h4 class="subsubsection">5.1.2.2 LunarVim</h4>
+<h4 class="subsubsection">6.1.2.2 LunarVim</h4>
 
 <p><a class="url" href="https://www.lunarvim.org/">LunarVim</a>, or lvim in short, is another distribution that only supports Neovim.
 It needs npm, node, and cargo as the prerequisites.
@@ -604,7 +1082,7 @@ It provides a shortcut named as lvim in &lsquo;.local/bin/&lsquo;.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="NvChad">
-<h4 class="subsubsection">5.1.2.3 NvChad</h4>
+<h4 class="subsubsection">6.1.2.3 NvChad</h4>
 
 <p><a class="url" href="https://nvchad.com/">NvChad</a> is a pure lua distribution with a customized colorscheme.
 The aim of NvChad is to be a &quot;basic configuration&quot;, so the configuration logic of NvChad is pretty simple.
@@ -612,7 +1090,7 @@ It is quitely easy to extend.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="Doom_002dnvim">
-<h4 class="subsubsection">5.1.2.4 Doom-nvim</h4>
+<h4 class="subsubsection">6.1.2.4 Doom-nvim</h4>
 
 <p><a class="url" href="https://github.com/doom-neovim/doom-nvim">Doom-nvim</a> is also inspired by an emacs-based project.
 It also proposes modules that includes plugins and keybindings.
@@ -623,7 +1101,7 @@ If the Linux does not contains the prerequisites, the installation would have so
 </div>
 </div>
 <div class="section-level-extent" id="Micro-Editor">
-<h3 class="section">5.2 Micro Editor</h3>
+<h3 class="section">6.2 Micro Editor</h3>
 
 <p>Micro is a easily used terminal editor with intuitive key bindings as well as modern build-in features, including command line, auto-pair and linter.
 </p>
@@ -654,12 +1132,12 @@ Enter the command line mode by typing <code class="code">&lt;C-e&gt;</code>, run
 </p><hr>
 </div>
 </div>
-<div class="chapter-level-extent" id="network">
+<div class="chapter-level-extent" id="Network">
 <div class="nav-panel">
 <p>
 Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="network-1">6 network</h2>
+<h2 class="chapter" id="Network-1">7 Network</h2>
 
 <ul class="mini-toc">
 <li><a href="#iw" accesskey="1">iw</a></li>
@@ -668,7 +1146,7 @@ Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Edito
 <li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
 </ul>
 <div class="section-level-extent" id="iw">
-<h3 class="section">6.1 iw</h3>
+<h3 class="section">7.1 iw</h3>
 
 <p>iw is a configuration tool for mac80211 in Linux kernel with netlink
 The code tree of <code class="code">iw.c</code> in iw is
@@ -716,7 +1194,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 
 </div>
 <div class="section-level-extent" id="Clash">
-<h3 class="section">6.2 Clash</h3>
+<h3 class="section">7.2 Clash</h3>
 
 <p>clash is a tunnel in Go.
 </p>
@@ -726,7 +1204,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 <li><a href="#Autostart" accesskey="3">Autostart</a></li>
 </ul>
 <div class="subsection-level-extent" id="Installation-1">
-<h4 class="subsection">6.2.1 Installation</h4>
+<h4 class="subsection">7.2.1 Installation</h4>
 
 <p>openSUSE contains clash in its repository, so it can be downloaded directly
 </p>
@@ -741,7 +1219,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Basic-Usage">
-<h4 class="subsection">6.2.2 Basic Usage</h4>
+<h4 class="subsection">7.2.2 Basic Usage</h4>
 
 <p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
 </p>
@@ -751,7 +1229,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Autostart">
-<h4 class="subsection">6.2.3 Autostart</h4>
+<h4 class="subsection">7.2.3 Autostart</h4>
 
 <p>Clash support auto-start after opening the system.
 In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
@@ -772,7 +1250,7 @@ So move the configuration file and mmdb file in the above directory by
 </div>
 </div>
 <div class="section-level-extent" id="Clash-for-LAN">
-<h3 class="section">6.3 Clash for LAN</h3>
+<h3 class="section">7.3 Clash for LAN</h3>
  
 <p>Clash can support connection from devices in the local area network (LAN).
 To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
@@ -782,7 +1260,7 @@ Then open clash with manual
 </p>
 </div>
 <div class="section-level-extent" id="snapdrop_002enet">
-<h3 class="section">6.4 snapdrop.net</h3>
+<h3 class="section">7.4 snapdrop.net</h3>
 
 <p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
 Open the link of snapdrop in the same network.
@@ -794,15 +1272,15 @@ Just drop the file to the target.
 <div class="chapter-level-extent" id="SDR">
 <div class="nav-panel">
 <p>
-Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#network" accesskey="p" rel="prev">network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
+Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Network" accesskey="p" rel="prev">Network</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="SDR-1">7 SDR</h2>
+<h2 class="chapter" id="SDR-1">8 SDR</h2>
 
 <ul class="mini-toc">
 <li><a href="#GNURadio-Period-transmisstion" accesskey="1">GNURadio Period transmisstion</a></li>
 </ul>
 <div class="section-level-extent" id="GNURadio-Period-transmisstion">
-<h3 class="section">7.1 GNURadio Period transmisstion</h3>
+<h3 class="section">8.1 GNURadio Period transmisstion</h3>
 
 <ul class="mini-toc">
 <li><a href="#Introduction" accesskey="1">Introduction</a></li>
@@ -810,7 +1288,7 @@ Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previou
 <li><a href="#USRP-Time-Control" accesskey="3">USRP Time Control</a></li>
 </ul>
 <div class="subsection-level-extent" id="Introduction">
-<h4 class="subsection">7.1.1 Introduction</h4>
+<h4 class="subsection">8.1.1 Introduction</h4>
 
 <p>Period transmission in GNURadio/USRP platform is the basic function to support time-related systems, such as 
 </p><ul class="itemize mark-minus">
@@ -825,7 +1303,7 @@ All the functions have been tested on USRP N310 with GNURadio 3.7.13 and UHD 3.1
 </p>
 </div>
 <div class="subsection-level-extent" id="GNURadio-Tag">
-<h4 class="subsection">7.1.2 GNURadio Tag</h4>
+<h4 class="subsection">8.1.2 GNURadio Tag</h4>
 
 <p><a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">GNURadio tag</a> is an isosynchronous data that runs parallel to the main data stream. 
 </p>
@@ -877,7 +1355,7 @@ pmt::pmt_t tstamp_tuple = pmt::make_tuple(pmt::from_uint64(t_int), pmt::from_dou
 </p>
 </div>
 <div class="subsection-level-extent" id="USRP-Time-Control">
-<h4 class="subsection">7.1.3 USRP Time Control</h4>
+<h4 class="subsection">8.1.3 USRP Time Control</h4>
 
 <p>The last things is to set the time of USRP with gr-uhd, if the time has error, you may get a &quot;L&quot; error in the transmitter. 
 &quot;L&quot; means a late packet in the TX chain. 
@@ -908,7 +1386,7 @@ self.uhd_usrp_source_0.set_start_time(uhd.time_spec(1.0))
 <p>
 Previous: <a href="#SDR" accesskey="p" rel="prev">SDR</a>, Up: <a href="#index" accesskey="u" rel="up">Cardbox Index</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1">8 Input Method</h2>
+<h2 class="chapter" id="Input-Method-1">9 Input Method</h2>
 
 <p>This README is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command

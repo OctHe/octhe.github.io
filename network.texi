@@ -1,5 +1,5 @@
-@node network
-@chapter network
+@node Network
+@chapter Network
 
 @section iw
 
