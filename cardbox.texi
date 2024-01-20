@@ -6,6 +6,9 @@
 @node index 
 @top Cardbox Index
 
+This is Shiyue's blog website that named as Cardbox.
+The blog focuses on Linux platform and wireless network.
+
 @include distribution.texi
 @include desktop.texi
 @include kernel.texi
