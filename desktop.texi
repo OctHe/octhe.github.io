@@ -41,7 +41,7 @@ Graphicless compares the follow open-source desktop environments.
 @item      Toolkit          @tab      QT      @tab          QT
 @item  Display manager      @tab     SDDM     @tab       LightDM
 @item  Session manager      @tab lxqt-session @tab     dde-session
-@item  Windows manager      @tab    Openbox   @tab     deepin-kwin
+@item  Windows manager      @tab    Openbox   @tab     Treeland
 @item  Desktop manager      @tab       -      @tab          -
 @item   File manager        @tab  PcManFm-qt  @tab   dde-file-manager
 @item     Launcher          @tab  lxqt-runner @tab     dde-launcher

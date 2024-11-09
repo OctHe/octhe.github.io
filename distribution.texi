@@ -15,7 +15,7 @@ The follow tables summarize the main different between these awesome distributio
 @item    Installer    @tab    CLI    @tab Debian-Installer @tab  Anaconda 
 @end multitable
 
-@multitable @columnfractions .1 .3 .3 .3
+@multitable @columnfractions .2 .2 .2 .2 .2
 @headitem             @tab   NixOS   @tab    Void   @tab      Deepin      
 @item Default desktop @tab   GNOME   @tab    xfce   @tab        DDE       
 @item   Init system   @tab  systemd  @tab   runit   @tab      systemd     
@@ -27,7 +27,7 @@ The follow tables summarize the main different between these awesome distributio
 
 The distributions for embeded devices
 
-@multitable @columnfractions .1 .45 .45
+@multitable @columnfractions .2 .2 .2 .2 .2
 @headitem             @tab Openwrt @tab  Alpine     
 @item   Init system   @tab   init  @tab  OpenRC
 @item Package manager @tab   opkg  @tab   apk       
@@ -53,20 +53,19 @@ It is based on RPM, which is similar to Fedora.
 Besides installation of the built programs, zypper also provides an offical repository for the source code.
 As an example, the download and build process for the @code{hostapd} is
 
-@code{sudo zypper source-install hostapd}
-@code{# or `sudo zypper si hostapd`}
-@code{cd /usr/src/packages/       # cd to the default directory for source code}
-@code{ls SOURCES}
-@code{ls SPECS}
-@code{sudo zypper in rpmbuild     # The build tool of the download source code}
-@code{sudo rpmbuild -ba SPECS/hostapd.spec}
-@code{                            # -ba means to perform a full build. }
-@code{ls RPMS/x86_64              # The built program in the x86 architecture}
-@code{sudo rpmbuild -ba --noclean SPECS/hostapd.spec}
-@code{                            # It does not remove the extracted source code}
-@code{ls BUILD                    # The extracted source code}
+@example
+sudo zypper source-install hostapd  # or `sudo zypper si hostapd`
+cd /usr/src/packages/       # cd to the default directory for source code
+ls SOURCES
+ls SPECS
+sudo zypper in rpmbuild     # The build tool of the download source code
+sudo rpmbuild -ba SPECS/hostapd.spec  # -ba means to perform a full build.
+ls RPMS/x86_64              # The built program in the x86 architecture
+sudo rpmbuild -ba --noclean SPECS/hostapd.spec    # It does not remove the extracted source code
+ls BUILD                    # The extracted source code
+@end example
 
-However, openSUSE also provides a command-line tool for package download, building and packaging.
+openSUSE also provides a command-line tool for package download, building and packaging.
 The name of the tool is osc, which means openSUSE commander.
 To use it, run
 

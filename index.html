@@ -74,23 +74,23 @@ The follow tables summarize the main different between these awesome distributio
 </table>
 
 <table class="multitable">
-<thead><tr><th width="10%"></th><th width="30%">NixOS</th><th width="30%">Void</th><th width="30%">Deepin</th></tr></thead>
-<tbody><tr><td width="10%">Default desktop</td><td width="30%">GNOME</td><td width="30%">xfce</td><td width="30%">DDE</td></tr>
-<tr><td width="10%">Init system</td><td width="30%">systemd</td><td width="30%">runit</td><td width="30%">systemd</td></tr>
-<tr><td width="10%">Package manager</td><td width="30%">Nix</td><td width="30%">xbps</td><td width="30%">-</td></tr>
-<tr><td width="10%">C library</td><td width="30%">glibc</td><td width="30%">musl</td><td width="30%">glibc</td></tr>
-<tr><td width="10%">Utility</td><td width="30%">coreutils</td><td width="30%">coreutils</td><td width="30%">coreutils</td></tr>
-<tr><td width="10%">Installer</td><td width="30%">Calamares</td><td width="30%">CLI</td><td width="30%">deepin-installer</td></tr>
+<thead><tr><th width="20%"></th><th width="20%">NixOS</th><th width="20%">Void</th><th width="20%">Deepin</th></tr></thead>
+<tbody><tr><td width="20%">Default desktop</td><td width="20%">GNOME</td><td width="20%">xfce</td><td width="20%">DDE</td></tr>
+<tr><td width="20%">Init system</td><td width="20%">systemd</td><td width="20%">runit</td><td width="20%">systemd</td></tr>
+<tr><td width="20%">Package manager</td><td width="20%">Nix</td><td width="20%">xbps</td><td width="20%">-</td></tr>
+<tr><td width="20%">C library</td><td width="20%">glibc</td><td width="20%">musl</td><td width="20%">glibc</td></tr>
+<tr><td width="20%">Utility</td><td width="20%">coreutils</td><td width="20%">coreutils</td><td width="20%">coreutils</td></tr>
+<tr><td width="20%">Installer</td><td width="20%">Calamares</td><td width="20%">CLI</td><td width="20%">deepin-installer</td></tr>
 </tbody>
 </table>
 
 <p>The distributions for embeded devices
 </p>
 <table class="multitable">
-<thead><tr><th width="10%"></th><th width="45%">Openwrt</th><th width="45%">Alpine</th></tr></thead>
-<tbody><tr><td width="10%">Init system</td><td width="45%">init</td><td width="45%">OpenRC</td></tr>
-<tr><td width="10%">Package manager</td><td width="45%">opkg</td><td width="45%">apk</td></tr>
-<tr><td width="10%">Utility</td><td width="45%">Busybox</td><td width="45%">Busybox</td></tr>
+<thead><tr><th width="20%"></th><th width="20%">Openwrt</th><th width="20%">Alpine</th></tr></thead>
+<tbody><tr><td width="20%">Init system</td><td width="20%">init</td><td width="20%">OpenRC</td></tr>
+<tr><td width="20%">Package manager</td><td width="20%">opkg</td><td width="20%">apk</td></tr>
+<tr><td width="20%">Utility</td><td width="20%">Busybox</td><td width="20%">Busybox</td></tr>
 </tbody>
 </table>
 
@@ -125,20 +125,19 @@ It is based on RPM, which is similar to Fedora.
 Besides installation of the built programs, zypper also provides an offical repository for the source code.
 As an example, the download and build process for the <code class="code">hostapd</code> is
 </p>
-<p><code class="code">sudo zypper source-install hostapd</code>
-<code class="code"># or `sudo zypper si hostapd`</code>
-<code class="code">cd /usr/src/packages/       # cd to the default directory for source code</code>
-<code class="code">ls SOURCES</code>
-<code class="code">ls SPECS</code>
-<code class="code">sudo zypper in rpmbuild     # The build tool of the download source code</code>
-<code class="code">sudo rpmbuild -ba SPECS/hostapd.spec</code>
-<code class="code">                            # -ba means to perform a full build. </code>
-<code class="code">ls RPMS/x86_64              # The built program in the x86 architecture</code>
-<code class="code">sudo rpmbuild -ba --noclean SPECS/hostapd.spec</code>
-<code class="code">                            # It does not remove the extracted source code</code>
-<code class="code">ls BUILD                    # The extracted source code</code>
-</p>
-<p>However, openSUSE also provides a command-line tool for package download, building and packaging.
+<div class="example">
+<pre class="example-preformatted">sudo zypper source-install hostapd  # or `sudo zypper si hostapd`
+cd /usr/src/packages/       # cd to the default directory for source code
+ls SOURCES
+ls SPECS
+sudo zypper in rpmbuild     # The build tool of the download source code
+sudo rpmbuild -ba SPECS/hostapd.spec  # -ba means to perform a full build.
+ls RPMS/x86_64              # The built program in the x86 architecture
+sudo rpmbuild -ba --noclean SPECS/hostapd.spec    # It does not remove the extracted source code
+ls BUILD                    # The extracted source code
+</pre></div>
+
+<p>openSUSE also provides a command-line tool for package download, building and packaging.
 The name of the tool is osc, which means openSUSE commander.
 To use it, run
 </p>
@@ -356,7 +355,7 @@ Most of the desktop and libraries are based on them.
 <tbody><tr><td width="20%">Toolkit</td><td width="40%">QT</td><td width="40%">QT</td></tr>
 <tr><td width="20%">Display manager</td><td width="40%">SDDM</td><td width="40%">LightDM</td></tr>
 <tr><td width="20%">Session manager</td><td width="40%">lxqt-session</td><td width="40%">dde-session</td></tr>
-<tr><td width="20%">Windows manager</td><td width="40%">Openbox</td><td width="40%">deepin-kwin</td></tr>
+<tr><td width="20%">Windows manager</td><td width="40%">Openbox</td><td width="40%">Treeland</td></tr>
 <tr><td width="20%">Desktop manager</td><td width="40%">-</td><td width="40%">-</td></tr>
 <tr><td width="20%">File manager</td><td width="40%">PcManFm-qt</td><td width="40%">dde-file-manager</td></tr>
 <tr><td width="20%">Launcher</td><td width="40%">lxqt-runner</td><td width="40%">dde-launcher</td></tr>
