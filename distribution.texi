@@ -6,13 +6,13 @@ A Linux distribtuion comprises multiple drivers to support different hardware ar
 The follow tables summarize the main different between these awesome distributions and the programs.
 
 @multitable @columnfractions .2 .2 .2 .2 .2
-@headitem             @tab    Arch   @tab      Debian      @tab  openSUSE @tab   Fedora  
-@item Default desktop @tab     -     @tab       GNOME      @tab    KDE    @tab   GNOME   
-@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  @tab  systemd  
-@item Package manager @tab   pacman  @tab        apt       @tab   zypper  @tab    dnf    
-@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   @tab   glibc   
-@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils @tab coreutils 
-@item    Installer    @tab    CLI    @tab Debian-Installer @tab    YaST   @tab  Anaconda 
+@headitem             @tab    Arch   @tab      Debian      @tab   Fedora  
+@item Default desktop @tab     -     @tab       GNOME      @tab   GNOME   
+@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  
+@item Package manager @tab   pacman  @tab        apt       @tab    dnf    
+@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   
+@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils 
+@item    Installer    @tab    CLI    @tab Debian-Installer @tab  Anaconda 
 @end multitable
 
 @multitable @columnfractions .1 .3 .3 .3

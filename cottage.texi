@@ -1,12 +1,12 @@
 \input texinfo.tex @c -*- texinfo -*-
 
 @setfilename index.html
-@settitle Shiyue's Cardbox
+@settitle Shell Cottage
 
 @node index 
-@top Cardbox Index
+@top Contents
 
-This is Shiyue's blog website that named as Cardbox.
+This is a personal blog website that named as Shell Cottage.
 The blog focuses on Linux platform and wireless network.
 
 @include distribution.texi
