@@ -106,19 +106,39 @@ The follow tables summarize the main different between these awesome distributio
 <p>The follow lists common package managers that in different distributions.
 </p><ul class="itemize mark-bullet">
 <li>apt
-</li><li>zypper
 </li><li>dnf
 </li><li>pacman
+</li><li>zypper
 </li><li>Flatpak
 </li><li>AppImage
 </li></ul>
 
 <ul class="mini-toc">
-<li><a href="#zypper" accesskey="1">zypper</a></li>
-<li><a href="#Flatpak" accesskey="2">Flatpak</a></li>
+<li><a href="#dnf" accesskey="1">dnf</a></li>
+<li><a href="#zypper" accesskey="2">zypper</a></li>
+<li><a href="#Flatpak" accesskey="3">Flatpak</a></li>
 </ul>
+<div class="subsection-level-extent" id="dnf">
+<h4 class="subsection"><span>1.1.1 dnf<a class="copiable-link" href="#dnf"> &para;</a></span></h4>
+
+<p>dnf or Dandified YUM is the next-generation of the Fedora package manger yum.
+It manages rpm packages.
+The source files of an rpm package are in the *.src.rpm.
+To download it, use
+</p>
+<p><code class="code">dnf download --source &lt;package name&gt;</code>
+</p>
+<p>To list the infomation in the *.src.rpm, run
+</p>
+<p><code class="code">rpm -ql *.src.rpm</code>
+</p>
+<p>Extract the source file into current directory by
+</p>
+<p><code class="code">rpm2cpio *.src.rpm | cpio -idv </code>
+</p>
+</div>
 <div class="subsection-level-extent" id="zypper">
-<h4 class="subsection"><span>1.1.1 zypper<a class="copiable-link" href="#zypper"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.1.2 zypper<a class="copiable-link" href="#zypper"> &para;</a></span></h4>
 
 <p>openSUSE uses <code class="code">zypper</code> as the default package manager.
 It is based on RPM, which is similar to Fedora.
@@ -145,7 +165,7 @@ To use it, run
 </p>
 </div>
 <div class="subsection-level-extent" id="Flatpak">
-<h4 class="subsection"><span>1.1.2 Flatpak<a class="copiable-link" href="#Flatpak"> &para;</a></span></h4>
+<h4 class="subsection"><span>1.1.3 Flatpak<a class="copiable-link" href="#Flatpak"> &para;</a></span></h4>
 
 <p>Flatpak is a cross-platform package manager that run applications in a sandbox.
 It can download apps from FlatHub, which is the official repository of Flatpak.

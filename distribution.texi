@@ -39,12 +39,29 @@ The distributions for embeded devices
 The follow lists common package managers that in different distributions.
 @itemize @bullet
 @item apt
-@item zypper
 @item dnf
 @item pacman
+@item zypper
 @item Flatpak
 @item AppImage
 @end itemize
+
+@subsection dnf
+
+dnf or Dandified YUM is the next-generation of the Fedora package manger yum.
+It manages rpm packages.
+The source files of an rpm package are in the *.src.rpm.
+To download it, use
+
+@code{dnf download --source <package name>}
+
+To list the infomation in the *.src.rpm, run
+
+@code{rpm -ql *.src.rpm}
+
+Extract the source file into current directory by
+
+@code{rpm2cpio *.src.rpm | cpio -idv }
 
 @subsection zypper
 
