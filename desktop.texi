@@ -132,7 +132,7 @@ The follow shortcuts omit the prefix key.
     q <num>       # Switch to the pane
     x             # Close the pane
     z             # Toggle pane zoom
-    @{ or @ }     # Move the pane to left/right
+    @{ or @}      # Move the pane to left/right
     % or "        # Split pane with vertical/horizontal
     <Up>/<Down>/<Left>/<right>          # Go to the up/down/left/right pane
 

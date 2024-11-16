@@ -1,0 +1,109 @@
+@node Version Control
+@chapter Version Control
+
+@section git
+
+@subsection Config
+
+git always uses `--global` option to config for all repos.
+
+@example
+git config --global user.name <name>    # Set user name
+git config --global user.email <email>@@gmail.com
+                                        # Set user email
+
+git config --global http.proxy <proxy>  # Set proxy of http to <proxy>
+git config --global https.proxy <proxy> # Set proxy of https to <proxy>
+git config --global --unset http.proxy  # Unset the http.proxy
+
+git config --global core.editor <editor>
+                                        # To set your editor:
+
+git config --global diff.tool vimdiff   # Set vimdiff as the tool to edit diff
+
+@end example
+
+subsection Commit
+
+@example
+git init                            # Initialize an empty repo
+git init --bare                     # Initialize a bare repo. It is useful for the dotfile projcet
+git status                          # Show the changed and unstaged files
+git add <file>                      # Add(Stage) <file>
+git reset <file>                    # Remove <file> from the stage
+git reset --hard                    # Remove all uncommitted changes
+git rm <file>                       # Removes <file> from both git and system
+git rm --cached                     # Removes <file> from git
+git commit                          # Commit staged file, it opens an editor
+git commit -m "<msg>"               # Commit with message <msg>
+git commit --amend                  # Edit previous commit message
+
+git log                             # Show the comment log
+git log --oneline                   # Show the commit log in one line
+
+git tag                             # List all tags
+git tag -a v1.0 -m "msg"            # Create an annotated tag
+git show <tag>                      # Show the description of <tag>
+git tag --delete <tag>              # Delete the tag
+
+git rebase -i <commit_id>           # Rebase commits from <commit_id> 
+
+@end example
+
+@subsection Branch
+@example
+git branch                          # List branches 
+git branch -a                       # List local and remote branches
+git branch <branch>                 # Create branch
+git branch -d <branch>              # Delete <branch>
+git branch -m <new-name>            # Rename the branch
+
+git checkout <branch>               # Checkout <branch>
+git checkout <branch> <file>     # Checkout (copy) the file in <branch> to this branch
+git merge <branch>                  # Merge <branch> to the current branch
+
+git diff                            # Differences (unstaged files) between now and HEAD
+git diff <other> <branch> -- <file>
+                                    # Differences between the same file in <other> and <branch>
+git diff -cached                    # Differences between staged files and HEAD
+git difftool <branch> <file>        # Use difftool (e.g., vimdiff) to open and edit the file
+
+git stash                           # Save uncommitted changes into stash
+git stash push -m "<msg>"           # Stash changes with a message:
+git stash list                      # List all the stashed changes:
+
+git stash pop                       # Pop changes from stagh
+@end example
+
+@subsection Remote
+
+@example
+git remote add <remote> <link>      # Add a remote reposiory named as <remote> 
+git remote                          # Show remote
+git remote -v                       # Show more details about the remote 
+git remote rm <remote>              # Remove a remote repository
+git remote set-url <remote> <link>  # Change URL to <link> for <remote>
+
+git clone <link> <path>             # Clone a remote repo to local <Path>
+
+# The following commands require git-remote-add
+git push                            # Push this branch to the remote origin repo
+git push <remote> <remotebranch>:<localbranch>
+                                    # Push <localbranch> to the <remotebranch> from the <remote> repo
+git fetch                           # Fetch remote to the branch
+git pull                            # Fetch and merge
+git pull <remote> <remotebranch:<localbranch>
+                                    # Pull <remotebranch> from <remote> to <localbranch>
+@end example
+
+@subsection Submodule
+
+@example
+git submodule update --init --recursive                 # Update all submodules:
+
+# git command for prompt in shell
+git status --short | wc -l          # Get the number of modified file in git
+git branch --show-current           # Show the name of current branch
+git rev-list --count @@@{upstream@}..HEAD  
+                                        # Count commits that local branch have but upstream does not 
+@end example

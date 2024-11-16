@@ -1,7 +1,7 @@
 @node Input Method
 @chapter Input Method
 
-This README is related to the chinese input method.
+This chapter is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command
 
 @code{sudo zypper in fcitx5}

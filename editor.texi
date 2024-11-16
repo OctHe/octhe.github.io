@@ -3,6 +3,222 @@
 
 @section Vim
 
+Vim has six modes: normal, insert, operator-pending, visual, select, and command-line modes.
+All the keys in the keyboard have been used as a command in these mode.
+
+@subsection Normal/Visual Mode
+
+Most keymappings both can work in normal and visual mode with slightly difference.
+
+@subsubsection Movement
+
+@example
+h/j/k/l     Character-level movement: left/down/up/right
+F/f<char>   Character-level movement: Find the <char> on left/right
+T/t<char>   Character-level movement: Till (Find) before/after <char> on left/right
+;           Repeat: F/f/T/t
+,           Repeat: F/f/T/t in opposite direction
+w/W         Word-level movement: forward to the begin of the word/WORD 
+e/E         Word-level movement: forward to the end of the word/WORD 
+b/B         Word-level movement: backward to the begin of the word/WORD 
+0/$         Line-level movement: Begin/End of the line
+^           Line-level movement: The first non-blank character of the line
+<count>|    Line-level movement: The <count> column in this line
++/-         Line-level movement: Downward/Upward
+<count>_    Line-level movement: Downward <count>-1 lines, on the first non-blank character
+H/M/L       Window-level movement: Top/Middle/Bottom of the window
+G           Document-level movement: End of the document
+'           Document-level movement: Jump to the line of the mark
+`           Document-level movement: Jump to the mark
+K           Run an external predefined program with word (i.e., !<Program> <word>)
+@end example
+
+@subsubsection Mark
+
+@example
+m<A-Z>              Set global marks
+m<a-z>              Set local marks
+'<A-Za-z0-9>        Document-level movement: Jump to the mark
+`<A-Za-z0-9>        Document-level movement: Jump to the mark
+:mark <A-Za-z>      Set global/local marks
+:marks              List all marks
+:delmarks <A-Za-z>  Delete mark
+:delmarks!          Delete all marks
+@end example
+
+@subsubsection Edit and Register
+
+Replace, delete, and yank commands in normal mode save the characters in to registers.
+
+@example
+r/R         Character-level edit: Replace/Enter replace mode
+X/x         Character-level edit: Delete at previous/current cursor
+s           Character-level edit: Delete and enter the insert mode
+~           Character-level edit: Swap case
+D           Line-level edit: Delete (cut) from the cursor to the end
+S           Line-level edit: Delete (cut) the line and enter the insert mode
+C           Line-level edit: Delete from the cursor to the end and enter the insert mode
+Y           Line-level edit: Yank the line
+J           Line-level edit: Join the forward line to the current one
+P/p         Document-level edit: Put (Paste) the text before/after the cursor
+u/U         Document-level edit: Undo the last change / Undo all changes in the line
+.           Repeat: The last edit command
+"<reg>      Use <reg> for d/y/p
+<C-a/x>     Character-level edit: The first number after the cursor plus/minus 1
+@end example
+
+Recording-related command
+
+@example
+q<reg>      Recording: Record operations into <reg> until "q" is typed in normal mode
+@@<reg>      Recording: Run the operations in <reg>
+@@@@          Repeat: The last @@<reg>
+@end example
+
+In normal mode, "d/c/y/</>" are operators.
+If an operator is typed, it will wait for a motion, like "h/j/k/l/w/W/e/E/b/B".
+Type an operator twice indicates line-level edit.
+
+@example
+d/y         Delete (Cut) / Yank (Copy)
+C           Delete (Cut/Change) to the end of the line and enter the insert mode
+<           Shift left
+>           Shift right
+dd/yy       Line-level edit: Delete (Cut) / Yank
+cc          Line-level edit: Delete and enter the insert mode
+<<          Line-level edit: Shift left
+>>          Line-level edit: Shift right
+@end example
+
+Register-related Command-line mode command 
+
+@example
+:reg            Show the registers
+:messages       Show messages and errors
+@end example
+
+@subsubsection Text Object
+
+@example
+[a/i][w/W]          # a/inner word/WORD. Select a word/WORD with/without the space behind
+[a/i][s/p/t]        # a/inner setence/paragraph/tag block
+a[/@{/(/</"/'/`      # a [\@{\( block with [\@{\(
+i[/@{/(/</"/'/`      # inner [\@{\( block without [\@{\(
+@end example
+
+@subsubsection Keymapings start with 'Z' and 'z'
+
+This is not full list. Use `help z` in vim to find all the keymappings.
+
+Quit vim
+@example
+ZQ          Close and quit vim without saving
+ZZ          Save and close the current window
+@end example
+
+Folding
+
+@example
+za/A                Toggle a fold/folds recursively
+zc/C                Close a fold/folds recursively
+zd/D                Delete a fold/ folds recursively
+zf<motion>/F        Create folds
+zj                  Move to the start of the next fold
+zo/O                Open a fold/folds recursively
+@end example
+
+Redraw the window
+
+@example
+zb/t/z      Redraw the cursor to the bottom/top/middle of the window
+
+z.          Give spell suggestion 
+@end example
+
+@subsubsection Keymappings start with 'g'
+
+Part of the commands have been listed.
+
+@example
+gd/gD       Document-level movement: Go to local/global decleration
+ge/gE       Word-level movement: Backward to the end of the word/WORD
+gg/G        Document-level movement: The first/last line
+<count>g_   Line-level movement: Downward <count>-1 lines, on the last non-blank character
+@end example
+
+@subsubsection Window 
+
+@example
+<C-w>s/v        Horizontal/Vertical split
+<C-w>w          Switch
+<C-w>h/j/k/l    Move left/down/up/right
+<C-w>q          Quit
+@end example
+
+@subsubsection Filter
+
+Filter can lint to other formatters.
+
+@example
+!/=             Filter text through an external program 
+@end example
+
+@subsection Insert Mode
+
+@example
+A/a             Enter insert mode and append at the end of the line/cursor
+I/i             Enter insert mode and insert at the beginning of the line/cursor
+O/o             Enter insert mode and insert a new line above/below the current line
+@end example
+
+Most commands in insert mode uses CTRL at first.
+
+@subsection Command-Line Mode
+
+Command-line mode can be entered from normal mode by typing ':', '/', '?', '!'.
+The above commands are related to command-line mode, while part of them works in normal mode.
+
+@example
+:<command>      Run <command> (Enter command-line mode)
+Q               Enter Ex mode
+@end example
+
+@subsubsection Search
+
+@example
+%               Line-level search: Forward to the `@{[(` and jump to its match
+/<pattern>      Document-level search: Forward for <pattern>
+?<pattern>      Document-level search: Backward for <pattern>
+n/N             Repeat: '/' or '?' in the same/opposite direction
+*/#             Document-level search: Forward/Backward for the next word under the cursor
+@end example
+
+@subsubsection Substitute
+The substitute command is 
+@example
+:[range]s[ubstitute]/<pattern>/<string>/[flags] [count]
+@end example
+
+It has one repeat single-character command in normal mode.
+@example
+&               Repeat: The last substitute
+@end example
+
+@subsubsection vimgrep
+
+vimgrep is the built-in search command in vim.
+The results can be listed in quickfix window.
+
+@example
+:vimgrep /<PATTERN>/<FLAGS> <FILES>
+:vimgrep /foo/g <DIR>/**        Search all foo patterns recursively in <DIR>
+:cnext                          Search the next position
+:cprevious                      Search the previous position
+:clist                          List all matched patterns
+:cwindow                        Open the quickfix window
+@end example
+
+
 @subsection Test Vim Script
 
 Vim is an awesome editor with powerful plugin ecosystems.

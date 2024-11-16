@@ -47,8 +47,9 @@ The blog focuses on Linux platform and wireless network.
 <li><a href="#Blog" accesskey="5">Blog</a></li>
 <li><a href="#Shell" accesskey="6">Shell</a></li>
 <li><a href="#Editor" accesskey="7">Editor</a></li>
-<li><a href="#Network" accesskey="8">Network</a></li>
-<li><a href="#SDR" accesskey="9">SDR</a></li>
+<li><a href="#Version-Control" accesskey="8">Version Control</a></li>
+<li><a href="#Network" accesskey="9">Network</a></li>
+<li><a href="#SDR">SDR</a></li>
 <li><a href="#Input-Method">Input Method</a></li>
 </ul>
 <hr>
@@ -400,6 +401,7 @@ Most of the desktop and libraries are based on them.
 <li><a href="#GNOME" accesskey="1">GNOME</a></li>
 <li><a href="#xfce4" accesskey="2">xfce4</a></li>
 <li><a href="#Window-Manager" accesskey="3">Window Manager</a></li>
+<li><a href="#tmux" accesskey="4">tmux</a></li>
 </ul>
 <div class="section-level-extent" id="GNOME">
 <h3 class="section"><span>2.1 GNOME<a class="copiable-link" href="#GNOME"> &para;</a></span></h3>
@@ -456,6 +458,77 @@ To fix this, change the configuration file
 <p>Uncommand the line 
 <code class="code">test -z $BG || $BG -solid &quot;#303030&quot;</code>
 </p>
+</div>
+</div>
+<div class="section-level-extent" id="tmux">
+<h3 class="section"><span>2.4 tmux<a class="copiable-link" href="#tmux"> &para;</a></span></h3>
+
+<p>Tmux is a famous terminal multiplexer.
+It works like a window manager in terminal.
+This is only part of the common keys and commands for tmux.
+To read the full list, use <code class="code">man tmux</code> or type <code class="code">&lt;C-b&gt; + ?</code>.
+The keybindings are in the &quot;DEFAULT KEY BINDINGS&quot; section.
+</p>
+<p><code class="code">&lt;C-b&gt;</code> is the default prefix key of tmux.
+The follow shortcuts omit the prefix key.
+</p>
+<ul class="mini-toc">
+<li><a href="#Normal-mode" accesskey="1">Normal mode</a></li>
+<li><a href="#Copy-mode" accesskey="2">Copy mode</a></li>
+<li><a href="#Command-line-mode" accesskey="3">Command line mode</a></li>
+</ul>
+<div class="subsection-level-extent" id="Normal-mode">
+<h4 class="subsection"><span>2.4.1 Normal mode<a class="copiable-link" href="#Normal-mode"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    # Session
+    d       # Detach the window from the session
+    s       # Select a new session
+    (/)     # Move to the previous/next session
+
+    tmux ls/list                            # List sessions
+    tmux attach/detach                      # Attach/Detach the window to the session
+    tmux kill-session -t &lt;session-name&gt;     # Close (Kill) the session
+
+    # Window
+    c       # Create new window
+    l       # Toggle last active window
+    n/p     # Next/Previous window
+    w       # List windows
+
+    tmux new -s &lt;session-name&gt;              # Create a new window for the session
+
+    # Pane
+    o             # Go to next pane
+    q &lt;num&gt;       # Switch to the pane
+    x             # Close the pane
+    z             # Toggle pane zoom
+    { or }      # Move the pane to left/right
+    % or &quot;        # Split pane with vertical/horizontal
+    &lt;Up&gt;/&lt;Down&gt;/&lt;Left&gt;/&lt;right&gt;          # Go to the up/down/left/right pane
+
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Copy-mode">
+<h4 class="subsection"><span>2.4.2 Copy mode<a class="copiable-link" href="#Copy-mode"> &para;</a></span></h4>
+
+<p>In copy mode, user can view the contents in tmux pane.
+The user also can use vim-like commands to view and copy the content.
+</p><div class="example">
+<pre class="example-preformatted">    [       # Enter copy mode.
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Command-line-mode">
+<h4 class="subsection"><span>2.4.3 Command line mode<a class="copiable-link" href="#Command-line-mode"> &para;</a></span></h4>
+
+<p>The follow key does not need prefix key.
+</p>
+<div class="example">
+<pre class="example-preformatted">    :       # Enter command-line mode
+</pre></div>
+
 <hr>
 </div>
 </div>
@@ -1374,7 +1447,7 @@ eval echo -e '$'{${COLOR}}${COLOR}
 <div class="chapter-level-extent" id="Editor">
 <div class="nav-panel">
 <p>
-Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#Version-Control" accesskey="n" rel="next">Version Control</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="Editor-1"><span>7 Editor<a class="copiable-link" href="#Editor-1"> &para;</a></span></h2>
 
@@ -1385,12 +1458,274 @@ Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href
 <div class="section-level-extent" id="Vim">
 <h3 class="section"><span>7.1 Vim<a class="copiable-link" href="#Vim"> &para;</a></span></h3>
 
+<p>Vim has six modes: normal, insert, operator-pending, visual, select, and command-line modes.
+All the keys in the keyboard have been used as a command in these mode.
+</p>
 <ul class="mini-toc">
-<li><a href="#Test-Vim-Script" accesskey="1">Test Vim Script</a></li>
-<li><a href="#Vim-Distribution" accesskey="2">Vim Distribution</a></li>
+<li><a href="#Normal_002fVisual-Mode" accesskey="1">Normal/Visual Mode</a></li>
+<li><a href="#Insert-Mode" accesskey="2">Insert Mode</a></li>
+<li><a href="#Command_002dLine-Mode" accesskey="3">Command-Line Mode</a></li>
+<li><a href="#Test-Vim-Script" accesskey="4">Test Vim Script</a></li>
+<li><a href="#Vim-Distribution" accesskey="5">Vim Distribution</a></li>
 </ul>
+<div class="subsection-level-extent" id="Normal_002fVisual-Mode">
+<h4 class="subsection"><span>7.1.1 Normal/Visual Mode<a class="copiable-link" href="#Normal_002fVisual-Mode"> &para;</a></span></h4>
+
+<p>Most keymappings both can work in normal and visual mode with slightly difference.
+</p>
+<ul class="mini-toc">
+<li><a href="#Movement" accesskey="1">Movement</a></li>
+<li><a href="#Mark" accesskey="2">Mark</a></li>
+<li><a href="#Edit-and-Register" accesskey="3">Edit and Register</a></li>
+<li><a href="#Text-Object" accesskey="4">Text Object</a></li>
+<li><a href="#Keymapings-start-with-_0027Z_0027-and-_0027z_0027" accesskey="5">Keymapings start with &rsquo;Z&rsquo; and &rsquo;z&rsquo;</a></li>
+<li><a href="#Keymappings-start-with-_0027g_0027" accesskey="6">Keymappings start with &rsquo;g&rsquo;</a></li>
+<li><a href="#Window" accesskey="7">Window</a></li>
+<li><a href="#Filter" accesskey="8">Filter</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="Movement">
+<h4 class="subsubsection"><span>7.1.1.1 Movement<a class="copiable-link" href="#Movement"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">h/j/k/l     Character-level movement: left/down/up/right
+F/f&lt;char&gt;   Character-level movement: Find the &lt;char&gt; on left/right
+T/t&lt;char&gt;   Character-level movement: Till (Find) before/after &lt;char&gt; on left/right
+;           Repeat: F/f/T/t
+,           Repeat: F/f/T/t in opposite direction
+w/W         Word-level movement: forward to the begin of the word/WORD 
+e/E         Word-level movement: forward to the end of the word/WORD 
+b/B         Word-level movement: backward to the begin of the word/WORD 
+0/$         Line-level movement: Begin/End of the line
+^           Line-level movement: The first non-blank character of the line
+&lt;count&gt;|    Line-level movement: The &lt;count&gt; column in this line
++/-         Line-level movement: Downward/Upward
+&lt;count&gt;_    Line-level movement: Downward &lt;count&gt;-1 lines, on the first non-blank character
+H/M/L       Window-level movement: Top/Middle/Bottom of the window
+G           Document-level movement: End of the document
+'           Document-level movement: Jump to the line of the mark
+`           Document-level movement: Jump to the mark
+K           Run an external predefined program with word (i.e., !&lt;Program&gt; &lt;word&gt;)
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Mark">
+<h4 class="subsubsection"><span>7.1.1.2 Mark<a class="copiable-link" href="#Mark"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">m&lt;A-Z&gt;              Set global marks
+m&lt;a-z&gt;              Set local marks
+'&lt;A-Za-z0-9&gt;        Document-level movement: Jump to the mark
+`&lt;A-Za-z0-9&gt;        Document-level movement: Jump to the mark
+:mark &lt;A-Za-z&gt;      Set global/local marks
+:marks              List all marks
+:delmarks &lt;A-Za-z&gt;  Delete mark
+:delmarks!          Delete all marks
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Edit-and-Register">
+<h4 class="subsubsection"><span>7.1.1.3 Edit and Register<a class="copiable-link" href="#Edit-and-Register"> &para;</a></span></h4>
+
+<p>Replace, delete, and yank commands in normal mode save the characters in to registers.
+</p>
+<div class="example">
+<pre class="example-preformatted">r/R         Character-level edit: Replace/Enter replace mode
+X/x         Character-level edit: Delete at previous/current cursor
+s           Character-level edit: Delete and enter the insert mode
+~           Character-level edit: Swap case
+D           Line-level edit: Delete (cut) from the cursor to the end
+S           Line-level edit: Delete (cut) the line and enter the insert mode
+C           Line-level edit: Delete from the cursor to the end and enter the insert mode
+Y           Line-level edit: Yank the line
+J           Line-level edit: Join the forward line to the current one
+P/p         Document-level edit: Put (Paste) the text before/after the cursor
+u/U         Document-level edit: Undo the last change / Undo all changes in the line
+.           Repeat: The last edit command
+&quot;&lt;reg&gt;      Use &lt;reg&gt; for d/y/p
+&lt;C-a/x&gt;     Character-level edit: The first number after the cursor plus/minus 1
+</pre></div>
+
+<p>Recording-related command
+</p>
+<div class="example">
+<pre class="example-preformatted">q&lt;reg&gt;      Recording: Record operations into &lt;reg&gt; until &quot;q&quot; is typed in normal mode
+@&lt;reg&gt;      Recording: Run the operations in &lt;reg&gt;
+@@          Repeat: The last @&lt;reg&gt;
+</pre></div>
+
+<p>In normal mode, &quot;d/c/y/&lt;/&gt;&quot; are operators.
+If an operator is typed, it will wait for a motion, like &quot;h/j/k/l/w/W/e/E/b/B&quot;.
+Type an operator twice indicates line-level edit.
+</p>
+<div class="example">
+<pre class="example-preformatted">d/y         Delete (Cut) / Yank (Copy)
+C           Delete (Cut/Change) to the end of the line and enter the insert mode
+&lt;           Shift left
+&gt;           Shift right
+dd/yy       Line-level edit: Delete (Cut) / Yank
+cc          Line-level edit: Delete and enter the insert mode
+&lt;&lt;          Line-level edit: Shift left
+&gt;&gt;          Line-level edit: Shift right
+</pre></div>
+
+<p>Register-related Command-line mode command 
+</p>
+<div class="example">
+<pre class="example-preformatted">:reg            Show the registers
+:messages       Show messages and errors
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Text-Object">
+<h4 class="subsubsection"><span>7.1.1.4 Text Object<a class="copiable-link" href="#Text-Object"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">[a/i][w/W]          # a/inner word/WORD. Select a word/WORD with/without the space behind
+[a/i][s/p/t]        # a/inner setence/paragraph/tag block
+a[/{/(/&lt;/&quot;/'/`      # a [\{\( block with [\{\(
+i[/{/(/&lt;/&quot;/'/`      # inner [\{\( block without [\{\(
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Keymapings-start-with-_0027Z_0027-and-_0027z_0027">
+<h4 class="subsubsection"><span>7.1.1.5 Keymapings start with &rsquo;Z&rsquo; and &rsquo;z&rsquo;<a class="copiable-link" href="#Keymapings-start-with-_0027Z_0027-and-_0027z_0027"> &para;</a></span></h4>
+
+<p>This is not full list. Use &lsquo;help z&lsquo; in vim to find all the keymappings.
+</p>
+<p>Quit vim
+</p><div class="example">
+<pre class="example-preformatted">ZQ          Close and quit vim without saving
+ZZ          Save and close the current window
+</pre></div>
+
+<p>Folding
+</p>
+<div class="example">
+<pre class="example-preformatted">za/A                Toggle a fold/folds recursively
+zc/C                Close a fold/folds recursively
+zd/D                Delete a fold/ folds recursively
+zf&lt;motion&gt;/F        Create folds
+zj                  Move to the start of the next fold
+zo/O                Open a fold/folds recursively
+</pre></div>
+
+<p>Redraw the window
+</p>
+<div class="example">
+<pre class="example-preformatted">zb/t/z      Redraw the cursor to the bottom/top/middle of the window
+
+z.          Give spell suggestion 
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Keymappings-start-with-_0027g_0027">
+<h4 class="subsubsection"><span>7.1.1.6 Keymappings start with &rsquo;g&rsquo;<a class="copiable-link" href="#Keymappings-start-with-_0027g_0027"> &para;</a></span></h4>
+
+<p>Part of the commands have been listed.
+</p>
+<div class="example">
+<pre class="example-preformatted">gd/gD       Document-level movement: Go to local/global decleration
+ge/gE       Word-level movement: Backward to the end of the word/WORD
+gg/G        Document-level movement: The first/last line
+&lt;count&gt;g_   Line-level movement: Downward &lt;count&gt;-1 lines, on the last non-blank character
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Window">
+<h4 class="subsubsection"><span>7.1.1.7 Window<a class="copiable-link" href="#Window"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">&lt;C-w&gt;s/v        Horizontal/Vertical split
+&lt;C-w&gt;w          Switch
+&lt;C-w&gt;h/j/k/l    Move left/down/up/right
+&lt;C-w&gt;q          Quit
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Filter">
+<h4 class="subsubsection"><span>7.1.1.8 Filter<a class="copiable-link" href="#Filter"> &para;</a></span></h4>
+
+<p>Filter can lint to other formatters.
+</p>
+<div class="example">
+<pre class="example-preformatted">!/=             Filter text through an external program 
+</pre></div>
+
+</div>
+</div>
+<div class="subsection-level-extent" id="Insert-Mode">
+<h4 class="subsection"><span>7.1.2 Insert Mode<a class="copiable-link" href="#Insert-Mode"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">A/a             Enter insert mode and append at the end of the line/cursor
+I/i             Enter insert mode and insert at the beginning of the line/cursor
+O/o             Enter insert mode and insert a new line above/below the current line
+</pre></div>
+
+<p>Most commands in insert mode uses CTRL at first.
+</p>
+</div>
+<div class="subsection-level-extent" id="Command_002dLine-Mode">
+<h4 class="subsection"><span>7.1.3 Command-Line Mode<a class="copiable-link" href="#Command_002dLine-Mode"> &para;</a></span></h4>
+
+<p>Command-line mode can be entered from normal mode by typing &rsquo;:&rsquo;, &rsquo;/&rsquo;, &rsquo;?&rsquo;, &rsquo;!&rsquo;.
+The above commands are related to command-line mode, while part of them works in normal mode.
+</p>
+<div class="example">
+<pre class="example-preformatted">:&lt;command&gt;      Run &lt;command&gt; (Enter command-line mode)
+Q               Enter Ex mode
+</pre></div>
+
+<ul class="mini-toc">
+<li><a href="#Search" accesskey="1">Search</a></li>
+<li><a href="#Substitute" accesskey="2">Substitute</a></li>
+<li><a href="#vimgrep" accesskey="3">vimgrep</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="Search">
+<h4 class="subsubsection"><span>7.1.3.1 Search<a class="copiable-link" href="#Search"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">%               Line-level search: Forward to the `{[(` and jump to its match
+/&lt;pattern&gt;      Document-level search: Forward for &lt;pattern&gt;
+?&lt;pattern&gt;      Document-level search: Backward for &lt;pattern&gt;
+n/N             Repeat: '/' or '?' in the same/opposite direction
+*/#             Document-level search: Forward/Backward for the next word under the cursor
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Substitute">
+<h4 class="subsubsection"><span>7.1.3.2 Substitute<a class="copiable-link" href="#Substitute"> &para;</a></span></h4>
+<p>The substitute command is 
+</p><div class="example">
+<pre class="example-preformatted">:[range]s[ubstitute]/&lt;pattern&gt;/&lt;string&gt;/[flags] [count]
+</pre></div>
+
+<p>It has one repeat single-character command in normal mode.
+</p><div class="example">
+<pre class="example-preformatted">&amp;               Repeat: The last substitute
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="vimgrep">
+<h4 class="subsubsection"><span>7.1.3.3 vimgrep<a class="copiable-link" href="#vimgrep"> &para;</a></span></h4>
+
+<p>vimgrep is the built-in search command in vim.
+The results can be listed in quickfix window.
+</p>
+<div class="example">
+<pre class="example-preformatted">:vimgrep /&lt;PATTERN&gt;/&lt;FLAGS&gt; &lt;FILES&gt;
+:vimgrep /foo/g &lt;DIR&gt;/**        Search all foo patterns recursively in &lt;DIR&gt;
+:cnext                          Search the next position
+:cprevious                      Search the previous position
+:clist                          List all matched patterns
+:cwindow                        Open the quickfix window
+</pre></div>
+
+
+</div>
+</div>
 <div class="subsection-level-extent" id="Test-Vim-Script">
-<h4 class="subsection"><span>7.1.1 Test Vim Script<a class="copiable-link" href="#Test-Vim-Script"> &para;</a></span></h4>
+<h4 class="subsection"><span>7.1.4 Test Vim Script<a class="copiable-link" href="#Test-Vim-Script"> &para;</a></span></h4>
 
 <p>Vim is an awesome editor with powerful plugin ecosystems.
 Most of the time, the plugin can be directly used by downloading them into the directory.
@@ -1424,7 +1759,7 @@ There is a good plugin <a class="url" href="https://github.com/vim-scripts/Break
 </p>
 </div>
 <div class="subsection-level-extent" id="Vim-Distribution">
-<h4 class="subsection"><span>7.1.2 Vim Distribution<a class="copiable-link" href="#Vim-Distribution"> &para;</a></span></h4>
+<h4 class="subsection"><span>7.1.5 Vim Distribution<a class="copiable-link" href="#Vim-Distribution"> &para;</a></span></h4>
 
 <p>Vim is one of the most famous editors in the world with powerful scalability.
 However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
@@ -1447,7 +1782,7 @@ The follows are some Vim distributions.
 <li><a href="#Doom_002dnvim" accesskey="4">Doom-nvim</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="SpaceVim">
-<h4 class="subsubsection"><span>7.1.2.1 SpaceVim<a class="copiable-link" href="#SpaceVim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.5.1 SpaceVim<a class="copiable-link" href="#SpaceVim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://spacevim.org">SpaceVim</a> is inspired by spacemacs.
 It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
@@ -1459,7 +1794,7 @@ SpaceVim is only distribution that can support both Vim and NeoVim.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="LunarVim">
-<h4 class="subsubsection"><span>7.1.2.2 LunarVim<a class="copiable-link" href="#LunarVim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.5.2 LunarVim<a class="copiable-link" href="#LunarVim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://www.lunarvim.org/">LunarVim</a>, or lvim in short, is another distribution that only supports Neovim.
 It needs npm, node, and cargo as the prerequisites.
@@ -1468,7 +1803,7 @@ It provides a shortcut named as lvim in &lsquo;.local/bin/&lsquo;.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="NvChad">
-<h4 class="subsubsection"><span>7.1.2.3 NvChad<a class="copiable-link" href="#NvChad"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.5.3 NvChad<a class="copiable-link" href="#NvChad"> &para;</a></span></h4>
 
 <p><a class="url" href="https://nvchad.com/">NvChad</a> is a pure lua distribution with a customized colorscheme.
 The aim of NvChad is to be a &quot;basic configuration&quot;, so the configuration logic of NvChad is pretty simple.
@@ -1476,7 +1811,7 @@ It is quitely easy to extend.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="Doom_002dnvim">
-<h4 class="subsubsection"><span>7.1.2.4 Doom-nvim<a class="copiable-link" href="#Doom_002dnvim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.5.4 Doom-nvim<a class="copiable-link" href="#Doom_002dnvim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://github.com/doom-neovim/doom-nvim">Doom-nvim</a> is also inspired by an emacs-based project.
 It also proposes modules that includes plugins and keybindings.
@@ -1599,12 +1934,146 @@ The follows are the default keymappings for it.
 </div>
 </div>
 </div>
+<div class="chapter-level-extent" id="Version-Control">
+<div class="nav-panel">
+<p>
+Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Version-Control-1"><span>8 Version Control<a class="copiable-link" href="#Version-Control-1"> &para;</a></span></h2>
+
+<ul class="mini-toc">
+<li><a href="#git" accesskey="1">git</a></li>
+</ul>
+<div class="section-level-extent" id="git">
+<h3 class="section"><span>8.1 git<a class="copiable-link" href="#git"> &para;</a></span></h3>
+
+<ul class="mini-toc">
+<li><a href="#Config" accesskey="1">Config</a></li>
+<li><a href="#Branch" accesskey="2">Branch</a></li>
+<li><a href="#Remote" accesskey="3">Remote</a></li>
+<li><a href="#Submodule" accesskey="4">Submodule</a></li>
+</ul>
+<div class="subsection-level-extent" id="Config">
+<h4 class="subsection"><span>8.1.1 Config<a class="copiable-link" href="#Config"> &para;</a></span></h4>
+
+<p>git always uses &lsquo;&ndash;global&lsquo; option to config for all repos.
+</p>
+<div class="example">
+<pre class="example-preformatted">git config --global user.name &lt;name&gt;    # Set user name
+git config --global user.email &lt;email&gt;@gmail.com
+                                        # Set user email
+
+git config --global http.proxy &lt;proxy&gt;  # Set proxy of http to &lt;proxy&gt;
+git config --global https.proxy &lt;proxy&gt; # Set proxy of https to &lt;proxy&gt;
+git config --global --unset http.proxy  # Unset the http.proxy
+
+git config --global core.editor &lt;editor&gt;
+                                        # To set your editor:
+
+git config --global diff.tool vimdiff   # Set vimdiff as the tool to edit diff
+
+</pre></div>
+
+<p>subsection Commit
+</p>
+<div class="example">
+<pre class="example-preformatted">git init                            # Initialize an empty repo
+git init --bare                     # Initialize a bare repo. It is useful for the dotfile projcet
+git status                          # Show the changed and unstaged files
+git add &lt;file&gt;                      # Add(Stage) &lt;file&gt;
+git reset &lt;file&gt;                    # Remove &lt;file&gt; from the stage
+git reset --hard                    # Remove all uncommitted changes
+git rm &lt;file&gt;                       # Removes &lt;file&gt; from both git and system
+git rm --cached                     # Removes &lt;file&gt; from git
+git commit                          # Commit staged file, it opens an editor
+git commit -m &quot;&lt;msg&gt;&quot;               # Commit with message &lt;msg&gt;
+git commit --amend                  # Edit previous commit message
+
+git log                             # Show the comment log
+git log --oneline                   # Show the commit log in one line
+
+git tag                             # List all tags
+git tag -a v1.0 -m &quot;msg&quot;            # Create an annotated tag
+git show &lt;tag&gt;                      # Show the description of &lt;tag&gt;
+git tag --delete &lt;tag&gt;              # Delete the tag
+
+git rebase -i &lt;commit_id&gt;           # Rebase commits from &lt;commit_id&gt; 
+
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Branch">
+<h4 class="subsection"><span>8.1.2 Branch<a class="copiable-link" href="#Branch"> &para;</a></span></h4>
+<div class="example">
+<pre class="example-preformatted">git branch                          # List branches 
+git branch -a                       # List local and remote branches
+git branch &lt;branch&gt;                 # Create branch
+git branch -d &lt;branch&gt;              # Delete &lt;branch&gt;
+git branch -m &lt;new-name&gt;            # Rename the branch
+
+git checkout &lt;branch&gt;               # Checkout &lt;branch&gt;
+git checkout &lt;branch&gt; &lt;file&gt;     # Checkout (copy) the file in &lt;branch&gt; to this branch
+git merge &lt;branch&gt;                  # Merge &lt;branch&gt; to the current branch
+
+git diff                            # Differences (unstaged files) between now and HEAD
+git diff &lt;other&gt; &lt;branch&gt; -- &lt;file&gt;
+                                    # Differences between the same file in &lt;other&gt; and &lt;branch&gt;
+git diff -cached                    # Differences between staged files and HEAD
+git difftool &lt;branch&gt; &lt;file&gt;        # Use difftool (e.g., vimdiff) to open and edit the file
+
+git stash                           # Save uncommitted changes into stash
+git stash push -m &quot;&lt;msg&gt;&quot;           # Stash changes with a message:
+git stash list                      # List all the stashed changes:
+
+git stash pop                       # Pop changes from stagh
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Remote">
+<h4 class="subsection"><span>8.1.3 Remote<a class="copiable-link" href="#Remote"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">git remote add &lt;remote&gt; &lt;link&gt;      # Add a remote reposiory named as &lt;remote&gt; 
+git remote                          # Show remote
+git remote -v                       # Show more details about the remote 
+git remote rm &lt;remote&gt;              # Remove a remote repository
+git remote set-url &lt;remote&gt; &lt;link&gt;  # Change URL to &lt;link&gt; for &lt;remote&gt;
+
+git clone &lt;link&gt; &lt;path&gt;             # Clone a remote repo to local &lt;Path&gt;
+
+# The following commands require git-remote-add
+git push                            # Push this branch to the remote origin repo
+git push &lt;remote&gt; &lt;remotebranch&gt;:&lt;localbranch&gt;
+                                    # Push &lt;localbranch&gt; to the &lt;remotebranch&gt; from the &lt;remote&gt; repo
+git fetch                           # Fetch remote to the branch
+git pull                            # Fetch and merge
+git pull &lt;remote&gt; &lt;remotebranch:&lt;localbranch&gt;
+                                    # Pull &lt;remotebranch&gt; from &lt;remote&gt; to &lt;localbranch&gt;
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Submodule">
+<h4 class="subsection"><span>8.1.4 Submodule<a class="copiable-link" href="#Submodule"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">git submodule update --init --recursive                 # Update all submodules:
+
+# git command for prompt in shell
+git status --short | wc -l          # Get the number of modified file in git
+git branch --show-current           # Show the name of current branch
+git rev-list --count @{upstream}..HEAD  
+                                        # Count commits that local branch have but upstream does not 
+</pre></div>
+<hr>
+</div>
+</div>
+</div>
 <div class="chapter-level-extent" id="Network">
 <div class="nav-panel">
 <p>
-Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Version-Control" accesskey="p" rel="prev">Version Control</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Network-1"><span>8 Network<a class="copiable-link" href="#Network-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Network-1"><span>9 Network<a class="copiable-link" href="#Network-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#iw" accesskey="1">iw</a></li>
@@ -1613,7 +2082,7 @@ Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Edito
 <li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
 </ul>
 <div class="section-level-extent" id="iw">
-<h3 class="section"><span>8.1 iw<a class="copiable-link" href="#iw"> &para;</a></span></h3>
+<h3 class="section"><span>9.1 iw<a class="copiable-link" href="#iw"> &para;</a></span></h3>
 
 <p>iw is a configuration tool for mac80211 in Linux kernel with netlink
 The code tree of <code class="code">iw.c</code> in iw is
@@ -1661,7 +2130,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 
 </div>
 <div class="section-level-extent" id="Clash">
-<h3 class="section"><span>8.2 Clash<a class="copiable-link" href="#Clash"> &para;</a></span></h3>
+<h3 class="section"><span>9.2 Clash<a class="copiable-link" href="#Clash"> &para;</a></span></h3>
 
 <p>clash is a tunnel in Go.
 </p>
@@ -1671,7 +2140,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 <li><a href="#Autostart" accesskey="3">Autostart</a></li>
 </ul>
 <div class="subsection-level-extent" id="Installation-1">
-<h4 class="subsection"><span>8.2.1 Installation<a class="copiable-link" href="#Installation-1"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.2.1 Installation<a class="copiable-link" href="#Installation-1"> &para;</a></span></h4>
 
 <p>openSUSE contains clash in its repository, so it can be downloaded directly
 </p>
@@ -1686,7 +2155,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Basic-Usage">
-<h4 class="subsection"><span>8.2.2 Basic Usage<a class="copiable-link" href="#Basic-Usage"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.2.2 Basic Usage<a class="copiable-link" href="#Basic-Usage"> &para;</a></span></h4>
 
 <p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
 </p>
@@ -1696,7 +2165,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Autostart">
-<h4 class="subsection"><span>8.2.3 Autostart<a class="copiable-link" href="#Autostart"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.2.3 Autostart<a class="copiable-link" href="#Autostart"> &para;</a></span></h4>
 
 <p>Clash support auto-start after opening the system.
 In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
@@ -1717,7 +2186,7 @@ So move the configuration file and mmdb file in the above directory by
 </div>
 </div>
 <div class="section-level-extent" id="Clash-for-LAN">
-<h3 class="section"><span>8.3 Clash for LAN<a class="copiable-link" href="#Clash-for-LAN"> &para;</a></span></h3>
+<h3 class="section"><span>9.3 Clash for LAN<a class="copiable-link" href="#Clash-for-LAN"> &para;</a></span></h3>
  
 <p>Clash can support connection from devices in the local area network (LAN).
 To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
@@ -1727,7 +2196,7 @@ Then open clash with manual
 </p>
 </div>
 <div class="section-level-extent" id="snapdrop_002enet">
-<h3 class="section"><span>8.4 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
+<h3 class="section"><span>9.4 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
 
 <p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
 Open the link of snapdrop in the same network.
@@ -1741,13 +2210,13 @@ Just drop the file to the target.
 <p>
 Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Network" accesskey="p" rel="prev">Network</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="SDR-1"><span>9 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
+<h2 class="chapter" id="SDR-1"><span>10 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#GNURadio-Period-transmisstion" accesskey="1">GNURadio Period transmisstion</a></li>
 </ul>
 <div class="section-level-extent" id="GNURadio-Period-transmisstion">
-<h3 class="section"><span>9.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
+<h3 class="section"><span>10.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Introduction" accesskey="1">Introduction</a></li>
@@ -1755,7 +2224,7 @@ Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previou
 <li><a href="#USRP-Time-Control" accesskey="3">USRP Time Control</a></li>
 </ul>
 <div class="subsection-level-extent" id="Introduction">
-<h4 class="subsection"><span>9.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
+<h4 class="subsection"><span>10.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
 
 <p>Period transmission in GNURadio/USRP platform is the basic function to support time-related systems, such as 
 </p><ul class="itemize mark-minus">
@@ -1770,7 +2239,7 @@ All the functions have been tested on USRP N310 with GNURadio 3.7.13 and UHD 3.1
 </p>
 </div>
 <div class="subsection-level-extent" id="GNURadio-Tag">
-<h4 class="subsection"><span>9.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
+<h4 class="subsection"><span>10.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
 
 <p><a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">GNURadio tag</a> is an isosynchronous data that runs parallel to the main data stream. 
 </p>
@@ -1822,7 +2291,7 @@ pmt::pmt_t tstamp_tuple = pmt::make_tuple(pmt::from_uint64(t_int), pmt::from_dou
 </p>
 </div>
 <div class="subsection-level-extent" id="USRP-Time-Control">
-<h4 class="subsection"><span>9.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
+<h4 class="subsection"><span>10.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
 
 <p>The last things is to set the time of USRP with gr-uhd, if the time has error, you may get a &quot;L&quot; error in the transmitter. 
 &quot;L&quot; means a late packet in the TX chain. 
@@ -1853,9 +2322,9 @@ self.uhd_usrp_source_0.set_start_time(uhd.time_spec(1.0))
 <p>
 Previous: <a href="#SDR" accesskey="p" rel="prev">SDR</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1"><span>10 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Input-Method-1"><span>11 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
 
-<p>This README is related to the chinese input method.
+<p>This chapter is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command
 </p>
 <p><code class="code">sudo zypper in fcitx5</code>
