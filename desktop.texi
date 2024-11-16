@@ -96,3 +96,61 @@ To fix this, change the configuration file
 Uncommand the line 
 @code{test -z $BG || $BG -solid "#303030"}
 
+@section tmux
+
+Tmux is a famous terminal multiplexer.
+It works like a window manager in terminal.
+This is only part of the common keys and commands for tmux.
+To read the full list, use @code{man tmux} or type @code{<C-b> + ?}.
+The keybindings are in the "DEFAULT KEY BINDINGS" section.
+
+@code{<C-b>} is the default prefix key of tmux.
+The follow shortcuts omit the prefix key.
+
+@subsection Normal mode
+
+@example
+    # Session
+    d       # Detach the window from the session
+    s       # Select a new session
+    (/)     # Move to the previous/next session
+
+    tmux ls/list                            # List sessions
+    tmux attach/detach                      # Attach/Detach the window to the session
+    tmux kill-session -t <session-name>     # Close (Kill) the session
+
+    # Window
+    c       # Create new window
+    l       # Toggle last active window
+    n/p     # Next/Previous window
+    w       # List windows
+
+    tmux new -s <session-name>              # Create a new window for the session
+
+    # Pane
+    o             # Go to next pane
+    q <num>       # Switch to the pane
+    x             # Close the pane
+    z             # Toggle pane zoom
+    @{ or @ }     # Move the pane to left/right
+    % or "        # Split pane with vertical/horizontal
+    <Up>/<Down>/<Left>/<right>          # Go to the up/down/left/right pane
+
+@end example
+
+@subsection Copy mode
+
+In copy mode, user can view the contents in tmux pane.
+The user also can use vim-like commands to view and copy the content.
+@example
+    [       # Enter copy mode.
+@end example
+
+@subsection Command line mode
+
+The follow key does not need prefix key.
+
+@example
+    :       # Enter command-line mode
+@end example
+
