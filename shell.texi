@@ -27,3 +27,264 @@ After change the keys in xkeycaps, write out the configuration file of xmodmap i
 
 xmodmap will trigger the key swap when open a terminal.
 
+@section Bash
+
+Bash has two style interface: emacs style and vi style.
+Emacs style is the default style.
+Vi style can type <Esc> to exit insert mode and use vim keybindings.
+The follows are the keymappings in for its emacs style.
+
+@example
+    CTRL+a/e    # Move to begin/End of the line
+    CTRL+b/f    # Backward/forward
+    CTRL+c      # Halt
+    CTRL+d      # Logout when no editing command
+                # Display the completion for the commmand
+    CTRL+g      # Abort the editing command
+    CTRL+h      # Delete the character before cursor
+    CTRL+j/m    # <RETURN>
+    CTRL+k/w    # Delete to the end/begin of the line
+    CTRL+l      # Clears the terminal except the current line
+    CTRL+n/p    # <DOWN>/<UP>
+    CTRL+o      # <RETURN>, then display next line in the history
+
+    CTRL+s/q    # Suspend/Resume shell output
+    CTRL+r      # Search backward
+    CTRL+t      # Transpose two characters
+    CTRL+u      # Delete the line
+    CTRL+v      # Enable to insert control strings
+    CTRL+y      # Yank (for CTRL+k/u/w)
+    CTRL+z      # Stop the current command, resume with 'fg' in the foreground
+
+    CTRL+x (    # Recording a keyboard macro
+    CTRL+x )    # Stop recording
+    CTRL+x e    # Recall the record
+
+    CTRL+x CTRL+e   # Invoke text editor in $EDITOR 
+                    # Recommandation: export EDITOR=vim
+                    # In vim, you can type the command
+                    # Type 'ZZ' in normal mode to input multi-line commands for bash
+
+    CTRL+S      # Search forword
+
+    ALT+b/f     # Backward/Forward one word
+    ALT+c       # Upper character
+    ALT+d       # Delete word
+    ALT+h       # 'run-help' program 
+    ALT+l/u     # Upper, to the end/begin of the line
+    ALT+n/p     # Search history to match the edited command
+    ALT+r       # Revert changes of the command from the history
+    ALT+t       # Transpose two words
+    ALT+.       # Paste last word from the last command
+    ALT+?       # List completions
+
+    !!          # Repeat the last command
+    !<n>        # Refer to command line 'n'
+    !<string>   # Refer to command starting with 'string'
+@end example
+
+
+## File
+
+    touch <file>        # Update timestamp
+                        # Make a new file
+    mktemp -t <file>    # Make a temp file in /tmp/ 
+    cat <file>          # Display <file>
+    nl <file>           # Number of lines 
+    wc <file>           # Word count
+    more/less <file>    # Display a file and type q to quit
+    head/tail <file>    # Output the first/last lines of file 
+    diff                # Compare two files
+    sort <file>         # Sort the file line by line
+    rev <file>          # Reverse strings in file line by line
+    grep <pat> <file>   # Find for the string in the <file>
+    sed                 # Stream editor
+
+    ln -s <file> <link> # Symbolic link to <file>
+    readlink <link>     # Display the file name of the symbolic link 
+
+## Disk
+
+    df                  # Disk free
+    df -h               # Echo the result with human-readable output
+    du                  # Disk used
+    du -h -d 1 . 2&> /dev/null | grep "G\s"
+                        # Echo the size of directories and files of the 
+                        # current folder. Ignore errors. Grep a space 
+                        # after 'G'. Useful command to show the large 
+                        # directories and files
+
+@subsection Process and Job
+
+@example
+    jobs                # Builtin: List jobs
+    ps                  # List processes in snapshot
+    top                 # Real-time list processes
+    kill/killall        # Builtin: Kill process with PID/name
+    bg                  # Builtin: List background jobs
+    fg                  # Builtin: Bring the background job to foreground
+    time <command>      # Builtin: Execution time
+    wait                # Builtin: Wait all background jobs to finish
+    sleep <num>         # wait <num> seconds before continuing
+    yes                 # Always yes
+@end example
+
+
+@subsection Variable
+
+@example
+    var=value           # Variables, NO <SPACE>
+    export VAR=value    # Environment variable to child, NO <SPACE>
+    $@{#var@}             # Length of var
+
+    list=(a b c)        # List
+    $@{list[@@]@}          # All elements in list
+
+
+    read <var>          # Read from input and assign it to <var>
+    let <var> = <expr>  # let a result of <expr> 
+    declare <var>       # Declare variable and its attribute
+@end example
+
+@multitable @columnfractions .2 .2 .2 .2 .2
+@headitem             @tab Parameter Set and Not Null   @tab Parameter Set but Null @tab Parameter Not Set   
+@item $@{parameter:-word@} @tab substitute parameter @tab substitute word @tab substitute word
+@item $@{parameter:=word@} @tab substitute parameter @tab assign word     @tab assign word    
+@item $@{parameter:?word@} @tab substitute parameter @tab error, exit     @tab error, exit    
+@item $@{parameter:+word@} @tab substitute parameter @tab substitute null @tab substitute null
+@item $@{parameter-word@}  @tab substitute parameter @tab substitute null @tab substitute word
+@item $@{parameter=word@}  @tab substitute parameter @tab substitute null @tab assign word    
+@item $@{parameter?word@}  @tab substitute word      @tab substitute null @tab error, exit    
+@item $@{parameter+word@}  @tab substitute word      @tab substitute word @tab substitute null
+@end multitable
+
+@example
+    $@{variable#pattern@}     # Remove Smallest Prefix Pattern
+    $@{variable##pattern@}    # Remove Largest Prefix Pattern
+    $@{variable%pattern@}     # Remove Smallest Suffix Pattern    
+    $@{variable%%pattern@}    # Remove Largest Suffix Pattern     
+
+    $0      # The program
+    $1      # The first parameter
+    $2      # The second parameter
+    $#      # The number of parameters
+    $@      # All parameters in a list
+@end example
+
+@subsection IF Condition
+
+@example
+    test expression
+    [ expression ]
+    [[ expression ]]
+@end example
+
+@subsubsection String
+
+@example
+    str1 == str2    # Match
+    str1 != str2    # Not match
+    str1 < str2     # Less
+    str1 > str2     # Greater
+    -z str1         # Null
+    -n str1         # Not null
+@end example
+
+@subsubsection File
+
+@example
+    -a file         # File
+    -b file         # Block file
+    -c file         # character file
+    -d file         # Directory
+    -e file         # File
+    -f file         # Regular file
+    -r file         # Read
+    -s file         # Not empty
+    -w file         # Write
+    -x file         # Execute
+    -N file         # File was modified
+    -O file         # File belongs to user
+    -G file         # File belongs to user group
+@end example
+
+@subsubsection Numbers
+
+@example
+    -lt         # Less than
+    -le         # Less than or equal
+    -eq         # Equal
+    -ge         # Greater than or equal
+    -gt         # Greater than
+    -ne         # Not equal
+@end example
+
+
+@subsection Input/Output Redirector
+
+@example
+    |           # Pipe
+    < file      # Redirect input
+    > file      # Redirect output
+    >> file     # Redirect output and append to a file
+    <> file     # uses file as both standard input and standard output
+    2>&1        # Redirect error output to standard output
+    n<&m        # Redirect input file n to m
+    n>&m        # Redirect output file n to m 
+    
+    cat << EOF # Here document
+        Text
+    EOF
+
+    tee <file>  # output input to both terminal and a file 
+@end example
+
+@subsection Debug
+
+Run the script
+@example
+    bash -n scriptname  # Check errors without running
+    bash -v scriptname  # Print shell input lines as they are read.
+    bash -x scriptname  # Print commands and their arguments as they are executed.
+@end example
+
+Set options in script
+
+@example
+    set -o noexec       # Check errors without running
+    set -o verbose      # Print shell input lines as they are read.
+    set -o xtrace       # Print commands and their arguments as they are executed.
+@end example
+
+@subsection eval
+
+With eval, bash can print the value of a variable as well as its name
+In this case, the value of BLACK is a string to control the string's color
+The value of COLOR is the string "BLACK"
+@example
+BLACK='\e[30m'
+COLOR=BLACK
+eval echo -e '$'@{$@{COLOR@}@}$@{COLOR@}
+@end example
+
+@subsection Color
+@example
+    BLACK='\e[30m'
+    RED='\e[31m'
+    GREEN='\e[32m' 
+    YELLOW='\e[33m'
+    BLUE='\e[34m'
+    PURPLE='\e[35m'
+    CYAN='\e[36m'
+    WHITE='\e[37m'
+    LBLACK='\e[90m'
+    LRED='\e[91m'
+    LGREEN='\e[92m'
+    LYELLOW='\e[93m'
+    LBLUE='\e[94m'
+    LPURPLE='\e[95m'
+    LCYAN='\e[96m'
+    LGREY='\e[97m'
+
+    echo -en "$@{RED@}RED"
+@end example

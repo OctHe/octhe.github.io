@@ -11,6 +11,7 @@ The blog focuses on Linux platform and wireless network.
 
 @include distribution.texi
 @include desktop.texi
+@include system.texi
 @include kernel.texi
 @include blog.texi
 @include shell.texi

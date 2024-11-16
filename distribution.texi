@@ -67,6 +67,10 @@ Extract the source file into current directory by
 
 openSUSE uses @code{zypper} as the default package manager.
 It is based on RPM, which is similar to Fedora.
+zypper uses repository for packages.
+@code{zypper repos} lists repositories.
+Search all installed packages in a target repo, use @code{zypper search -i -r <repo>}.
+
 Besides installation of the built programs, zypper also provides an offical repository for the source code.
 As an example, the download and build process for the @code{hostapd} is
 

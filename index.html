@@ -42,13 +42,14 @@ The blog focuses on Linux platform and wireless network.
 <ul class="mini-toc">
 <li><a href="#Distribution" accesskey="1">Distribution</a></li>
 <li><a href="#Desktop-Enviornment" accesskey="2">Desktop Environment</a></li>
-<li><a href="#Kernel" accesskey="3">Kernel</a></li>
-<li><a href="#Blog" accesskey="4">Blog</a></li>
-<li><a href="#Shell" accesskey="5">Shell</a></li>
-<li><a href="#Editor" accesskey="6">Editor</a></li>
-<li><a href="#Network" accesskey="7">Network</a></li>
-<li><a href="#SDR" accesskey="8">SDR</a></li>
-<li><a href="#Input-Method" accesskey="9">Input Method</a></li>
+<li><a href="#System" accesskey="3">System Management</a></li>
+<li><a href="#Kernel" accesskey="4">Kernel</a></li>
+<li><a href="#Blog" accesskey="5">Blog</a></li>
+<li><a href="#Shell" accesskey="6">Shell</a></li>
+<li><a href="#Editor" accesskey="7">Editor</a></li>
+<li><a href="#Network" accesskey="8">Network</a></li>
+<li><a href="#SDR" accesskey="9">SDR</a></li>
+<li><a href="#Input-Method">Input Method</a></li>
 </ul>
 <hr>
 <div class="chapter-level-extent" id="Distribution">
@@ -142,7 +143,11 @@ To download it, use
 
 <p>openSUSE uses <code class="code">zypper</code> as the default package manager.
 It is based on RPM, which is similar to Fedora.
-Besides installation of the built programs, zypper also provides an offical repository for the source code.
+zypper uses repository for packages.
+<code class="code">zypper repos</code> lists repositories.
+Search all installed packages in a target repo, use <code class="code">zypper search -i -r &lt;repo&gt;</code>.
+</p>
+<p>Besides installation of the built programs, zypper also provides an offical repository for the source code.
 As an example, the download and build process for the <code class="code">hostapd</code> is
 </p>
 <div class="example">
@@ -330,7 +335,7 @@ The user name is &rsquo;user_ubuntu&rsquo;, so the configuration of the old OS c
 <div class="chapter-level-extent" id="Desktop-Enviornment">
 <div class="nav-panel">
 <p>
-Next: <a href="#Kernel" accesskey="n" rel="next">Kernel</a>, Previous: <a href="#Distribution" accesskey="p" rel="prev">Distribution</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#System" accesskey="n" rel="next">System Management</a>, Previous: <a href="#Distribution" accesskey="p" rel="prev">Distribution</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="Desktop-Environment"><span>2 Desktop Environment<a class="copiable-link" href="#Desktop-Environment"> &para;</a></span></h2>
 
@@ -455,12 +460,60 @@ To fix this, change the configuration file
 </div>
 </div>
 </div>
+<div class="chapter-level-extent" id="System">
+<div class="nav-panel">
+<p>
+Next: <a href="#Kernel" accesskey="n" rel="next">Kernel</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="System-Management"><span>3 System Management<a class="copiable-link" href="#System-Management"> &para;</a></span></h2>
+
+<p>Tools to manage Linux.
+</p>
+<ul class="mini-toc">
+<li><a href="#smartctl" accesskey="1">smartctl</a></li>
+<li><a href="#top" accesskey="2">top</a></li>
+</ul>
+<div class="section-level-extent" id="smartctl">
+<h3 class="section"><span>3.1 smartctl<a class="copiable-link" href="#smartctl"> &para;</a></span></h3>
+
+<p>SMART is a tool to check the health of disk.
+&quot;SMART&quot; means Self-Monitoring, Analysis and Report Technology.
+The command is &quot;smartctl&quot;.
+To run it, type the command with <code class="code">sudo</code> privilege.
+</p>
+<p><code class="code">sudo smartctl -H /dev/nvme0n1   # Show device SMART health status</code>
+</p>
+</div>
+<div class="section-level-extent" id="top">
+<h3 class="section"><span>3.2 top<a class="copiable-link" href="#top"> &para;</a></span></h3>
+
+<ul class="itemize mark-bullet">
+<li>us      uniced user process
+</li><li>sy      system process
+</li><li>ni      niced user process
+</li><li>id      kernel idle handler
+</li><li>wa      waiting for I/O completion
+</li><li>hi      hardware interrupt
+</li><li>si      software interrupt
+</li><li>st      stolen by hypervisor
+</li><li>PID     process ID
+</li><li>USER    user name
+</li><li>PR      priority
+</li><li>NI      nice value
+</li><li>VIRT    virtual memory size (KiB)
+</li><li>RES     resident memory size (KiB)
+</li><li>SHR     shared memory size (KiB)
+</li></ul>
+
+<hr>
+</div>
+</div>
 <div class="chapter-level-extent" id="Kernel">
 <div class="nav-panel">
 <p>
-Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#Desktop-Enviornment" accesskey="p" rel="prev">Desktop Environment</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#System" accesskey="p" rel="prev">System Management</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Kernel-1"><span>3 Kernel<a class="copiable-link" href="#Kernel-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Kernel-1"><span>4 Kernel<a class="copiable-link" href="#Kernel-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#Building-the-Kernel" accesskey="1">Building the Kernel</a></li>
@@ -469,7 +522,7 @@ Next: <a href="#Blog" accesskey="n" rel="next">Blog</a>, Previous: <a href="#Des
 <li><a href="#ath9k_005fhtc-driver" accesskey="4">ath9k_htc driver</a></li>
 </ul>
 <div class="section-level-extent" id="Building-the-Kernel">
-<h3 class="section"><span>3.1 Building the Kernel<a class="copiable-link" href="#Building-the-Kernel"> &para;</a></span></h3>
+<h3 class="section"><span>4.1 Building the Kernel<a class="copiable-link" href="#Building-the-Kernel"> &para;</a></span></h3>
 
 <p>This is a brief introduction about build a customized linux kernel.
 The compiling process has been successfully run on the distribution of Ubuntu 20.04 (Focal Fossa), and the release of the kernel is &quot;linux-5.8.7&quot;.
@@ -483,7 +536,7 @@ The downloaded files are under the &quot;linux-5.8.7&quot; directory.
 <li><a href="#Remove-Kernel" accesskey="3">Remove Kernel</a></li>
 </ul>
 <div class="subsection-level-extent" id="Prerequisites">
-<h4 class="subsection"><span>3.1.1 Prerequisites<a class="copiable-link" href="#Prerequisites"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.1.1 Prerequisites<a class="copiable-link" href="#Prerequisites"> &para;</a></span></h4>
 
 <p>There are some packets that are necessary to compile the kernel. 
 It is hard to obtain all the packets manually.
@@ -523,7 +576,7 @@ The error is fixed.
 </p>
 </div>
 <div class="subsection-level-extent" id="Build-and-install-the-linux-kernel">
-<h4 class="subsection"><span>3.1.2 Build and install the linux kernel<a class="copiable-link" href="#Build-and-install-the-linux-kernel"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.1.2 Build and install the linux kernel<a class="copiable-link" href="#Build-and-install-the-linux-kernel"> &para;</a></span></h4>
 
 <p>After installing the prerequisites, the building process is simple enough.
 The linux kernel has built-in Makefiles.
@@ -567,7 +620,7 @@ sudo grub-install
 
 </div>
 <div class="subsection-level-extent" id="Remove-Kernel">
-<h4 class="subsection"><span>3.1.3 Remove Kernel<a class="copiable-link" href="#Remove-Kernel"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.1.3 Remove Kernel<a class="copiable-link" href="#Remove-Kernel"> &para;</a></span></h4>
 
 <p>The built kernel contains the following files:
 </p>
@@ -585,7 +638,7 @@ sudo grub-install
 </div>
 </div>
 <div class="section-level-extent" id="Kernel-Modules">
-<h3 class="section"><span>3.2 Kernel Modules<a class="copiable-link" href="#Kernel-Modules"> &para;</a></span></h3>
+<h3 class="section"><span>4.2 Kernel Modules<a class="copiable-link" href="#Kernel-Modules"> &para;</a></span></h3>
 
 <p>Linux kernel composes of hundreds of modules.
 The user can compile and load modules according to the requirement.
@@ -597,7 +650,7 @@ Additionally, independently compiling the module will save lots of time because 
 <li><a href="#Command-about-Module" accesskey="3">Command about Module</a></li>
 </ul>
 <div class="subsection-level-extent" id="Prerequisites-1">
-<h4 class="subsection"><span>3.2.1 Prerequisites<a class="copiable-link" href="#Prerequisites-1"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.2.1 Prerequisites<a class="copiable-link" href="#Prerequisites-1"> &para;</a></span></h4>
 
 <p>There are some packets that are necessary to compile the kernel. 
 All these packets can be get from apt. 
@@ -629,7 +682,7 @@ The source code is a compressed file, and run <code class="code">sudo tar jvxf l
 </p>
 </div>
 <div class="subsection-level-extent" id="Build-the-Modules">
-<h4 class="subsection"><span>3.2.2 Build the Modules<a class="copiable-link" href="#Build-the-Modules"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.2.2 Build the Modules<a class="copiable-link" href="#Build-the-Modules"> &para;</a></span></h4>
 
 <p>Build a module or modules is very simple.
 Linux kernel uses &quot;Kbuild&quot; to compile the kernel. 
@@ -664,7 +717,7 @@ Then, run the <code class="code">insmod</code> command to install the compiled m
 </p>
 </div>
 <div class="subsection-level-extent" id="Command-about-Module">
-<h4 class="subsection"><span>3.2.3 Command about Module<a class="copiable-link" href="#Command-about-Module"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.2.3 Command about Module<a class="copiable-link" href="#Command-about-Module"> &para;</a></span></h4>
 
 <p>All the usage are an example of the *iwlwifi* module.
 </p>
@@ -675,7 +728,7 @@ Then, run the <code class="code">insmod</code> command to install the compiled m
 <li><a href="#insmod" accesskey="4">insmod</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="lsmod">
-<h4 class="subsubsection"><span>3.2.3.1 lsmod<a class="copiable-link" href="#lsmod"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>4.2.3.1 lsmod<a class="copiable-link" href="#lsmod"> &para;</a></span></h4>
 
 <p><code class="code">lsmod</code> is a command to list all installed module in the kernel.
 It contains some information such as name, dependencies, etc.
@@ -684,7 +737,7 @@ It contains some information such as name, dependencies, etc.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="modinfo">
-<h4 class="subsubsection"><span>3.2.3.2 modinfo<a class="copiable-link" href="#modinfo"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>4.2.3.2 modinfo<a class="copiable-link" href="#modinfo"> &para;</a></span></h4>
 
 <p><code class="code">modinfo</code> can display details about a specific module.
 It can display the information of either a installed module or a compiled module.
@@ -699,7 +752,7 @@ It can display the information of either a installed module or a compiled module
 </p>
 </div>
 <div class="subsubsection-level-extent" id="modprobe">
-<h4 class="subsubsection"><span>3.2.3.3 modprobe<a class="copiable-link" href="#modprobe"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>4.2.3.3 modprobe<a class="copiable-link" href="#modprobe"> &para;</a></span></h4>
 
 <p><code class="code">modprobe</code> is usually used to install or remove a module.
 </p>
@@ -713,7 +766,7 @@ It can display the information of either a installed module or a compiled module
 </p>
 </div>
 <div class="subsubsection-level-extent" id="insmod">
-<h4 class="subsubsection"><span>3.2.3.4 insmod<a class="copiable-link" href="#insmod"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>4.2.3.4 insmod<a class="copiable-link" href="#insmod"> &para;</a></span></h4>
 
 <p><code class="code">insmod</code> can install a customized module.
 If the module with the same name has been installed, <code class="code">sudo modprobe -r iwlwifi</code> is needed to remove the pre-installed module.
@@ -724,13 +777,13 @@ If the module with the same name has been installed, <code class="code">sudo mod
 </div>
 </div>
 <div class="section-level-extent" id="mac80211">
-<h3 class="section"><span>3.3 mac80211<a class="copiable-link" href="#mac80211"> &para;</a></span></h3>
+<h3 class="section"><span>4.3 mac80211<a class="copiable-link" href="#mac80211"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Rate-Control" accesskey="1">Rate Control</a></li>
 </ul>
 <div class="subsection-level-extent" id="Rate-Control">
-<h4 class="subsection"><span>3.3.1 Rate Control<a class="copiable-link" href="#Rate-Control"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.3.1 Rate Control<a class="copiable-link" href="#Rate-Control"> &para;</a></span></h4>
 
 <p>Rate control (or rate adaptation) is an important algorithm for wireless devices to select the optimal bit rate under different wireless channel conditions.
 In mac80211 subsystem in Linux kernel, rate control is part of the subsystem, and it can be self-designed by each wireless driver.
@@ -751,7 +804,7 @@ The driver loads different rate control algorithms by calling the two functions.
 </div>
 </div>
 <div class="section-level-extent" id="ath9k_005fhtc-driver">
-<h3 class="section"><span>3.4 ath9k_htc driver<a class="copiable-link" href="#ath9k_005fhtc-driver"> &para;</a></span></h3>
+<h3 class="section"><span>4.4 ath9k_htc driver<a class="copiable-link" href="#ath9k_005fhtc-driver"> &para;</a></span></h3>
 
 <p><a class="url" href="https://wireless.wiki.kernel.org/en/users/drivers/ath9k_htcl">ath9k_htc</a> driver is a wireless driver for IEEE 802.11n devices with USB port.
 It can support AR9271 USB devices.
@@ -861,7 +914,7 @@ The data will pass to mac80211 subsystem by calling <a class="url" href="https:/
 <li><a href="#Customized-ath9k" accesskey="1">Customized ath9k</a></li>
 </ul>
 <div class="subsection-level-extent" id="Customized-ath9k">
-<h4 class="subsection"><span>3.4.1 Customized ath9k<a class="copiable-link" href="#Customized-ath9k"> &para;</a></span></h4>
+<h4 class="subsection"><span>4.4.1 Customized ath9k<a class="copiable-link" href="#Customized-ath9k"> &para;</a></span></h4>
 
 <p>ath9k is a kernel driver that works as a kernel module for Atheros wireless IEEE802.11n NICs.
 Compilation of the kernel module is the prerequisite to investigate the rate adaptation algorithm.
@@ -897,7 +950,7 @@ Note that ath9k driver is based on the ath module, so we better compile is at th
 <p>
 Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#Kernel" accesskey="p" rel="prev">Kernel</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Blog-1"><span>4 Blog<a class="copiable-link" href="#Blog-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Blog-1"><span>5 Blog<a class="copiable-link" href="#Blog-1"> &para;</a></span></h2>
 
 <p>This blog is based on <a class="url" href="https://pages.github.com/">Github page</a> and <a class="url" href="https://jekyllrb.com/">jekyll</a>.
 </p>
@@ -908,7 +961,7 @@ Next: <a href="#Shell" accesskey="n" rel="next">Shell</a>, Previous: <a href="#K
 <li><a href="#Upgrade" accesskey="4">Upgrade</a></li>
 </ul>
 <div class="section-level-extent" id="Installation">
-<h3 class="section"><span>4.1 Installation<a class="copiable-link" href="#Installation"> &para;</a></span></h3>
+<h3 class="section"><span>5.1 Installation<a class="copiable-link" href="#Installation"> &para;</a></span></h3>
 
 <p>It requires Ruby, RubyGems, and bundler.
 </p>
@@ -929,7 +982,7 @@ The follow installs jekyll and bundler
 </p>
 </div>
 <div class="section-level-extent" id="Jekyll-Themes">
-<h3 class="section"><span>4.2 Jekyll Themes<a class="copiable-link" href="#Jekyll-Themes"> &para;</a></span></h3>
+<h3 class="section"><span>5.2 Jekyll Themes<a class="copiable-link" href="#Jekyll-Themes"> &para;</a></span></h3>
 
 <p>The blog is based on [mediator](https://jekyllthemes.io/theme/mediator) theme.
 Download the theme and copy it into my own git directory by
@@ -938,7 +991,7 @@ Download the theme and copy it into my own git directory by
 </p>
 </div>
 <div class="section-level-extent" id="Usage">
-<h3 class="section"><span>4.3 Usage<a class="copiable-link" href="#Usage"> &para;</a></span></h3>
+<h3 class="section"><span>5.3 Usage<a class="copiable-link" href="#Usage"> &para;</a></span></h3>
 
 <p>The blog can be used from source with &lsquo;bundle&lsquo;
 </p>
@@ -946,7 +999,7 @@ Download the theme and copy it into my own git directory by
 </p>
 </div>
 <div class="section-level-extent" id="Upgrade">
-<h3 class="section"><span>4.4 Upgrade<a class="copiable-link" href="#Upgrade"> &para;</a></span></h3>
+<h3 class="section"><span>5.4 Upgrade<a class="copiable-link" href="#Upgrade"> &para;</a></span></h3>
 
 <p>Bundler and Jekyll requires the correct version of Ruby.
 If Ruby is updated within the system upgrade, bundler and Jekyll both need to reinstall from gem.
@@ -981,14 +1034,15 @@ So the problem is strange, but I fix it with root command.
 <p>
 Next: <a href="#Editor" accesskey="n" rel="next">Editor</a>, Previous: <a href="#Blog" accesskey="p" rel="prev">Blog</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Shell-1"><span>5 Shell<a class="copiable-link" href="#Shell-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Shell-1"><span>6 Shell<a class="copiable-link" href="#Shell-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#Terminal-emulator" accesskey="1">Terminal emulator</a></li>
 <li><a href="#Swap-keys" accesskey="2">Swap keys</a></li>
+<li><a href="#Bash" accesskey="3">Bash</a></li>
 </ul>
 <div class="section-level-extent" id="Terminal-emulator">
-<h3 class="section"><span>5.1 Terminal emulator<a class="copiable-link" href="#Terminal-emulator"> &para;</a></span></h3>
+<h3 class="section"><span>6.1 Terminal emulator<a class="copiable-link" href="#Terminal-emulator"> &para;</a></span></h3>
 
 <p>Terminal emulator is the prerequisite of shell.
 An open-source terminal emulator is terminator.
@@ -1006,7 +1060,7 @@ To install it, run
 </p>
 </div>
 <div class="section-level-extent" id="Swap-keys">
-<h3 class="section"><span>5.2 Swap keys<a class="copiable-link" href="#Swap-keys"> &para;</a></span></h3>
+<h3 class="section"><span>6.2 Swap keys<a class="copiable-link" href="#Swap-keys"> &para;</a></span></h3>
 
 <p>Usually, if someone wants to swap Caplock and left Ctrl since the latter is more useful, some desktop provides an GUI tool such as gnome-tweak in GNOME or the setting in KDE that support this function.
 For the desktops that do not have an GUI tool, a shell method is to use xmodmap and the GUI helper xkeycaps.
@@ -1016,7 +1070,305 @@ After change the keys in xkeycaps, write out the configuration file of xmodmap i
 </p>
 <p>xmodmap will trigger the key swap when open a terminal.
 </p>
+</div>
+<div class="section-level-extent" id="Bash">
+<h3 class="section"><span>6.3 Bash<a class="copiable-link" href="#Bash"> &para;</a></span></h3>
+
+<p>Bash has two style interface: emacs style and vi style.
+Emacs style is the default style.
+Vi style can type &lt;Esc&gt; to exit insert mode and use vim keybindings.
+The follows are the keymappings in for its emacs style.
+</p>
+<div class="example">
+<pre class="example-preformatted">    CTRL+a/e    # Move to begin/End of the line
+    CTRL+b/f    # Backward/forward
+    CTRL+c      # Halt
+    CTRL+d      # Logout when no editing command
+                # Display the completion for the commmand
+    CTRL+g      # Abort the editing command
+    CTRL+h      # Delete the character before cursor
+    CTRL+j/m    # &lt;RETURN&gt;
+    CTRL+k/w    # Delete to the end/begin of the line
+    CTRL+l      # Clears the terminal except the current line
+    CTRL+n/p    # &lt;DOWN&gt;/&lt;UP&gt;
+    CTRL+o      # &lt;RETURN&gt;, then display next line in the history
+
+    CTRL+s/q    # Suspend/Resume shell output
+    CTRL+r      # Search backward
+    CTRL+t      # Transpose two characters
+    CTRL+u      # Delete the line
+    CTRL+v      # Enable to insert control strings
+    CTRL+y      # Yank (for CTRL+k/u/w)
+    CTRL+z      # Stop the current command, resume with 'fg' in the foreground
+
+    CTRL+x (    # Recording a keyboard macro
+    CTRL+x )    # Stop recording
+    CTRL+x e    # Recall the record
+
+    CTRL+x CTRL+e   # Invoke text editor in $EDITOR 
+                    # Recommandation: export EDITOR=vim
+                    # In vim, you can type the command
+                    # Type 'ZZ' in normal mode to input multi-line commands for bash
+
+    CTRL+S      # Search forword
+
+    ALT+b/f     # Backward/Forward one word
+    ALT+c       # Upper character
+    ALT+d       # Delete word
+    ALT+h       # 'run-help' program 
+    ALT+l/u     # Upper, to the end/begin of the line
+    ALT+n/p     # Search history to match the edited command
+    ALT+r       # Revert changes of the command from the history
+    ALT+t       # Transpose two words
+    ALT+.       # Paste last word from the last command
+    ALT+?       # List completions
+
+    !!          # Repeat the last command
+    !&lt;n&gt;        # Refer to command line 'n'
+    !&lt;string&gt;   # Refer to command starting with 'string'
+</pre></div>
+
+
+<p>## File
+</p>
+<p>touch &lt;file&gt;        # Update timestamp
+                        # Make a new file
+    mktemp -t &lt;file&gt;    # Make a temp file in /tmp/ 
+    cat &lt;file&gt;          # Display &lt;file&gt;
+    nl &lt;file&gt;           # Number of lines 
+    wc &lt;file&gt;           # Word count
+    more/less &lt;file&gt;    # Display a file and type q to quit
+    head/tail &lt;file&gt;    # Output the first/last lines of file 
+    diff                # Compare two files
+    sort &lt;file&gt;         # Sort the file line by line
+    rev &lt;file&gt;          # Reverse strings in file line by line
+    grep &lt;pat&gt; &lt;file&gt;   # Find for the string in the &lt;file&gt;
+    sed                 # Stream editor
+</p>
+<p>ln -s &lt;file&gt; &lt;link&gt; # Symbolic link to &lt;file&gt;
+    readlink &lt;link&gt;     # Display the file name of the symbolic link 
+</p>
+<p>## Disk
+</p>
+<p>df                  # Disk free
+    df -h               # Echo the result with human-readable output
+    du                  # Disk used
+    du -h -d 1 . 2&amp;&gt; /dev/null | grep &quot;G\s&quot;
+                        # Echo the size of directories and files of the 
+                        # current folder. Ignore errors. Grep a space 
+                        # after &rsquo;G&rsquo;. Useful command to show the large 
+                        # directories and files
+</p>
+<ul class="mini-toc">
+<li><a href="#Process-and-Job" accesskey="1">Process and Job</a></li>
+<li><a href="#Variable" accesskey="2">Variable</a></li>
+<li><a href="#IF-Condition" accesskey="3">IF Condition</a></li>
+<li><a href="#Input_002fOutput-Redirector" accesskey="4">Input/Output Redirector</a></li>
+<li><a href="#Debug" accesskey="5">Debug</a></li>
+<li><a href="#eval" accesskey="6">eval</a></li>
+<li><a href="#Color" accesskey="7">Color</a></li>
+</ul>
+<div class="subsection-level-extent" id="Process-and-Job">
+<h4 class="subsection"><span>6.3.1 Process and Job<a class="copiable-link" href="#Process-and-Job"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    jobs                # Builtin: List jobs
+    ps                  # List processes in snapshot
+    top                 # Real-time list processes
+    kill/killall        # Builtin: Kill process with PID/name
+    bg                  # Builtin: List background jobs
+    fg                  # Builtin: Bring the background job to foreground
+    time &lt;command&gt;      # Builtin: Execution time
+    wait                # Builtin: Wait all background jobs to finish
+    sleep &lt;num&gt;         # wait &lt;num&gt; seconds before continuing
+    yes                 # Always yes
+</pre></div>
+
+
+</div>
+<div class="subsection-level-extent" id="Variable">
+<h4 class="subsection"><span>6.3.2 Variable<a class="copiable-link" href="#Variable"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    var=value           # Variables, NO &lt;SPACE&gt;
+    export VAR=value    # Environment variable to child, NO &lt;SPACE&gt;
+    ${#var}             # Length of var
+
+    list=(a b c)        # List
+    ${list[@]}          # All elements in list
+
+
+    read &lt;var&gt;          # Read from input and assign it to &lt;var&gt;
+    let &lt;var&gt; = &lt;expr&gt;  # let a result of &lt;expr&gt; 
+    declare &lt;var&gt;       # Declare variable and its attribute
+</pre></div>
+
+<table class="multitable">
+<thead><tr><th width="20%"></th><th width="20%">Parameter Set and Not Null</th><th width="20%">Parameter Set but Null</th><th width="20%">Parameter Not Set</th></tr></thead>
+<tbody><tr><td width="20%">${parameter:-word}</td><td width="20%">substitute parameter</td><td width="20%">substitute word</td><td width="20%">substitute word</td></tr>
+<tr><td width="20%">${parameter:=word}</td><td width="20%">substitute parameter</td><td width="20%">assign word</td><td width="20%">assign word</td></tr>
+<tr><td width="20%">${parameter:?word}</td><td width="20%">substitute parameter</td><td width="20%">error, exit</td><td width="20%">error, exit</td></tr>
+<tr><td width="20%">${parameter:+word}</td><td width="20%">substitute parameter</td><td width="20%">substitute null</td><td width="20%">substitute null</td></tr>
+<tr><td width="20%">${parameter-word}</td><td width="20%">substitute parameter</td><td width="20%">substitute null</td><td width="20%">substitute word</td></tr>
+<tr><td width="20%">${parameter=word}</td><td width="20%">substitute parameter</td><td width="20%">substitute null</td><td width="20%">assign word</td></tr>
+<tr><td width="20%">${parameter?word}</td><td width="20%">substitute word</td><td width="20%">substitute null</td><td width="20%">error, exit</td></tr>
+<tr><td width="20%">${parameter+word}</td><td width="20%">substitute word</td><td width="20%">substitute word</td><td width="20%">substitute null</td></tr>
+</tbody>
+</table>
+
+<div class="example">
+<pre class="example-preformatted">    ${variable#pattern}     # Remove Smallest Prefix Pattern
+    ${variable##pattern}    # Remove Largest Prefix Pattern
+    ${variable%pattern}     # Remove Smallest Suffix Pattern    
+    ${variable%%pattern}    # Remove Largest Suffix Pattern     
+
+    $0      # The program
+    $1      # The first parameter
+    $2      # The second parameter
+    $#      # The number of parameters
+    $&nbsp;     # All parameters in a list
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="IF-Condition">
+<h4 class="subsection"><span>6.3.3 IF Condition<a class="copiable-link" href="#IF-Condition"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    test expression
+    [ expression ]
+    [[ expression ]]
+</pre></div>
+
+<ul class="mini-toc">
+<li><a href="#String" accesskey="1">String</a></li>
+<li><a href="#File" accesskey="2">File</a></li>
+<li><a href="#Numbers" accesskey="3">Numbers</a></li>
+</ul>
+<div class="subsubsection-level-extent" id="String">
+<h4 class="subsubsection"><span>6.3.3.1 String<a class="copiable-link" href="#String"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    str1 == str2    # Match
+    str1 != str2    # Not match
+    str1 &lt; str2     # Less
+    str1 &gt; str2     # Greater
+    -z str1         # Null
+    -n str1         # Not null
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="File">
+<h4 class="subsubsection"><span>6.3.3.2 File<a class="copiable-link" href="#File"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    -a file         # File
+    -b file         # Block file
+    -c file         # character file
+    -d file         # Directory
+    -e file         # File
+    -f file         # Regular file
+    -r file         # Read
+    -s file         # Not empty
+    -w file         # Write
+    -x file         # Execute
+    -N file         # File was modified
+    -O file         # File belongs to user
+    -G file         # File belongs to user group
+</pre></div>
+
+</div>
+<div class="subsubsection-level-extent" id="Numbers">
+<h4 class="subsubsection"><span>6.3.3.3 Numbers<a class="copiable-link" href="#Numbers"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    -lt         # Less than
+    -le         # Less than or equal
+    -eq         # Equal
+    -ge         # Greater than or equal
+    -gt         # Greater than
+    -ne         # Not equal
+</pre></div>
+
+
+</div>
+</div>
+<div class="subsection-level-extent" id="Input_002fOutput-Redirector">
+<h4 class="subsection"><span>6.3.4 Input/Output Redirector<a class="copiable-link" href="#Input_002fOutput-Redirector"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">    |           # Pipe
+    &lt; file      # Redirect input
+    &gt; file      # Redirect output
+    &gt;&gt; file     # Redirect output and append to a file
+    &lt;&gt; file     # uses file as both standard input and standard output
+    2&gt;&amp;1        # Redirect error output to standard output
+    n&lt;&amp;m        # Redirect input file n to m
+    n&gt;&amp;m        # Redirect output file n to m 
+    
+    cat &lt;&lt; EOF # Here document
+        Text
+    EOF
+
+    tee &lt;file&gt;  # output input to both terminal and a file 
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Debug">
+<h4 class="subsection"><span>6.3.5 Debug<a class="copiable-link" href="#Debug"> &para;</a></span></h4>
+
+<p>Run the script
+</p><div class="example">
+<pre class="example-preformatted">    bash -n scriptname  # Check errors without running
+    bash -v scriptname  # Print shell input lines as they are read.
+    bash -x scriptname  # Print commands and their arguments as they are executed.
+</pre></div>
+
+<p>Set options in script
+</p>
+<div class="example">
+<pre class="example-preformatted">    set -o noexec       # Check errors without running
+    set -o verbose      # Print shell input lines as they are read.
+    set -o xtrace       # Print commands and their arguments as they are executed.
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="eval">
+<h4 class="subsection"><span>6.3.6 eval<a class="copiable-link" href="#eval"> &para;</a></span></h4>
+
+<p>With eval, bash can print the value of a variable as well as its name
+In this case, the value of BLACK is a string to control the string&rsquo;s color
+The value of COLOR is the string &quot;BLACK&quot;
+</p><div class="example">
+<pre class="example-preformatted">BLACK='\e[30m'
+COLOR=BLACK
+eval echo -e '$'{${COLOR}}${COLOR}
+</pre></div>
+
+</div>
+<div class="subsection-level-extent" id="Color">
+<h4 class="subsection"><span>6.3.7 Color<a class="copiable-link" href="#Color"> &para;</a></span></h4>
+<div class="example">
+<pre class="example-preformatted">    BLACK='\e[30m'
+    RED='\e[31m'
+    GREEN='\e[32m' 
+    YELLOW='\e[33m'
+    BLUE='\e[34m'
+    PURPLE='\e[35m'
+    CYAN='\e[36m'
+    WHITE='\e[37m'
+    LBLACK='\e[90m'
+    LRED='\e[91m'
+    LGREEN='\e[92m'
+    LYELLOW='\e[93m'
+    LBLUE='\e[94m'
+    LPURPLE='\e[95m'
+    LCYAN='\e[96m'
+    LGREY='\e[97m'
+
+    echo -en &quot;${RED}RED&quot;
+</pre></div>
 <hr>
+</div>
 </div>
 </div>
 <div class="chapter-level-extent" id="Editor">
@@ -1024,21 +1376,21 @@ After change the keys in xkeycaps, write out the configuration file of xmodmap i
 <p>
 Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href="#Shell" accesskey="p" rel="prev">Shell</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Editor-1"><span>6 Editor<a class="copiable-link" href="#Editor-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Editor-1"><span>7 Editor<a class="copiable-link" href="#Editor-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#Vim" accesskey="1">Vim</a></li>
 <li><a href="#Micro-Editor" accesskey="2">Micro Editor</a></li>
 </ul>
 <div class="section-level-extent" id="Vim">
-<h3 class="section"><span>6.1 Vim<a class="copiable-link" href="#Vim"> &para;</a></span></h3>
+<h3 class="section"><span>7.1 Vim<a class="copiable-link" href="#Vim"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Test-Vim-Script" accesskey="1">Test Vim Script</a></li>
 <li><a href="#Vim-Distribution" accesskey="2">Vim Distribution</a></li>
 </ul>
 <div class="subsection-level-extent" id="Test-Vim-Script">
-<h4 class="subsection"><span>6.1.1 Test Vim Script<a class="copiable-link" href="#Test-Vim-Script"> &para;</a></span></h4>
+<h4 class="subsection"><span>7.1.1 Test Vim Script<a class="copiable-link" href="#Test-Vim-Script"> &para;</a></span></h4>
 
 <p>Vim is an awesome editor with powerful plugin ecosystems.
 Most of the time, the plugin can be directly used by downloading them into the directory.
@@ -1072,7 +1424,7 @@ There is a good plugin <a class="url" href="https://github.com/vim-scripts/Break
 </p>
 </div>
 <div class="subsection-level-extent" id="Vim-Distribution">
-<h4 class="subsection"><span>6.1.2 Vim Distribution<a class="copiable-link" href="#Vim-Distribution"> &para;</a></span></h4>
+<h4 class="subsection"><span>7.1.2 Vim Distribution<a class="copiable-link" href="#Vim-Distribution"> &para;</a></span></h4>
 
 <p>Vim is one of the most famous editors in the world with powerful scalability.
 However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
@@ -1095,7 +1447,7 @@ The follows are some Vim distributions.
 <li><a href="#Doom_002dnvim" accesskey="4">Doom-nvim</a></li>
 </ul>
 <div class="subsubsection-level-extent" id="SpaceVim">
-<h4 class="subsubsection"><span>6.1.2.1 SpaceVim<a class="copiable-link" href="#SpaceVim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.2.1 SpaceVim<a class="copiable-link" href="#SpaceVim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://spacevim.org">SpaceVim</a> is inspired by spacemacs.
 It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
@@ -1107,7 +1459,7 @@ SpaceVim is only distribution that can support both Vim and NeoVim.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="LunarVim">
-<h4 class="subsubsection"><span>6.1.2.2 LunarVim<a class="copiable-link" href="#LunarVim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.2.2 LunarVim<a class="copiable-link" href="#LunarVim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://www.lunarvim.org/">LunarVim</a>, or lvim in short, is another distribution that only supports Neovim.
 It needs npm, node, and cargo as the prerequisites.
@@ -1116,7 +1468,7 @@ It provides a shortcut named as lvim in &lsquo;.local/bin/&lsquo;.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="NvChad">
-<h4 class="subsubsection"><span>6.1.2.3 NvChad<a class="copiable-link" href="#NvChad"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.2.3 NvChad<a class="copiable-link" href="#NvChad"> &para;</a></span></h4>
 
 <p><a class="url" href="https://nvchad.com/">NvChad</a> is a pure lua distribution with a customized colorscheme.
 The aim of NvChad is to be a &quot;basic configuration&quot;, so the configuration logic of NvChad is pretty simple.
@@ -1124,7 +1476,7 @@ It is quitely easy to extend.
 </p>
 </div>
 <div class="subsubsection-level-extent" id="Doom_002dnvim">
-<h4 class="subsubsection"><span>6.1.2.4 Doom-nvim<a class="copiable-link" href="#Doom_002dnvim"> &para;</a></span></h4>
+<h4 class="subsubsection"><span>7.1.2.4 Doom-nvim<a class="copiable-link" href="#Doom_002dnvim"> &para;</a></span></h4>
 
 <p><a class="url" href="https://github.com/doom-neovim/doom-nvim">Doom-nvim</a> is also inspired by an emacs-based project.
 It also proposes modules that includes plugins and keybindings.
@@ -1135,7 +1487,7 @@ If the Linux does not contains the prerequisites, the installation would have so
 </div>
 </div>
 <div class="section-level-extent" id="Micro-Editor">
-<h3 class="section"><span>6.2 Micro Editor<a class="copiable-link" href="#Micro-Editor"> &para;</a></span></h3>
+<h3 class="section"><span>7.2 Micro Editor<a class="copiable-link" href="#Micro-Editor"> &para;</a></span></h3>
 
 <p>Micro is a easily used terminal editor with intuitive key bindings as well as modern build-in features, including command line, auto-pair and linter.
 </p>
@@ -1162,8 +1514,89 @@ If the Linux does not contains the prerequisites, the installation would have so
 <p>The linter requires out-of-box support for each language (see, <code class="code">help linter</code> in the command line mode).
 Enter the command line mode by typing <code class="code">&lt;C-e&gt;</code>, run
 </p>
-<p>plugin install filemanager wc quickfix
-</p><hr>
+<p><code class="code">plugin install filemanager wc quickfix</code>
+</p>
+<ul class="mini-toc">
+<li><a href="#Configuration" accesskey="1">Configuration</a></li>
+</ul>
+<div class="subsection-level-extent" id="Configuration">
+<h4 class="subsection"><span>7.2.1 Configuration<a class="copiable-link" href="#Configuration"> &para;</a></span></h4>
+
+<p>Micro uses &lsquo;json&lsquo; as the configuration file.
+The follows are the default keymappings for it.
+</p>
+<div class="example">
+<pre class="example-preformatted">{
+  // The keymappings both can be used in normal pane and command pane.
+    &quot;Ctrl-a&quot;:          &quot;SelectAll&quot;,
+    &quot;Ctrl-b&quot;:          &quot;ShellMode&quot;,
+    &quot;Ctrl-c&quot;:          &quot;CopyLine|Copy&quot;,
+    &quot;Ctrl-d&quot;:          &quot;DuplicateLine&quot;,
+    &quot;Ctrl-e&quot;:          &quot;CommandMode&quot;,
+    &quot;Ctrl-f&quot;:          &quot;Find&quot;,
+    &quot;Ctrl-g&quot;:          &quot;ToggleHelp&quot;,
+    &quot;Ctrl-h&quot;:          &quot;Backspace&quot;,
+    &quot;Ctrl-j&quot;:          &quot;PlayMacro&quot;,
+    &quot;Ctrl-k&quot;:          &quot;CutLine&quot;,
+    &quot;Ctrl-l&quot;:          &quot;command-edit:goto &quot;,
+    &quot;Ctrl-n&quot;:          &quot;FindNext&quot;,
+    &quot;Ctrl-o&quot;:          &quot;OpenFile&quot;,
+    &quot;Ctrl-p&quot;:          &quot;FindPrevious&quot;,
+    &quot;Ctrl-q&quot;:          &quot;Quit&quot;,
+    &quot;Ctrl-r&quot;:          &quot;ToggleRuler&quot;,
+    &quot;Ctrl-s&quot;:          &quot;Save&quot;,
+    &quot;Ctrl-t&quot;:          &quot;AddTab&quot;,
+    &quot;Ctrl-u&quot;:          &quot;ToggleMacro&quot;,
+    &quot;Ctrl-v&quot;:          &quot;Paste&quot;,
+    &quot;Ctrl-w&quot;:          &quot;NextSplit&quot;,
+    &quot;Ctrl-x&quot;:          &quot;Cut&quot;,
+    &quot;Ctrl-y&quot;:          &quot;Redo&quot;,
+    &quot;Ctrl-z&quot;:          &quot;Undo&quot;,
+
+    &quot;Alt-F&quot;:          &quot;FindLiteral&quot;,
+    &quot;Alt-a&quot;:          &quot;StartOfLine&quot;,
+    &quot;Alt-b&quot;:          &quot;WordLeft&quot;,
+    &quot;Alt-c&quot;:          &quot;RemoveAllMultiCursors&quot;,
+    &quot;Alt-e&quot;:          &quot;EndOfLine&quot;,
+    &quot;Alt-f&quot;:          &quot;WordRight&quot;,
+    &quot;Alt-g&quot;:          &quot;ToggleKeyMenu&quot;,
+    &quot;Alt-m&quot;:          &quot;SpawnMultiCursorSelect&quot;,
+    &quot;Alt-n&quot;:          &quot;SpawnMultiCursor&quot;,
+    &quot;Alt-p&quot;:          &quot;RemoveMultiCursor&quot;,
+    &quot;Alt-x&quot;:          &quot;SkipMultiCursor&quot;,
+    &quot;Alt-{&quot;:          &quot;ParagraphPrevious&quot;,
+    &quot;Alt-}&quot;:          &quot;ParagraphNext&quot;,
+    &quot;Alt-,&quot;:          &quot;PreviousTab&quot;,
+    &quot;Alt-.&quot;:          &quot;NextTab&quot;,
+
+    &quot;CtrlUp&quot;:         &quot;CursorStart&quot;,
+    &quot;CtrlDown&quot;:       &quot;CursorEnd&quot;,
+
+    &quot;AltUp&quot;:          &quot;MoveLinesUp&quot;,
+    &quot;AltDown&quot;:        &quot;MoveLinesDown&quot;,
+
+    &quot;Alt-CtrlH&quot;:      &quot;DeleteWordLeft&quot;,
+
+    &quot;CtrlShiftUp&quot;:    &quot;SelectToStart&quot;,
+    &quot;CtrlShiftDown&quot;:  &quot;SelectToEnd&quot;,
+    &quot;CtrlShiftRight&quot;: &quot;SelectWordRight&quot;,
+    &quot;CtrlShiftLeft&quot;:  &quot;SelectWordLeft&quot;,
+
+    &quot;AltShiftUp&quot;:     &quot;SpawnMultiCursorUp&quot;,
+    &quot;AltShiftDown&quot;:   &quot;SpawnMultiCursorDown&quot;,
+    &quot;AltShiftLeft&quot;:   &quot;SelectToStartOfTextToggle&quot;,
+    &quot;AltShiftRight&quot;:  &quot;SelectToEndOfLine&quot;,
+
+    // Keymapping for terminal mode
+   &quot;terminal&quot;: {
+          &quot;&lt;Ctrl-q&gt;&lt;Ctrl-q&gt;&quot;: &quot;Exit&quot;,
+          &quot;&lt;Ctrl-e&gt;&lt;Ctrl-e&gt;&quot;: &quot;CommandMode&quot;,
+          &quot;&lt;Ctrl-w&gt;&lt;Ctrl-w&gt;&quot;: &quot;NextSplit&quot;
+      },
+}
+</pre></div>
+<hr>
+</div>
 </div>
 </div>
 <div class="chapter-level-extent" id="Network">
@@ -1171,7 +1604,7 @@ Enter the command line mode by typing <code class="code">&lt;C-e&gt;</code>, run
 <p>
 Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Editor" accesskey="p" rel="prev">Editor</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Network-1"><span>7 Network<a class="copiable-link" href="#Network-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Network-1"><span>8 Network<a class="copiable-link" href="#Network-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#iw" accesskey="1">iw</a></li>
@@ -1180,7 +1613,7 @@ Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Edito
 <li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
 </ul>
 <div class="section-level-extent" id="iw">
-<h3 class="section"><span>7.1 iw<a class="copiable-link" href="#iw"> &para;</a></span></h3>
+<h3 class="section"><span>8.1 iw<a class="copiable-link" href="#iw"> &para;</a></span></h3>
 
 <p>iw is a configuration tool for mac80211 in Linux kernel with netlink
 The code tree of <code class="code">iw.c</code> in iw is
@@ -1228,7 +1661,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 
 </div>
 <div class="section-level-extent" id="Clash">
-<h3 class="section"><span>7.2 Clash<a class="copiable-link" href="#Clash"> &para;</a></span></h3>
+<h3 class="section"><span>8.2 Clash<a class="copiable-link" href="#Clash"> &para;</a></span></h3>
 
 <p>clash is a tunnel in Go.
 </p>
@@ -1238,7 +1671,7 @@ The code tree of <code class="code">iw.c</code> in iw is
 <li><a href="#Autostart" accesskey="3">Autostart</a></li>
 </ul>
 <div class="subsection-level-extent" id="Installation-1">
-<h4 class="subsection"><span>7.2.1 Installation<a class="copiable-link" href="#Installation-1"> &para;</a></span></h4>
+<h4 class="subsection"><span>8.2.1 Installation<a class="copiable-link" href="#Installation-1"> &para;</a></span></h4>
 
 <p>openSUSE contains clash in its repository, so it can be downloaded directly
 </p>
@@ -1253,7 +1686,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Basic-Usage">
-<h4 class="subsection"><span>7.2.2 Basic Usage<a class="copiable-link" href="#Basic-Usage"> &para;</a></span></h4>
+<h4 class="subsection"><span>8.2.2 Basic Usage<a class="copiable-link" href="#Basic-Usage"> &para;</a></span></h4>
 
 <p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
 </p>
@@ -1263,7 +1696,7 @@ As an example
 </p>
 </div>
 <div class="subsection-level-extent" id="Autostart">
-<h4 class="subsection"><span>7.2.3 Autostart<a class="copiable-link" href="#Autostart"> &para;</a></span></h4>
+<h4 class="subsection"><span>8.2.3 Autostart<a class="copiable-link" href="#Autostart"> &para;</a></span></h4>
 
 <p>Clash support auto-start after opening the system.
 In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
@@ -1284,7 +1717,7 @@ So move the configuration file and mmdb file in the above directory by
 </div>
 </div>
 <div class="section-level-extent" id="Clash-for-LAN">
-<h3 class="section"><span>7.3 Clash for LAN<a class="copiable-link" href="#Clash-for-LAN"> &para;</a></span></h3>
+<h3 class="section"><span>8.3 Clash for LAN<a class="copiable-link" href="#Clash-for-LAN"> &para;</a></span></h3>
  
 <p>Clash can support connection from devices in the local area network (LAN).
 To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
@@ -1294,7 +1727,7 @@ Then open clash with manual
 </p>
 </div>
 <div class="section-level-extent" id="snapdrop_002enet">
-<h3 class="section"><span>7.4 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
+<h3 class="section"><span>8.4 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
 
 <p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
 Open the link of snapdrop in the same network.
@@ -1308,13 +1741,13 @@ Just drop the file to the target.
 <p>
 Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Network" accesskey="p" rel="prev">Network</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="SDR-1"><span>8 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
+<h2 class="chapter" id="SDR-1"><span>9 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#GNURadio-Period-transmisstion" accesskey="1">GNURadio Period transmisstion</a></li>
 </ul>
 <div class="section-level-extent" id="GNURadio-Period-transmisstion">
-<h3 class="section"><span>8.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
+<h3 class="section"><span>9.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Introduction" accesskey="1">Introduction</a></li>
@@ -1322,7 +1755,7 @@ Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previou
 <li><a href="#USRP-Time-Control" accesskey="3">USRP Time Control</a></li>
 </ul>
 <div class="subsection-level-extent" id="Introduction">
-<h4 class="subsection"><span>8.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
 
 <p>Period transmission in GNURadio/USRP platform is the basic function to support time-related systems, such as 
 </p><ul class="itemize mark-minus">
@@ -1337,7 +1770,7 @@ All the functions have been tested on USRP N310 with GNURadio 3.7.13 and UHD 3.1
 </p>
 </div>
 <div class="subsection-level-extent" id="GNURadio-Tag">
-<h4 class="subsection"><span>8.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
 
 <p><a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">GNURadio tag</a> is an isosynchronous data that runs parallel to the main data stream. 
 </p>
@@ -1389,7 +1822,7 @@ pmt::pmt_t tstamp_tuple = pmt::make_tuple(pmt::from_uint64(t_int), pmt::from_dou
 </p>
 </div>
 <div class="subsection-level-extent" id="USRP-Time-Control">
-<h4 class="subsection"><span>8.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
+<h4 class="subsection"><span>9.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
 
 <p>The last things is to set the time of USRP with gr-uhd, if the time has error, you may get a &quot;L&quot; error in the transmitter. 
 &quot;L&quot; means a late packet in the TX chain. 
@@ -1420,7 +1853,7 @@ self.uhd_usrp_source_0.set_start_time(uhd.time_spec(1.0))
 <p>
 Previous: <a href="#SDR" accesskey="p" rel="prev">SDR</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1"><span>9 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Input-Method-1"><span>10 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
 
 <p>This README is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command

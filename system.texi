@@ -1,0 +1,34 @@
+@node System
+@chapter System Management
+
+Tools to manage Linux.
+
+@section smartctl
+
+SMART is a tool to check the health of disk.
+"SMART" means Self-Monitoring, Analysis and Report Technology.
+The command is "smartctl".
+To run it, type the command with @code{sudo} privilege.
+
+@code{sudo smartctl -H /dev/nvme0n1   # Show device SMART health status}
+
+@section top
+
+@itemize @bullet
+@item   us      uniced user process
+@item   sy      system process
+@item   ni      niced user process
+@item   id      kernel idle handler
+@item   wa      waiting for I/O completion
+@item   hi      hardware interrupt
+@item   si      software interrupt
+@item   st      stolen by hypervisor
+@item   PID     process ID
+@item   USER    user name
+@item   PR      priority
+@item   NI      nice value
+@item   VIRT    virtual memory size (KiB)
+@item   RES     resident memory size (KiB)
+@item   SHR     shared memory size (KiB)
+@end itemize
+
