@@ -50,18 +50,21 @@ The follow lists common package managers that in different distributions.
 
 dnf or Dandified YUM is the next-generation of the Fedora package manger yum.
 It manages rpm packages.
+
 The source files of an rpm package are in the *.src.rpm.
-To download it, use
 
-@code{dnf download --source <package name>}
-
-To list the infomation in the *.src.rpm, run
-
-@code{rpm -ql *.src.rpm}
-
-Extract the source file into current directory by
-
-@code{rpm2cpio *.src.rpm | cpio -idv }
+@example
+# Download the src.rpm
+dnf download --source <package name>
+# List the infomation in the *src.rpm
+rpm -ql *.src.rpm 
+# Extract the *src.rpm
+rpm2cpio *.src.rpm | cpio -idv
+# Install source code from *src.rpm to home directory
+rpm -i *src.rpm
+# Rebuild the source package if it is patched
+rpmbuild -bb /spec/director/package.spec
+@end example
 
 @subsection zypper
 

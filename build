@@ -1,0 +1,3 @@
+#! /bin/sh 
+
+makeinfo --html --no-split --output=. cottage.texi
