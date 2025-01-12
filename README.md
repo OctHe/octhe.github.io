@@ -14,7 +14,7 @@ in Debian or
 
 in Fedora.
 
-The blog can be built from the texinfo source to html.
+The blog can be built by the building script
 
-    makeinfo --html --no-split --output=. cottage.texi
+    ./build
 

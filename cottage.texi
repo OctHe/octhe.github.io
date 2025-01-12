@@ -17,6 +17,7 @@ The blog focuses on Linux platform and wireless network.
 @include shell.texi
 @include editor.texi
 @include version_control.texi
+@include server.texi
 @include network.texi
 @include sdr.texi
 @include input_method.texi

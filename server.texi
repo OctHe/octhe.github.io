@@ -1,0 +1,15 @@
+@node Server
+@chapter Server
+
+@section Termux
+
+Termux is an open-source Linux emulator in android.
+It uses pkg as the package manager.
+By downloading packages, Termux supports network servers.
+
+@subsection ssh
+
+ssh in Termux uses 8022 port by default.
+To connect it, use 
+@code{ssh -p 8022 <username>@@<IP>}
+
