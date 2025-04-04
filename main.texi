@@ -1,12 +1,12 @@
 \input texinfo.tex @c -*- texinfo -*-
 
 @setfilename index.html
-@settitle Shell Cottage
+@settitle OctHe's Blog
 
 @node index 
 @top Contents
 
-This is a personal blog website that named as Shell Cottage.
+This is a personal blog website.
 The blog focuses on Linux platform and wireless network.
 
 @include distribution.texi
