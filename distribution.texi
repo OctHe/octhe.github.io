@@ -63,8 +63,10 @@ rpm2cpio *.src.rpm | cpio -idv
 # Install source code from *src.rpm to home directory
 rpm -i *src.rpm
 # Rebuild the source package if it is patched
-rpmbuild -bb /spec/director/package.spec
+rpmbuild -bb /spec/directory/package.spec
 @end example
+
+The default directory for the rpm macros is under@code{/usr/lib/rpm/macros}.
 
 @subsection zypper
 

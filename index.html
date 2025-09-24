@@ -3,10 +3,10 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Shell Cottage</title>
+<title>OctHe&rsquo;s Blog</title>
 
-<meta name="description" content="Shell Cottage">
-<meta name="keywords" content="Shell Cottage">
+<meta name="description" content="OctHe&rsquo;s Blog">
+<meta name="keywords" content="OctHe&rsquo;s Blog">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -36,7 +36,7 @@ Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; <
 </div>
 <h1 class="top" id="Contents"><span>Contents<a class="copiable-link" href="#Contents"> &para;</a></span></h1>
 
-<p>This is a personal blog website that named as Shell Cottage.
+<p>This is a personal blog website.
 The blog focuses on Linux platform and wireless network.
 </p>
 <ul class="mini-toc">
@@ -139,9 +139,11 @@ rpm2cpio *.src.rpm | cpio -idv
 # Install source code from *src.rpm to home directory
 rpm -i *src.rpm
 # Rebuild the source package if it is patched
-rpmbuild -bb /spec/director/package.spec
+rpmbuild -bb /spec/directory/package.spec
 </pre></div>
 
+<p>The default directory for the rpm macros is under<code class="code">/usr/lib/rpm/macros</code>.
+</p>
 </div>
 <div class="subsection-level-extent" id="zypper">
 <h4 class="subsection"><span>1.1.2 zypper<a class="copiable-link" href="#zypper"> &para;</a></span></h4>
@@ -2081,6 +2083,7 @@ Next: <a href="#Network" accesskey="n" rel="next">Network</a>, Previous: <a href
 
 <ul class="mini-toc">
 <li><a href="#Termux" accesskey="1">Termux</a></li>
+<li><a href="#Network-File-System-_0028NFS_0029" accesskey="2">Network File System (NFS)</a></li>
 </ul>
 <div class="section-level-extent" id="Termux">
 <h3 class="section"><span>9.1 Termux<a class="copiable-link" href="#Termux"> &para;</a></span></h3>
@@ -2099,7 +2102,48 @@ By downloading packages, Termux supports network servers.
 To connect it, use 
 <code class="code">ssh -p 8022 &lt;username&gt;@&lt;IP&gt;</code>
 </p>
-<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Network-File-System-_0028NFS_0029">
+<h3 class="section"><span>9.2 Network File System (NFS)<a class="copiable-link" href="#Network-File-System-_0028NFS_0029"> &para;</a></span></h3>
+
+<p>Network file system (nfs) is a protocol that supports share files in network.
+</p>
+<ul class="mini-toc">
+<li><a href="#NFS-Server" accesskey="1">NFS Server</a></li>
+<li><a href="#NFS-client" accesskey="2">NFS client</a></li>
+</ul>
+<div class="subsection-level-extent" id="NFS-Server">
+<h4 class="subsection"><span>9.2.1 NFS Server<a class="copiable-link" href="#NFS-Server"> &para;</a></span></h4>
+
+<p>Downlaod nfs server with apt
+</p>
+<p><code class="code">sudo apt install nfs-kernel-server</code>
+</p>
+<p>First, add the follow codes in the <code class="code">/etc/exports</code>.
+The shared disk can be mounted by other systems in network.
+</p>
+<p><code class="code">/mnt/share 192.168.3.0/24(rw,sync,no_subtree_check)</code>
+</p>
+<p>In addtion, if another disk is used, add the disk into <code class="code">/etc/fstab</code>, so that it can be auto-mounted.
+</p>
+</div>
+<div class="subsection-level-extent" id="NFS-client">
+<h4 class="subsection"><span>9.2.2 NFS client<a class="copiable-link" href="#NFS-client"> &para;</a></span></h4>
+
+<p>Download the nfs client with dnf
+</p>
+<p><code class="code">sudo dnf install nfs-utils</code>
+</p>
+<p>Add the file system into fstab
+</p>
+<p><code class="code">&lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</code>
+</p>
+<p>Mount the nfs directory
+</p>
+<p><code class="code">mkdir share</code>
+<code class="code">mount -v -t nfs &lt;remote dir&gt; share</code>
+</p><hr>
 </div>
 </div>
 </div>
