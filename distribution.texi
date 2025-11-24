@@ -5,24 +5,13 @@ Linux contains lots of well-known distributions.
 A Linux distribtuion comprises multiple drivers to support different hardware architectures and a collections of softwares in the user sapce.
 The follow tables summarize the main different between these awesome distributions and the programs.
 
-@multitable @columnfractions .2 .2 .2 .2 .2
-@headitem             @tab    Arch   @tab      Debian      @tab   Fedora  
-@item Default desktop @tab     -     @tab       GNOME      @tab   GNOME   
-@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  
-@item Package manager @tab   pacman  @tab        apt       @tab    dnf    
-@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   
-@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils 
-@item    Installer    @tab    CLI    @tab Debian-Installer @tab  Anaconda 
-@end multitable
-
-@multitable @columnfractions .2 .2 .2 .2 .2
-@headitem             @tab   NixOS   @tab    Void   @tab      Deepin      
-@item Default desktop @tab   GNOME   @tab    xfce   @tab        DDE       
-@item   Init system   @tab  systemd  @tab   runit   @tab      systemd     
-@item Package manager @tab    Nix    @tab    xbps   @tab         -        
-@item    C library    @tab   glibc   @tab    musl   @tab       glibc      
-@item     Utility     @tab coreutils @tab coreutils @tab     coreutils    
-@item    Installer    @tab Calamares @tab    CLI    @tab deepin-installer 
+@multitable @columnfractions .18 .16 .16 .16 .16 .16
+@headitem             @tab    Arch   @tab      Debian      @tab   Fedora  @tab   NixOS   @tab    Void   
+@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  @tab  systemd  @tab   runit   
+@item Package manager @tab   pacman  @tab        apt       @tab    dnf    @tab    Nix    @tab    xbps   
+@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   @tab   glibc   @tab    musl   
+@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils @tab coreutils @tab coreutils 
+@item    Installer    @tab    CLI    @tab Debian-Installer @tab  Anaconda @tab Calamares @tab    CLI    
 @end multitable
 
 The distributions for embeded devices
@@ -57,7 +46,7 @@ The source files of an rpm package are in the *.src.rpm.
 # Download the src.rpm
 dnf download --source <package name>
 # List the infomation in the *src.rpm
-rpm -ql *.src.rpm 
+rpm -ql *.src.rpm
 # Extract the *src.rpm
 rpm2cpio *.src.rpm | cpio -idv
 # Install source code from *src.rpm to home directory
@@ -76,7 +65,7 @@ zypper uses repository for packages.
 @code{zypper repos} lists repositories.
 Search all installed packages in a target repo, use @code{zypper search -i -r <repo>}.
 
-Besides installation of the built programs, zypper also provides an offical repository for the source code.
+Besides installation of the built programs, zypper also provides an official repository for the source code.
 As an example, the download and build process for the @code{hostapd} is
 
 @example
@@ -129,13 +118,55 @@ The feature of init is run all script in a fixed order one-by-one, so it is easy
 @subsection systemd
 
 In contrast, systemd concurrently runs all scripts.
-Ubuntu and OpenSUSE have been support systemd and their would have other distributions.
-In a system that initialized with systemd.
-The init file, which is @code{/usr/sbin/init} will be a symbolic to the @code{/lib/systemd/systemd}.
+
+In a system that initialized with systemd, the init file, which is @code{/usr/sbin/init} will be a symbolic to the @code{/lib/systemd/systemd}.
 The default configuration file of systemd is @code{/usr/lib/systemd/system/default.target}, which is also a symbolic link to @code{/usr/lib/systemd/system/graphical.target}.
 You can find the default target with
 
 @code{systemctl get-default}
+
+@section Live CD
+
+This section discribes how to create a custom Live CD in Fedora with @code{livemedia-creator}.
+
+@example
+# Install mock, which provides an independent compose environment.
+sudo dnf install mock
+# Init mock
+mock -r <live_cd_name> --init
+# Install packages into the composed environment
+mock -r <live_cd_name> --install lorax-lmc-novirt vim-minimal pykickstart livecd-tools
+# chroot into the environment
+mock -r <live_cd_name --shell --enable-network --isolation=simple
+@end example
+
+After that, the user has been changed into the compose environment, and the packages for composion have been installed.
+The next step is get the configuration files for the target ISO.
+These files are named as kickstart files, and @code{.ks} is the file extension.
+The kickstart files are in the [fedora kickstarts project](https://pagure.io/fedora-kickstarts.git).
+Download the files and move it into the mock environment.
+
+The home directory of <live_cd_name> is under the @code{/var/lib/mock/<live_cd_name>/root/builddir}.
+The project can be directly copied into the builddir of the compose environment.
+Another method is to copy the project with the command
+
+@code{mock -r <live_cd_name> --copyin <project name> /builddir}
+
+The kickstart files in the project are templates, it should be resolved by flattening in the compose environment.
+
+@code{ksflatten --config <template.ks> -o flat-<template.ks>}
+
+In X64 system, compose the Fedora 42 system lacks @code{shim-ia32} package.
+It should be installed manually.
+To do that, add the package name, i.e. @code{shim-ia32} after the @code{%packages} in the flatten kickstart file.
+
+Finally, run the livemedia-creator
+
+@code{livemedia-creator --ks flat-<template>.ks --no-virt --resultdir /var/lmc --project <project_name> --make-iso --volid <volume ID> --iso-only --iso-name <live_cd>.iso --releasever <version> --macboot}
+
+The target ISO is under the @code{var/lmc}.
+
+The official page is @url{https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD, How to create and use a Live CD}.
 
 @section Linux To Go
 
@@ -146,84 +177,3 @@ The LTG is based on Fedora since it has stable version, so it does not need to b
 The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
 In addition, install the bootloader to the USB disk.
 After that, the installation process is the same as a normal installation in any disk.
-
-@section Multi-OS Installation
-
-Install multiple OSs is simple since lots-of OSs have a GUI installer.
-In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
-This section summarizes the content about Live USB and Disk layout.
-
-@subsection Live USB
-
-The first thing of installation OSs is having a Live USB that contains multiple ISOs.
-@url{https://www.ventoy.net/en/index.html, Vectoy} is an open-source tool that can load multiple Live USBs
-The USB with Ventoy also can be used for backup files.
-
-The only drawback of ventoy is the grub may have a incorrect boot configuration.
-This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
-To avoid this, just edit the grub (type `e` when boot) and delete the command `rdinit=/vtoy/vtoy`.
-
-@subsection Disk Partition
-
-Most Linux distributions provides a GUI installer, so the installation is quite easy.
-The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
-Usually, all the home directories of all OSs can be listed in the same partition with different folders.
-An example partition can be as follows
-
-@itemize @bullet
-@item nvme0n1
-    @itemize @minus
-    @item nvme0n1p1 (512 MB)
-        @itemize @minus
-        @item /boot/efi
-        @end itemize
-    @item nvme0n1p2 (16 GB)
-        @itemize @minus
-        @item /swap
-        @end itemize
-    @item nvme0n1p3 (500 GB)
-        @itemize @minus
-        @item /home
-            @itemize @minus
-            @item /home/user_ubuntu
-            @item /home/user_suse
-            @item /home/user_arch
-            @item ... 
-            @end itemize
-        @end itemize
-    @item nvme0n1p4 (100 GB)
-        @itemize @minus
-        @item /       # root for Ubuntu
-        @end itemize
-    @item nvme0n1p5 (100 GB)
-        @itemize @minus
-        @item /       # root for OpenSUSE
-        @end itemize
-    @item ...
-    @end itemize
-@end itemize
-
-The most important thing is: DON'T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
-This partition can provide the capability to reinstall all OSs without affecting the user data.
-
-@subsection Update grub
-
-After a new installation, it is better to update the grub at any OSs.
-The follow command can be used only once at one of the OSs.
-In Debian, use
-    
-@code{sudo grub-mkconfig -o /boot/grub/grub.cfg}
-@code{sudo grub-install /nvme0n1}
-
-In OpenSUSE, use
-    
-@code{sudo grub2-mkconfig -o /boot/grub/grub.cfg}
-@code{sudo grub2-install /nvme0n1}
-
-@subsection Reinstallation
-
-Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
-In this time, the OS can be reinstalled with the same partition and user name as the old version.
-For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
-The user name is 'user_ubuntu', so the configuration of the old OS can be reused for the new OS.
-

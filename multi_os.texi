@@ -1,0 +1,81 @@
+@node Multi-OS
+@chapter Multi-OS
+
+Install multiple OSs is simple since lots-of OSs have a GUI installer.
+In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
+This section summarizes the content about Live USB and Disk layout.
+
+@section Live USB
+
+The first thing of installation OSs is having a Live USB that contains multiple ISOs.
+@url{https://www.ventoy.net/en/index.html, Vectoy} is an open-source tool that can load multiple Live USBs
+The USB with Ventoy also can be used for backup files.
+
+The only drawback of ventoy is the grub may have a incorrect boot configuration.
+This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
+To avoid this, just edit the grub (type `e` when boot) and delete the command `rdinit=/vtoy/vtoy`.
+
+@section Disk Partition
+
+Most Linux distributions provides a GUI installer, so the installation is quite easy.
+The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
+Usually, all the home directories of all OSs can be listed in the same partition with different folders.
+An example partition can be as follows
+
+@itemize @bullet
+@item nvme0n1
+    @itemize @minus
+    @item nvme0n1p1 (512 MB)
+        @itemize @minus
+        @item /boot/efi
+        @end itemize
+    @item nvme0n1p2 (16 GB)
+        @itemize @minus
+        @item /swap
+        @end itemize
+    @item nvme0n1p3 (500 GB)
+        @itemize @minus
+        @item /home
+            @itemize @minus
+            @item /home/user_ubuntu
+            @item /home/user_suse
+            @item /home/user_arch
+            @item ...
+            @end itemize
+        @end itemize
+    @item nvme0n1p4 (100 GB)
+        @itemize @minus
+        @item /       # root for Ubuntu
+        @end itemize
+    @item nvme0n1p5 (100 GB)
+        @itemize @minus
+        @item /       # root for OpenSUSE
+        @end itemize
+    @item ...
+    @end itemize
+@end itemize
+
+The most important thing is: DON'T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
+This partition can provide the capability to reinstall all OSs without affecting the user data.
+
+@section Update grub
+
+After a new installation, it is better to update the grub at any OSs.
+The follow command can be used only once at one of the OSs.
+In Debian, use
+
+@code{sudo grub-mkconfig -o /boot/grub/grub.cfg}
+@code{sudo grub-install /nvme0n1}
+
+In OpenSUSE, use
+
+@code{sudo grub2-mkconfig -o /boot/grub/grub.cfg}
+@code{sudo grub2-install /nvme0n1}
+
+@section Reinstallation
+
+Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
+In this time, the OS can be reinstalled with the same partition and user name as the old version.
+For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
+The user name is 'user_ubuntu', so the configuration of the old OS can be reused for the new OS.
+

@@ -16,44 +16,24 @@ Most of the desktop and libraries are based on them.
 
 Graphicless compares the follow open-source desktop environments.
 
-@multitable @columnfractions .25 .25 .25 .25
-@headitem              @tab        KDE         @tab       GNOME       @tab         xfce
-@item      Toolkit     @tab         QT         @tab        GTK        @tab         GTK
-@item  Display manager @tab        SDDM        @tab        gdm        @tab       LightDM
-@item  Session manager @tab      ksmserver     @tab   gnome-session   @tab    xfce4-session
-@item  Windows manager @tab        KWin        @tab    gnome-shell    @tab        xfwm4
-@item  Desktop manager @tab          -         @tab         -         @tab      xfdesktop
-@item   File manager   @tab       Dolphin      @tab     Nautilus      @tab        Thunar
-@item     Launcher     @tab       Kickoff      @tab         -         @tab      xfce-panel
-@item      Editor      @tab        Kate        @tab gnome-text-editor @tab       Mousepad
-@item     Terminal     @tab       Konsole      @tab   gnome-terminal  @tab    xfce4-terminal
-@item      Network     @tab   Network Manager  @tab  Network Manager  @tab          -
-@item     Capturer     @tab      Spectacle     @tab  GNOME Screenshot @tab xfce4-screenshooter
-@item  Document viewer @tab       Okular       @tab       Evince      @tab          -
-@item   Image viewer   @tab      Gwenview      @tab       Loupe       @tab      Ristretto
-@item   Input method   @tab          -         @tab         -         @tab          -
-@item Advanced setting @tab          -         @tab    gnome-tweaks   @tab          -
-@item    Development   @tab      KDevelop      @tab   GNOME Builder   @tab          -
-@end multitable
-
-@multitable @columnfractions .2 .4 .4
-@headitem                   @tab    LXQT      @tab         DDE
-@item      Toolkit          @tab      QT      @tab          QT
-@item  Display manager      @tab     SDDM     @tab       LightDM
-@item  Session manager      @tab lxqt-session @tab     dde-session
-@item  Windows manager      @tab    Openbox   @tab     Treeland
-@item  Desktop manager      @tab       -      @tab          -
-@item   File manager        @tab  PcManFm-qt  @tab   dde-file-manager
-@item     Launcher          @tab  lxqt-runner @tab     dde-launcher
-@item      Editor           @tab       -      @tab    deepin-editor
-@item     Terminal          @tab   QTerminal  @tab   deepin-terminal
-@item      Network          @tab       -      @tab          -
-@item     Capturer          @tab  Screengrab  @tab  deepin-screenshot
-@item  Document viewer      @tab       -      @tab    deepin-reader
-@item   Image viewer        @tab  Lximage-qt  @tab deepin-image-viewer
-@item   Input method        @tab       -      @tab      deepin-im 
-@item Advanced setting      @tab       -      @tab     deepin-tweak
-@item    Development        @tab       -      @tab      Deepin-IDE
+@multitable @columnfractions .2 .2 .2 .2 .2
+@headitem              @tab        KDE         @tab       GNOME       @tab         xfce         @tab    LXQT      
+@item      Toolkit     @tab         QT         @tab        GTK        @tab         GTK          @tab      QT      
+@item  Display manager @tab        SDDM        @tab        gdm        @tab       LightDM        @tab     SDDM     
+@item  Session manager @tab      ksmserver     @tab   gnome-session   @tab    xfce4-session     @tab lxqt-session 
+@item  Windows manager @tab        KWin        @tab    gnome-shell    @tab        xfwm4         @tab    Openbox   
+@item  Desktop manager @tab          -         @tab         -         @tab      xfdesktop       @tab       -      
+@item   File manager   @tab       Dolphin      @tab     Nautilus      @tab        Thunar        @tab  PcManFm-qt  
+@item     Launcher     @tab       Kickoff      @tab         -         @tab      xfce-panel      @tab  lxqt-runner 
+@item      Editor      @tab        Kate        @tab gnome-text-editor @tab       Mousepad       @tab       -      
+@item     Terminal     @tab       Konsole      @tab   gnome-terminal  @tab    xfce4-terminal    @tab   QTerminal  
+@item      Network     @tab   Network Manager  @tab  Network Manager  @tab          -           @tab       -      
+@item     Capturer     @tab      Spectacle     @tab  GNOME Screenshot @tab xfce4-screenshooter  @tab  Screengrab  
+@item  Document viewer @tab       Okular       @tab       Evince      @tab          -           @tab       -      
+@item   Image viewer   @tab      Gwenview      @tab       Loupe       @tab      Ristretto       @tab  Lximage-qt  
+@item   Input method   @tab          -         @tab         -         @tab          -           @tab       -      
+@item Advanced setting @tab          -         @tab    gnome-tweaks   @tab          -           @tab       -      
+@item    Development   @tab      KDevelop      @tab   GNOME Builder   @tab          -           @tab       -      
 @end multitable
 
 @section GNOME

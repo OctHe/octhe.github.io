@@ -6,8 +6,8 @@
 @node index 
 @top Contents
 
-This is a personal blog website.
-The blog focuses on Linux platform and wireless network.
+This is a personal wiki website.
+It focuses on Linux platform and wireless network.
 
 @include distribution.texi
 @include desktop.texi
@@ -19,6 +19,7 @@ The blog focuses on Linux platform and wireless network.
 @include version_control.texi
 @include server.texi
 @include network.texi
+@include multi_os.texi
 @include sdr.texi
 @include input_method.texi
 

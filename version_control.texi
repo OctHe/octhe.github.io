@@ -107,3 +107,13 @@ git branch --show-current           # Show the name of current branch
 git rev-list --count @@@{upstream@}..HEAD  
                                         # Count commits that local branch have but upstream does not 
 @end example
+
+@subsection SSH Over HTTP for GitHub
+@example
+    cat << EOF >>  ~/.ssh/config
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+EOF
+@end example

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>OctHe&rsquo;s Blog</title>
@@ -36,8 +36,8 @@ Next: <a href="#Distribution" accesskey="n" rel="next">Distribution</a> &nbsp; <
 </div>
 <h1 class="top" id="Contents"><span>Contents<a class="copiable-link" href="#Contents"> &para;</a></span></h1>
 
-<p>This is a personal blog website.
-The blog focuses on Linux platform and wireless network.
+<p>This is a personal wiki website.
+It focuses on Linux platform and wireless network.
 </p>
 <ul class="mini-toc">
 <li><a href="#Distribution" accesskey="1">Distribution</a></li>
@@ -50,6 +50,7 @@ The blog focuses on Linux platform and wireless network.
 <li><a href="#Version-Control" accesskey="8">Version Control</a></li>
 <li><a href="#Server" accesskey="9">Server</a></li>
 <li><a href="#Network">Network</a></li>
+<li><a href="#Multi_002dOS">Multi-OS</a></li>
 <li><a href="#SDR">SDR</a></li>
 <li><a href="#Input-Method">Input Method</a></li>
 </ul>
@@ -66,24 +67,12 @@ A Linux distribtuion comprises multiple drivers to support different hardware ar
 The follow tables summarize the main different between these awesome distributions and the programs.
 </p>
 <table class="multitable">
-<thead><tr><th width="20%"></th><th width="20%">Arch</th><th width="20%">Debian</th><th width="20%">Fedora</th></tr></thead>
-<tbody><tr><td width="20%">Default desktop</td><td width="20%">-</td><td width="20%">GNOME</td><td width="20%">GNOME</td></tr>
-<tr><td width="20%">Init system</td><td width="20%">systemd</td><td width="20%">systemd</td><td width="20%">systemd</td></tr>
-<tr><td width="20%">Package manager</td><td width="20%">pacman</td><td width="20%">apt</td><td width="20%">dnf</td></tr>
-<tr><td width="20%">C library</td><td width="20%">glibc</td><td width="20%">glibc</td><td width="20%">glibc</td></tr>
-<tr><td width="20%">Utility</td><td width="20%">coreutils</td><td width="20%">coreutils</td><td width="20%">coreutils</td></tr>
-<tr><td width="20%">Installer</td><td width="20%">CLI</td><td width="20%">Debian-Installer</td><td width="20%">Anaconda</td></tr>
-</tbody>
-</table>
-
-<table class="multitable">
-<thead><tr><th width="20%"></th><th width="20%">NixOS</th><th width="20%">Void</th><th width="20%">Deepin</th></tr></thead>
-<tbody><tr><td width="20%">Default desktop</td><td width="20%">GNOME</td><td width="20%">xfce</td><td width="20%">DDE</td></tr>
-<tr><td width="20%">Init system</td><td width="20%">systemd</td><td width="20%">runit</td><td width="20%">systemd</td></tr>
-<tr><td width="20%">Package manager</td><td width="20%">Nix</td><td width="20%">xbps</td><td width="20%">-</td></tr>
-<tr><td width="20%">C library</td><td width="20%">glibc</td><td width="20%">musl</td><td width="20%">glibc</td></tr>
-<tr><td width="20%">Utility</td><td width="20%">coreutils</td><td width="20%">coreutils</td><td width="20%">coreutils</td></tr>
-<tr><td width="20%">Installer</td><td width="20%">Calamares</td><td width="20%">CLI</td><td width="20%">deepin-installer</td></tr>
+<thead><tr><th width="18%"></th><th width="16%">Arch</th><th width="16%">Debian</th><th width="16%">Fedora</th><th width="16%">NixOS</th><th width="16%">Void</th></tr></thead>
+<tbody><tr><td width="18%">Init system</td><td width="16%">systemd</td><td width="16%">systemd</td><td width="16%">systemd</td><td width="16%">systemd</td><td width="16%">runit</td></tr>
+<tr><td width="18%">Package manager</td><td width="16%">pacman</td><td width="16%">apt</td><td width="16%">dnf</td><td width="16%">Nix</td><td width="16%">xbps</td></tr>
+<tr><td width="18%">C library</td><td width="16%">glibc</td><td width="16%">glibc</td><td width="16%">glibc</td><td width="16%">glibc</td><td width="16%">musl</td></tr>
+<tr><td width="18%">Utility</td><td width="16%">coreutils</td><td width="16%">coreutils</td><td width="16%">coreutils</td><td width="16%">coreutils</td><td width="16%">coreutils</td></tr>
+<tr><td width="18%">Installer</td><td width="16%">CLI</td><td width="16%">Debian-Installer</td><td width="16%">Anaconda</td><td width="16%">Calamares</td><td width="16%">CLI</td></tr>
 </tbody>
 </table>
 
@@ -100,8 +89,8 @@ The follow tables summarize the main different between these awesome distributio
 <ul class="mini-toc">
 <li><a href="#Package-Manager" accesskey="1">Package Manager</a></li>
 <li><a href="#Init-Process" accesskey="2">Init Process</a></li>
-<li><a href="#Linux-To-Go" accesskey="3">Linux To Go</a></li>
-<li><a href="#Multi_002dOS-Installation" accesskey="4">Multi-OS Installation</a></li>
+<li><a href="#Live-CD" accesskey="3">Live CD</a></li>
+<li><a href="#Linux-To-Go" accesskey="4">Linux To Go</a></li>
 </ul>
 <div class="section-level-extent" id="Package-Manager">
 <h3 class="section"><span>1.1 Package Manager<a class="copiable-link" href="#Package-Manager"> &para;</a></span></h3>
@@ -133,7 +122,7 @@ It manages rpm packages.
 <pre class="example-preformatted"># Download the src.rpm
 dnf download --source &lt;package name&gt;
 # List the infomation in the *src.rpm
-rpm -ql *.src.rpm 
+rpm -ql *.src.rpm
 # Extract the *src.rpm
 rpm2cpio *.src.rpm | cpio -idv
 # Install source code from *src.rpm to home directory
@@ -154,7 +143,7 @@ zypper uses repository for packages.
 <code class="code">zypper repos</code> lists repositories.
 Search all installed packages in a target repo, use <code class="code">zypper search -i -r &lt;repo&gt;</code>.
 </p>
-<p>Besides installation of the built programs, zypper also provides an offical repository for the source code.
+<p>Besides installation of the built programs, zypper also provides an official repository for the source code.
 As an example, the download and build process for the <code class="code">hostapd</code> is
 </p>
 <div class="example">
@@ -219,9 +208,8 @@ The feature of init is run all script in a fixed order one-by-one, so it is easy
 <h4 class="subsection"><span>1.2.2 systemd<a class="copiable-link" href="#systemd"> &para;</a></span></h4>
 
 <p>In contrast, systemd concurrently runs all scripts.
-Ubuntu and OpenSUSE have been support systemd and their would have other distributions.
-In a system that initialized with systemd.
-The init file, which is <code class="code">/usr/sbin/init</code> will be a symbolic to the <code class="code">/lib/systemd/systemd</code>.
+</p>
+<p>In a system that initialized with systemd, the init file, which is <code class="code">/usr/sbin/init</code> will be a symbolic to the <code class="code">/lib/systemd/systemd</code>.
 The default configuration file of systemd is <code class="code">/usr/lib/systemd/system/default.target</code>, which is also a symbolic link to <code class="code">/usr/lib/systemd/system/graphical.target</code>.
 You can find the default target with
 </p>
@@ -229,8 +217,53 @@ You can find the default target with
 </p>
 </div>
 </div>
+<div class="section-level-extent" id="Live-CD">
+<h3 class="section"><span>1.3 Live CD<a class="copiable-link" href="#Live-CD"> &para;</a></span></h3>
+
+<p>This section discribes how to create a custom Live CD in Fedora with <code class="code">livemedia-creator</code>.
+</p>
+<div class="example">
+<pre class="example-preformatted"># Install mock, which provides an independent compose environment.
+sudo dnf install mock
+# Init mock
+mock -r &lt;live_cd_name&gt; --init
+# Install packages into the composed environment
+mock -r &lt;live_cd_name&gt; --install lorax-lmc-novirt vim-minimal pykickstart livecd-tools
+# chroot into the environment
+mock -r &lt;live_cd_name --shell --enable-network --isolation=simple
+</pre></div>
+
+<p>After that, the user has been changed into the compose environment, and the packages for composion have been installed.
+The next step is get the configuration files for the target ISO.
+These files are named as kickstart files, and <code class="code">.ks</code> is the file extension.
+The kickstart files are in the [fedora kickstarts project](https://pagure.io/fedora-kickstarts.git).
+Download the files and move it into the mock environment.
+</p>
+<p>The home directory of &lt;live_cd_name&gt; is under the <code class="code">/var/lib/mock/&lt;live_cd_name&gt;/root/builddir</code>.
+The project can be directly copied into the builddir of the compose environment.
+Another method is to copy the project with the command
+</p>
+<p><code class="code">mock -r &lt;live_cd_name&gt; --copyin &lt;project name&gt; /builddir</code>
+</p>
+<p>The kickstart files in the project are templates, it should be resolved by flattening in the compose environment.
+</p>
+<p><code class="code">ksflatten --config &lt;template.ks&gt; -o flat-&lt;template.ks&gt;</code>
+</p>
+<p>In X64 system, compose the Fedora 42 system lacks <code class="code">shim-ia32</code> package.
+It should be installed manually.
+To do that, add the package name, i.e. <code class="code">shim-ia32</code> after the <code class="code">%packages</code> in the flatten kickstart file.
+</p>
+<p>Finally, run the livemedia-creator
+</p>
+<p><code class="code">livemedia-creator --ks flat-&lt;template&gt;.ks --no-virt --resultdir /var/lmc --project &lt;project_name&gt; --make-iso --volid &lt;volume ID&gt; --iso-only --iso-name &lt;live_cd&gt;.iso --releasever &lt;version&gt; --macboot</code>
+</p>
+<p>The target ISO is under the <code class="code">var/lmc</code>.
+</p>
+<p>The official page is <a class="url" href="https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD">How to create and use a Live CD</a>.
+</p>
+</div>
 <div class="section-level-extent" id="Linux-To-Go">
-<h3 class="section"><span>1.3 Linux To Go<a class="copiable-link" href="#Linux-To-Go"> &para;</a></span></h3>
+<h3 class="section"><span>1.4 Linux To Go<a class="copiable-link" href="#Linux-To-Go"> &para;</a></span></h3>
 
 <p>Linux To Go (LTG) is a method to install Linux in external USB disk.
 The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
@@ -239,104 +272,7 @@ The main advantage of LTG is to boot your owe system in multiple computers that 
 The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
 In addition, install the bootloader to the USB disk.
 After that, the installation process is the same as a normal installation in any disk.
-</p>
-</div>
-<div class="section-level-extent" id="Multi_002dOS-Installation">
-<h3 class="section"><span>1.4 Multi-OS Installation<a class="copiable-link" href="#Multi_002dOS-Installation"> &para;</a></span></h3>
-
-<p>Install multiple OSs is simple since lots-of OSs have a GUI installer.
-In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
-This section summarizes the content about Live USB and Disk layout.
-</p>
-<ul class="mini-toc">
-<li><a href="#Live-USB" accesskey="1">Live USB</a></li>
-<li><a href="#Disk-Partition" accesskey="2">Disk Partition</a></li>
-<li><a href="#Update-grub" accesskey="3">Update grub</a></li>
-<li><a href="#Reinstallation" accesskey="4">Reinstallation</a></li>
-</ul>
-<div class="subsection-level-extent" id="Live-USB">
-<h4 class="subsection"><span>1.4.1 Live USB<a class="copiable-link" href="#Live-USB"> &para;</a></span></h4>
-
-<p>The first thing of installation OSs is having a Live USB that contains multiple ISOs.
-<a class="url" href="https://www.ventoy.net/en/index.html">Vectoy</a> is an open-source tool that can load multiple Live USBs
-The USB with Ventoy also can be used for backup files.
-</p>
-<p>The only drawback of ventoy is the grub may have a incorrect boot configuration.
-This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
-To avoid this, just edit the grub (type &lsquo;e&lsquo; when boot) and delete the command &lsquo;rdinit=/vtoy/vtoy&lsquo;.
-</p>
-</div>
-<div class="subsection-level-extent" id="Disk-Partition">
-<h4 class="subsection"><span>1.4.2 Disk Partition<a class="copiable-link" href="#Disk-Partition"> &para;</a></span></h4>
-
-<p>Most Linux distributions provides a GUI installer, so the installation is quite easy.
-The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
-Usually, all the home directories of all OSs can be listed in the same partition with different folders.
-An example partition can be as follows
-</p>
-<ul class="itemize mark-bullet">
-<li>nvme0n1
-    <ul class="itemize mark-minus">
-<li>nvme0n1p1 (512 MB)
-        <ul class="itemize mark-minus">
-<li>/boot/efi
-        </li></ul>
-</li><li>nvme0n1p2 (16 GB)
-        <ul class="itemize mark-minus">
-<li>/swap
-        </li></ul>
-</li><li>nvme0n1p3 (500 GB)
-        <ul class="itemize mark-minus">
-<li>/home
-            <ul class="itemize mark-minus">
-<li>/home/user_ubuntu
-            </li><li>/home/user_suse
-            </li><li>/home/user_arch
-            </li><li>... 
-            </li></ul>
-</li></ul>
-</li><li>nvme0n1p4 (100 GB)
-        <ul class="itemize mark-minus">
-<li>/       # root for Ubuntu
-        </li></ul>
-</li><li>nvme0n1p5 (100 GB)
-        <ul class="itemize mark-minus">
-<li>/       # root for OpenSUSE
-        </li></ul>
-</li><li>...
-    </li></ul>
-</li></ul>
-
-<p>The most important thing is: DON&rsquo;T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
-This partition can provide the capability to reinstall all OSs without affecting the user data.
-</p>
-</div>
-<div class="subsection-level-extent" id="Update-grub">
-<h4 class="subsection"><span>1.4.3 Update grub<a class="copiable-link" href="#Update-grub"> &para;</a></span></h4>
-
-<p>After a new installation, it is better to update the grub at any OSs.
-The follow command can be used only once at one of the OSs.
-In Debian, use
-</p>    
-<p><code class="code">sudo grub-mkconfig -o /boot/grub/grub.cfg</code>
-<code class="code">sudo grub-install /nvme0n1</code>
-</p>
-<p>In OpenSUSE, use
-</p>    
-<p><code class="code">sudo grub2-mkconfig -o /boot/grub/grub.cfg</code>
-<code class="code">sudo grub2-install /nvme0n1</code>
-</p>
-</div>
-<div class="subsection-level-extent" id="Reinstallation">
-<h4 class="subsection"><span>1.4.4 Reinstallation<a class="copiable-link" href="#Reinstallation"> &para;</a></span></h4>
-
-<p>Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
-In this time, the OS can be reinstalled with the same partition and user name as the old version.
-For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
-The user name is &rsquo;user_ubuntu&rsquo;, so the configuration of the old OS can be reused for the new OS.
-</p>
-<hr>
-</div>
+</p><hr>
 </div>
 </div>
 <div class="chapter-level-extent" id="Desktop-Enviornment">
@@ -362,44 +298,23 @@ Most of the desktop and libraries are based on them.
 <p>Graphicless compares the follow open-source desktop environments.
 </p>
 <table class="multitable">
-<thead><tr><th width="25%"></th><th width="25%">KDE</th><th width="25%">GNOME</th><th width="25%">xfce</th></tr></thead>
-<tbody><tr><td width="25%">Toolkit</td><td width="25%">QT</td><td width="25%">GTK</td><td width="25%">GTK</td></tr>
-<tr><td width="25%">Display manager</td><td width="25%">SDDM</td><td width="25%">gdm</td><td width="25%">LightDM</td></tr>
-<tr><td width="25%">Session manager</td><td width="25%">ksmserver</td><td width="25%">gnome-session</td><td width="25%">xfce4-session</td></tr>
-<tr><td width="25%">Windows manager</td><td width="25%">KWin</td><td width="25%">gnome-shell</td><td width="25%">xfwm4</td></tr>
-<tr><td width="25%">Desktop manager</td><td width="25%">-</td><td width="25%">-</td><td width="25%">xfdesktop</td></tr>
-<tr><td width="25%">File manager</td><td width="25%">Dolphin</td><td width="25%">Nautilus</td><td width="25%">Thunar</td></tr>
-<tr><td width="25%">Launcher</td><td width="25%">Kickoff</td><td width="25%">-</td><td width="25%">xfce-panel</td></tr>
-<tr><td width="25%">Editor</td><td width="25%">Kate</td><td width="25%">gnome-text-editor</td><td width="25%">Mousepad</td></tr>
-<tr><td width="25%">Terminal</td><td width="25%">Konsole</td><td width="25%">gnome-terminal</td><td width="25%">xfce4-terminal</td></tr>
-<tr><td width="25%">Network</td><td width="25%">Network Manager</td><td width="25%">Network Manager</td><td width="25%">-</td></tr>
-<tr><td width="25%">Capturer</td><td width="25%">Spectacle</td><td width="25%">GNOME Screenshot</td><td width="25%">xfce4-screenshooter</td></tr>
-<tr><td width="25%">Document viewer</td><td width="25%">Okular</td><td width="25%">Evince</td><td width="25%">-</td></tr>
-<tr><td width="25%">Image viewer</td><td width="25%">Gwenview</td><td width="25%">Loupe</td><td width="25%">Ristretto</td></tr>
-<tr><td width="25%">Input method</td><td width="25%">-</td><td width="25%">-</td><td width="25%">-</td></tr>
-<tr><td width="25%">Advanced setting</td><td width="25%">-</td><td width="25%">gnome-tweaks</td><td width="25%">-</td></tr>
-<tr><td width="25%">Development</td><td width="25%">KDevelop</td><td width="25%">GNOME Builder</td><td width="25%">-</td></tr>
-</tbody>
-</table>
-
-<table class="multitable">
-<thead><tr><th width="20%"></th><th width="40%">LXQT</th><th width="40%">DDE</th></tr></thead>
-<tbody><tr><td width="20%">Toolkit</td><td width="40%">QT</td><td width="40%">QT</td></tr>
-<tr><td width="20%">Display manager</td><td width="40%">SDDM</td><td width="40%">LightDM</td></tr>
-<tr><td width="20%">Session manager</td><td width="40%">lxqt-session</td><td width="40%">dde-session</td></tr>
-<tr><td width="20%">Windows manager</td><td width="40%">Openbox</td><td width="40%">Treeland</td></tr>
-<tr><td width="20%">Desktop manager</td><td width="40%">-</td><td width="40%">-</td></tr>
-<tr><td width="20%">File manager</td><td width="40%">PcManFm-qt</td><td width="40%">dde-file-manager</td></tr>
-<tr><td width="20%">Launcher</td><td width="40%">lxqt-runner</td><td width="40%">dde-launcher</td></tr>
-<tr><td width="20%">Editor</td><td width="40%">-</td><td width="40%">deepin-editor</td></tr>
-<tr><td width="20%">Terminal</td><td width="40%">QTerminal</td><td width="40%">deepin-terminal</td></tr>
-<tr><td width="20%">Network</td><td width="40%">-</td><td width="40%">-</td></tr>
-<tr><td width="20%">Capturer</td><td width="40%">Screengrab</td><td width="40%">deepin-screenshot</td></tr>
-<tr><td width="20%">Document viewer</td><td width="40%">-</td><td width="40%">deepin-reader</td></tr>
-<tr><td width="20%">Image viewer</td><td width="40%">Lximage-qt</td><td width="40%">deepin-image-viewer</td></tr>
-<tr><td width="20%">Input method</td><td width="40%">-</td><td width="40%">deepin-im</td></tr>
-<tr><td width="20%">Advanced setting</td><td width="40%">-</td><td width="40%">deepin-tweak</td></tr>
-<tr><td width="20%">Development</td><td width="40%">-</td><td width="40%">Deepin-IDE</td></tr>
+<thead><tr><th width="20%"></th><th width="20%">KDE</th><th width="20%">GNOME</th><th width="20%">xfce</th><th width="20%">LXQT</th></tr></thead>
+<tbody><tr><td width="20%">Toolkit</td><td width="20%">QT</td><td width="20%">GTK</td><td width="20%">GTK</td><td width="20%">QT</td></tr>
+<tr><td width="20%">Display manager</td><td width="20%">SDDM</td><td width="20%">gdm</td><td width="20%">LightDM</td><td width="20%">SDDM</td></tr>
+<tr><td width="20%">Session manager</td><td width="20%">ksmserver</td><td width="20%">gnome-session</td><td width="20%">xfce4-session</td><td width="20%">lxqt-session</td></tr>
+<tr><td width="20%">Windows manager</td><td width="20%">KWin</td><td width="20%">gnome-shell</td><td width="20%">xfwm4</td><td width="20%">Openbox</td></tr>
+<tr><td width="20%">Desktop manager</td><td width="20%">-</td><td width="20%">-</td><td width="20%">xfdesktop</td><td width="20%">-</td></tr>
+<tr><td width="20%">File manager</td><td width="20%">Dolphin</td><td width="20%">Nautilus</td><td width="20%">Thunar</td><td width="20%">PcManFm-qt</td></tr>
+<tr><td width="20%">Launcher</td><td width="20%">Kickoff</td><td width="20%">-</td><td width="20%">xfce-panel</td><td width="20%">lxqt-runner</td></tr>
+<tr><td width="20%">Editor</td><td width="20%">Kate</td><td width="20%">gnome-text-editor</td><td width="20%">Mousepad</td><td width="20%">-</td></tr>
+<tr><td width="20%">Terminal</td><td width="20%">Konsole</td><td width="20%">gnome-terminal</td><td width="20%">xfce4-terminal</td><td width="20%">QTerminal</td></tr>
+<tr><td width="20%">Network</td><td width="20%">Network Manager</td><td width="20%">Network Manager</td><td width="20%">-</td><td width="20%">-</td></tr>
+<tr><td width="20%">Capturer</td><td width="20%">Spectacle</td><td width="20%">GNOME Screenshot</td><td width="20%">xfce4-screenshooter</td><td width="20%">Screengrab</td></tr>
+<tr><td width="20%">Document viewer</td><td width="20%">Okular</td><td width="20%">Evince</td><td width="20%">-</td><td width="20%">-</td></tr>
+<tr><td width="20%">Image viewer</td><td width="20%">Gwenview</td><td width="20%">Loupe</td><td width="20%">Ristretto</td><td width="20%">Lximage-qt</td></tr>
+<tr><td width="20%">Input method</td><td width="20%">-</td><td width="20%">-</td><td width="20%">-</td><td width="20%">-</td></tr>
+<tr><td width="20%">Advanced setting</td><td width="20%">-</td><td width="20%">gnome-tweaks</td><td width="20%">-</td><td width="20%">-</td></tr>
+<tr><td width="20%">Development</td><td width="20%">KDevelop</td><td width="20%">GNOME Builder</td><td width="20%">-</td><td width="20%">-</td></tr>
 </tbody>
 </table>
 
@@ -1958,6 +1873,7 @@ Next: <a href="#Server" accesskey="n" rel="next">Server</a>, Previous: <a href="
 <li><a href="#Branch" accesskey="2">Branch</a></li>
 <li><a href="#Remote" accesskey="3">Remote</a></li>
 <li><a href="#Submodule" accesskey="4">Submodule</a></li>
+<li><a href="#SSH-Over-HTTP-for-GitHub" accesskey="5">SSH Over HTTP for GitHub</a></li>
 </ul>
 <div class="subsection-level-extent" id="Config">
 <h4 class="subsection"><span>8.1.1 Config<a class="copiable-link" href="#Config"> &para;</a></span></h4>
@@ -2070,6 +1986,18 @@ git branch --show-current           # Show the name of current branch
 git rev-list --count @{upstream}..HEAD  
                                         # Count commits that local branch have but upstream does not 
 </pre></div>
+
+</div>
+<div class="subsection-level-extent" id="SSH-Over-HTTP-for-GitHub">
+<h4 class="subsection"><span>8.1.5 SSH Over HTTP for GitHub<a class="copiable-link" href="#SSH-Over-HTTP-for-GitHub"> &para;</a></span></h4>
+<div class="example">
+<pre class="example-preformatted">    cat &lt;&lt; EOF &gt;&gt;  ~/.ssh/config
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+EOF
+</pre></div>
 <hr>
 </div>
 </div>
@@ -2150,15 +2078,14 @@ The shared disk can be mounted by other systems in network.
 <div class="chapter-level-extent" id="Network">
 <div class="nav-panel">
 <p>
-Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Server" accesskey="p" rel="prev">Server</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#Multi_002dOS" accesskey="n" rel="next">Multi-OS</a>, Previous: <a href="#Server" accesskey="p" rel="prev">Server</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
 <h2 class="chapter" id="Network-1"><span>10 Network<a class="copiable-link" href="#Network-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#iw" accesskey="1">iw</a></li>
-<li><a href="#Clash" accesskey="2">Clash</a></li>
-<li><a href="#Clash-for-LAN" accesskey="3">Clash for LAN</a></li>
-<li><a href="#snapdrop_002enet" accesskey="4">snapdrop.net</a></li>
+<li><a href="#proxy" accesskey="2">proxy</a></li>
+<li><a href="#snapdrop_002enet" accesskey="3">snapdrop.net</a></li>
 </ul>
 <div class="section-level-extent" id="iw">
 <h3 class="section"><span>10.1 iw<a class="copiable-link" href="#iw"> &para;</a></span></h3>
@@ -2208,74 +2135,29 @@ The code tree of <code class="code">iw.c</code> in iw is
 </li></ul>
 
 </div>
-<div class="section-level-extent" id="Clash">
-<h3 class="section"><span>10.2 Clash<a class="copiable-link" href="#Clash"> &para;</a></span></h3>
+<div class="section-level-extent" id="proxy">
+<h3 class="section"><span>10.2 proxy<a class="copiable-link" href="#proxy"> &para;</a></span></h3>
 
-<p>clash is a tunnel in Go.
+<p>Auto detect proxy with <code class="code">nc</code> and connect to it
 </p>
-<ul class="mini-toc">
-<li><a href="#Installation-1" accesskey="1">Installation</a></li>
-<li><a href="#Basic-Usage" accesskey="2">Basic Usage</a></li>
-<li><a href="#Autostart" accesskey="3">Autostart</a></li>
-</ul>
-<div class="subsection-level-extent" id="Installation-1">
-<h4 class="subsection"><span>10.2.1 Installation<a class="copiable-link" href="#Installation-1"> &para;</a></span></h4>
+<div class="example">
+<pre class="example-preformatted">if nc -z $&lt;srv_ip&gt; $&lt;proxy_port&gt;; then
+    git config --global http.proxy &quot;http://$&lt;srv_ip&gt;:$&lt;proxy_port&gt;&quot;
+    git config --global https.proxy &quot;https://$&lt;srv_ip&gt;:$&lt;proxy_port&gt;&quot;
 
-<p>openSUSE contains clash in its repository, so it can be downloaded directly
-</p>
-<p><code class="code">sudo zypper in clash</code>
-</p>
-<p>Debian repository does not contain clash, so it can be downloaded from [Github release](https://github.com/Dreamacro/clash/releases).
-It also can be downloaded in command.
-As an example
-</p>
-<p><code class="code">wget https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v1.18.0.gz</code>
-<code class="code">mv clash-linux-amd64-v1.18.0.gz clash</code>
-</p>
-</div>
-<div class="subsection-level-extent" id="Basic-Usage">
-<h4 class="subsection"><span>10.2.2 Basic Usage<a class="copiable-link" href="#Basic-Usage"> &para;</a></span></h4>
+elif nc -z $&lt;local_ip&gt; $&lt;proxy_port&gt;; then
+    git config --global http.proxy &quot;http://$&lt;local_ip&gt;:$&lt;proxy_port&gt;&quot;
+    git config --global https.proxy &quot;https://$&lt;local_ip&gt;:$&lt;proxy_port&gt;&quot;
 
-<p>If clash is run in the user space, copy the <code class="code">config.yaml</code> file to <code class="code">~/.config/clash/</code> directory and run
-</p>
-<p><code class="code">clash</code>
-</p>
-<p>Clash will download the <code class="code">Country.mmdb</code> file by itselef and load the configuration in <code class="code">~/.config/clash/</code>.
-</p>
-</div>
-<div class="subsection-level-extent" id="Autostart">
-<h4 class="subsection"><span>10.2.3 Autostart<a class="copiable-link" href="#Autostart"> &para;</a></span></h4>
+else
+    git config --global --unset http.proxy 
+    git config --global --unset https.proxy
+fi
+</pre></div>
 
-<p>Clash support auto-start after opening the system.
-In openSUSE, the download version of clash has a systemd service with <code class="code">/lib/system/system/clash.service</code> to support the auto-start process.
-This service is based on systemd, so it works for openSUSE and other distributions that uses systemd as the init process.
-Different from manually run clash, the systemd will load the configuration in the directory <code class="code">/etc/clash/</code> by default.
-So move the configuration file and mmdb file in the above directory by
-</p>
-<p><code class="code">sudo mv /path/to/config/file /etc/clash/</code>
-<code class="code">sudo mv /path/to/Country.mmdb /etc/clash</code>
-</p>
-<p>Then, enable and start clash service
-</p>
-<p><code class="code">systemclt enable clash</code>
-<code class="code">systemclt start clash</code>
-</p>
-<p>The final process is to config the system-level network setting or program-level network setting to use the clash service.
-</p>
-</div>
-</div>
-<div class="section-level-extent" id="Clash-for-LAN">
-<h3 class="section"><span>10.3 Clash for LAN<a class="copiable-link" href="#Clash-for-LAN"> &para;</a></span></h3>
- 
-<p>Clash can support connection from devices in the local area network (LAN).
-To enable it, just edit the config.yaml file and set the <code class="code">allow-lan</code> to <code class="code">true</code>.
-Then open clash with manual
-</p>
-<p><code class="code">clash -d ~/.config/clash/</code>
-</p>
 </div>
 <div class="section-level-extent" id="snapdrop_002enet">
-<h3 class="section"><span>10.4 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
+<h3 class="section"><span>10.3 snapdrop.net<a class="copiable-link" href="#snapdrop_002enet"> &para;</a></span></h3>
 
 <p><a class="url" href="https://snapdrop.net">snapdrop</a> is an easily-used point-to-point file transfer in the web browser.
 Open the link of snapdrop in the same network.
@@ -2284,18 +2166,119 @@ Just drop the file to the target.
 </p><hr>
 </div>
 </div>
+<div class="chapter-level-extent" id="Multi_002dOS">
+<div class="nav-panel">
+<p>
+Next: <a href="#SDR" accesskey="n" rel="next">SDR</a>, Previous: <a href="#Network" accesskey="p" rel="prev">Network</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+</div>
+<h2 class="chapter" id="Multi_002dOS-1"><span>11 Multi-OS<a class="copiable-link" href="#Multi_002dOS-1"> &para;</a></span></h2>
+
+<p>Install multiple OSs is simple since lots-of OSs have a GUI installer.
+In most time, someone does not need to install the OS in the hardware, if he only want to try it at first.
+This section summarizes the content about Live USB and Disk layout.
+</p>
+<ul class="mini-toc">
+<li><a href="#Live-USB" accesskey="1">Live USB</a></li>
+<li><a href="#Disk-Partition" accesskey="2">Disk Partition</a></li>
+<li><a href="#Update-grub" accesskey="3">Update grub</a></li>
+<li><a href="#Reinstallation" accesskey="4">Reinstallation</a></li>
+</ul>
+<div class="section-level-extent" id="Live-USB">
+<h3 class="section"><span>11.1 Live USB<a class="copiable-link" href="#Live-USB"> &para;</a></span></h3>
+
+<p>The first thing of installation OSs is having a Live USB that contains multiple ISOs.
+<a class="url" href="https://www.ventoy.net/en/index.html">Vectoy</a> is an open-source tool that can load multiple Live USBs
+The USB with Ventoy also can be used for backup files.
+</p>
+<p>The only drawback of ventoy is the grub may have a incorrect boot configuration.
+This makes the installed OS can be boot with recovery mode but cannot boot with the normal mode.
+To avoid this, just edit the grub (type &lsquo;e&lsquo; when boot) and delete the command &lsquo;rdinit=/vtoy/vtoy&lsquo;.
+</p>
+</div>
+<div class="section-level-extent" id="Disk-Partition">
+<h3 class="section"><span>11.2 Disk Partition<a class="copiable-link" href="#Disk-Partition"> &para;</a></span></h3>
+
+<p>Most Linux distributions provides a GUI installer, so the installation is quite easy.
+The only thing worth noting is carefully about the disk partition without formating the partition and lossing data.
+Usually, all the home directories of all OSs can be listed in the same partition with different folders.
+An example partition can be as follows
+</p>
+<ul class="itemize mark-bullet">
+<li>nvme0n1
+    <ul class="itemize mark-minus">
+<li>nvme0n1p1 (512 MB)
+        <ul class="itemize mark-minus">
+<li>/boot/efi
+        </li></ul>
+</li><li>nvme0n1p2 (16 GB)
+        <ul class="itemize mark-minus">
+<li>/swap
+        </li></ul>
+</li><li>nvme0n1p3 (500 GB)
+        <ul class="itemize mark-minus">
+<li>/home
+            <ul class="itemize mark-minus">
+<li>/home/user_ubuntu
+            </li><li>/home/user_suse
+            </li><li>/home/user_arch
+            </li><li>...
+            </li></ul>
+</li></ul>
+</li><li>nvme0n1p4 (100 GB)
+        <ul class="itemize mark-minus">
+<li>/       # root for Ubuntu
+        </li></ul>
+</li><li>nvme0n1p5 (100 GB)
+        <ul class="itemize mark-minus">
+<li>/       # root for OpenSUSE
+        </li></ul>
+</li><li>...
+    </li></ul>
+</li></ul>
+
+<p>The most important thing is: DON&rsquo;T FORMAT the home directory in nvme0n1p3 and the /boot/efi directory in nvme0n1p1 when install a new OS.
+This partition can provide the capability to reinstall all OSs without affecting the user data.
+</p>
+</div>
+<div class="section-level-extent" id="Update-grub">
+<h3 class="section"><span>11.3 Update grub<a class="copiable-link" href="#Update-grub"> &para;</a></span></h3>
+
+<p>After a new installation, it is better to update the grub at any OSs.
+The follow command can be used only once at one of the OSs.
+In Debian, use
+</p>
+<p><code class="code">sudo grub-mkconfig -o /boot/grub/grub.cfg</code>
+<code class="code">sudo grub-install /nvme0n1</code>
+</p>
+<p>In OpenSUSE, use
+</p>
+<p><code class="code">sudo grub2-mkconfig -o /boot/grub/grub.cfg</code>
+<code class="code">sudo grub2-install /nvme0n1</code>
+</p>
+</div>
+<div class="section-level-extent" id="Reinstallation">
+<h3 class="section"><span>11.4 Reinstallation<a class="copiable-link" href="#Reinstallation"> &para;</a></span></h3>
+
+<p>Most time there is no need to reinstall my OSs, but sometimes the OS cannot be boot due to strange issues.
+In this time, the OS can be reinstalled with the same partition and user name as the old version.
+For example, the root of the new ubuntu will be listed in nvme0n1p4, and the /home will be listed in nvme01n1p3.
+The user name is &rsquo;user_ubuntu&rsquo;, so the configuration of the old OS can be reused for the new OS.
+</p>
+<hr>
+</div>
+</div>
 <div class="chapter-level-extent" id="SDR">
 <div class="nav-panel">
 <p>
-Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Network" accesskey="p" rel="prev">Network</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
+Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previous: <a href="#Multi_002dOS" accesskey="p" rel="prev">Multi-OS</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="SDR-1"><span>11 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
+<h2 class="chapter" id="SDR-1"><span>12 SDR<a class="copiable-link" href="#SDR-1"> &para;</a></span></h2>
 
 <ul class="mini-toc">
 <li><a href="#GNURadio-Period-transmisstion" accesskey="1">GNURadio Period transmisstion</a></li>
 </ul>
 <div class="section-level-extent" id="GNURadio-Period-transmisstion">
-<h3 class="section"><span>11.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
+<h3 class="section"><span>12.1 GNURadio Period transmisstion<a class="copiable-link" href="#GNURadio-Period-transmisstion"> &para;</a></span></h3>
 
 <ul class="mini-toc">
 <li><a href="#Introduction" accesskey="1">Introduction</a></li>
@@ -2303,7 +2286,7 @@ Next: <a href="#Input-Method" accesskey="n" rel="next">Input Method</a>, Previou
 <li><a href="#USRP-Time-Control" accesskey="3">USRP Time Control</a></li>
 </ul>
 <div class="subsection-level-extent" id="Introduction">
-<h4 class="subsection"><span>11.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
+<h4 class="subsection"><span>12.1.1 Introduction<a class="copiable-link" href="#Introduction"> &para;</a></span></h4>
 
 <p>Period transmission in GNURadio/USRP platform is the basic function to support time-related systems, such as 
 </p><ul class="itemize mark-minus">
@@ -2318,7 +2301,7 @@ All the functions have been tested on USRP N310 with GNURadio 3.7.13 and UHD 3.1
 </p>
 </div>
 <div class="subsection-level-extent" id="GNURadio-Tag">
-<h4 class="subsection"><span>11.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
+<h4 class="subsection"><span>12.1.2 GNURadio Tag<a class="copiable-link" href="#GNURadio-Tag"> &para;</a></span></h4>
 
 <p><a class="url" href="https://wiki.gnuradio.org/index.php/Stream_Tags">GNURadio tag</a> is an isosynchronous data that runs parallel to the main data stream. 
 </p>
@@ -2370,7 +2353,7 @@ pmt::pmt_t tstamp_tuple = pmt::make_tuple(pmt::from_uint64(t_int), pmt::from_dou
 </p>
 </div>
 <div class="subsection-level-extent" id="USRP-Time-Control">
-<h4 class="subsection"><span>11.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
+<h4 class="subsection"><span>12.1.3 USRP Time Control<a class="copiable-link" href="#USRP-Time-Control"> &para;</a></span></h4>
 
 <p>The last things is to set the time of USRP with gr-uhd, if the time has error, you may get a &quot;L&quot; error in the transmitter. 
 &quot;L&quot; means a late packet in the TX chain. 
@@ -2401,7 +2384,7 @@ self.uhd_usrp_source_0.set_start_time(uhd.time_spec(1.0))
 <p>
 Previous: <a href="#SDR" accesskey="p" rel="prev">SDR</a>, Up: <a href="#index" accesskey="u" rel="up">Contents</a> &nbsp; </p>
 </div>
-<h2 class="chapter" id="Input-Method-1"><span>12 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
+<h2 class="chapter" id="Input-Method-1"><span>13 Input Method<a class="copiable-link" href="#Input-Method-1"> &para;</a></span></h2>
 
 <p>This chapter is related to the chinese input method.
 In openSUSE, the fcitx5 framework can be installed from the repository with command

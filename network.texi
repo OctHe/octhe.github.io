@@ -47,56 +47,24 @@ The code tree of @code{iw.c} in iw is
     @end itemize
 @end itemize
 
-@section Clash
+@section proxy
 
-clash is a tunnel in Go.
+Auto detect proxy with @code{nc} and connect to it
 
-@subsection Installation
+@example
+if nc -z $<srv_ip> $<proxy_port>; then
+    git config --global http.proxy "http://$<srv_ip>:$<proxy_port>"
+    git config --global https.proxy "https://$<srv_ip>:$<proxy_port>"
 
-openSUSE contains clash in its repository, so it can be downloaded directly
+elif nc -z $<local_ip> $<proxy_port>; then
+    git config --global http.proxy "http://$<local_ip>:$<proxy_port>"
+    git config --global https.proxy "https://$<local_ip>:$<proxy_port>"
 
-@code{sudo zypper in clash}
-
-Debian repository does not contain clash, so it can be downloaded from [Github release](https://github.com/Dreamacro/clash/releases).
-It also can be downloaded in command.
-As an example
-
-@code{wget https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v1.18.0.gz}
-@code{mv clash-linux-amd64-v1.18.0.gz clash}
-
-@subsection Basic Usage
-
-If clash is run in the user space, copy the @code{config.yaml} file to @code{~/.config/clash/} directory and run
-
-@code{clash}
-
-Clash will download the @code{Country.mmdb} file by itselef and load the configuration in @code{~/.config/clash/}.
-
-@subsection Autostart
-
-Clash support auto-start after opening the system.
-In openSUSE, the download version of clash has a systemd service with @code{/lib/system/system/clash.service} to support the auto-start process.
-This service is based on systemd, so it works for openSUSE and other distributions that uses systemd as the init process.
-Different from manually run clash, the systemd will load the configuration in the directory @code{/etc/clash/} by default.
-So move the configuration file and mmdb file in the above directory by
-
-@code{sudo mv /path/to/config/file /etc/clash/}
-@code{sudo mv /path/to/Country.mmdb /etc/clash}
-
-Then, enable and start clash service
-
-@code{systemclt enable clash}
-@code{systemclt start clash}
-
-The final process is to config the system-level network setting or program-level network setting to use the clash service.
-
-@section Clash for LAN
- 
-Clash can support connection from devices in the local area network (LAN).
-To enable it, just edit the config.yaml file and set the @code{allow-lan} to @code{true}.
-Then open clash with manual
-
-@code{clash -d ~/.config/clash/}
+else
+    git config --global --unset http.proxy 
+    git config --global --unset https.proxy
+fi
+@end example
 
 @section snapdrop.net
 
