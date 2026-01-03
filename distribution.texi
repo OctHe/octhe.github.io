@@ -40,8 +40,10 @@ The follow lists common package managers that in different distributions.
 dnf or Dandified YUM is the next-generation of the Fedora package manger yum.
 It manages rpm packages.
 
+
 [COPR](https://copr.fedorainfracloud.org) is an extra repository for Fedora.
-Add it into the repo list by running
+NeuroFedora team move the softwares to official Fedora repositories.
+Add this repo into the dnf repo list by running
 @code{sudo dnf copr enable @@neurofedora/neurofedora-extra}
 
 The source files of an rpm package are in the *.src.rpm.
