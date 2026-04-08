@@ -1,0 +1,188 @@
+---
+title: Distribution
+layout: default
+---
+
+# Distribution
+
+Linux contains lots of well-known distributions.
+A Linux distribtuion comprises multiple drivers to support different hardware architectures and a collections of softwares in the user sapce.
+The follow tables summarize the main different between these awesome distributions and the programs.
+
+@multitable @columnfractions .18 .16 .16 .16 .16 .16
+@headitem             @tab    Arch   @tab      Debian      @tab   Fedora  @tab   NixOS   @tab    Void   
+@item   Init system   @tab  systemd  @tab      systemd     @tab  systemd  @tab  systemd  @tab   runit   
+@item Package manager @tab   pacman  @tab        apt       @tab    dnf    @tab    Nix    @tab    xbps   
+@item    C library    @tab   glibc   @tab       glibc      @tab   glibc   @tab   glibc   @tab    musl   
+@item     Utility     @tab coreutils @tab     coreutils    @tab coreutils @tab coreutils @tab coreutils 
+@item    Installer    @tab    CLI    @tab Debian-Installer @tab  Anaconda @tab Calamares @tab    CLI    
+@end multitable
+
+The distributions for embeded devices
+
+@multitable @columnfractions .2 .2 .2 .2 .2
+@headitem             @tab Openwrt @tab  Alpine     
+@item   Init system   @tab   init  @tab  OpenRC
+@item Package manager @tab   opkg  @tab   apk       
+@item     Utility     @tab Busybox @tab Busybox     
+@end multitable
+
+## Package Manager
+
+The follow lists common package managers that in different distributions.
+@itemize @bullet
+@item apt
+@item dnf
+@item pacman
+@item zypper
+@item Flatpak
+@item AppImage
+@end itemize
+
+### dnf
+
+dnf or Dandified YUM is the next-generation of the Fedora package manger yum.
+It manages rpm packages.
+
+[COPR](https://copr.fedorainfracloud.org) is an extra repository for Fedora.
+NeuroFedora team move the softwares to official Fedora repositories.
+Add this repo into the dnf repo list by running
+`sudo dnf copr enable @@neurofedora/neurofedora-extra`
+
+The source files of an rpm package are in the *.src.rpm.
+
+@example
+# Download the src.rpm
+dnf download --source <package name>
+# List the infomation in the *src.rpm
+rpm -ql *.src.rpm
+# Extract the *src.rpm
+rpm2cpio *.src.rpm | cpio -idv
+# Install source code from *src.rpm to home directory
+rpm -i *src.rpm
+# Rebuild the source package if it is patched
+rpmbuild -bb /spec/directory/package.spec
+@end example
+
+The default directory for the rpm macros is under`/usr/lib/rpm/macros`.
+
+### zypper
+
+openSUSE uses `zypper` as the default package manager.
+It is based on RPM, which is similar to Fedora.
+zypper uses repository for packages.
+`zypper repos` lists repositories.
+Search all installed packages in a target repo, use `zypper search -i -r <repo>`.
+
+Besides installation of the built programs, zypper also provides an official repository for the source code.
+As an example, the download and build process for the `hostapd` is
+
+@example
+sudo zypper source-install hostapd  # or `sudo zypper si hostapd`
+cd /usr/src/packages/       # cd to the default directory for source code
+ls SOURCES
+ls SPECS
+sudo zypper in rpmbuild     # The build tool of the download source code
+sudo rpmbuild -ba SPECS/hostapd.spec  # -ba means to perform a full build.
+ls RPMS/x86_64              # The built program in the x86 architecture
+sudo rpmbuild -ba --noclean SPECS/hostapd.spec    # It does not remove the extracted source code
+ls BUILD                    # The extracted source code
+@end example
+
+openSUSE also provides a command-line tool for package download, building and packaging.
+The name of the tool is osc, which means openSUSE commander.
+To use it, run
+
+`sudo zypper install osc`
+
+### Flatpak
+
+Flatpak is a cross-platform package manager that run applications in a sandbox.
+It can download apps from FlatHub, which is the official repository of Flatpak.
+
+`flatpak install <package name/ID>`
+
+Different from apt/zypper/dnf/pacman, you cannot run the applications from flatpak directly.
+
+`flatpak run <package name/ID>`
+
+## Init Process
+
+In Linux, the first process is usually *init* or *systemd*.
+They both work to manage the initialization of the system before the login shell.
+The PID of them is 1, which means the first process after the kernel.
+
+### System V and init
+
+init is the initial script in System V project.
+In a early version of a Linux distribution, it usually uses init as the initalization system.
+It finds the configuration file in `/etc/inittab` and runs the scripts in `/etc/rc` according to the runlevel.
+Different runlevels means different modes of init.
+It will run the corresponding runlevel scripts in `/etc/rcN.d/`, where N means the runlevel.
+The value of N is from 0 to 6.
+All scripts under these directories are a symbolic link to a file in `etc/init.d/`.
+The file started with "S" means "start it", while "K" means "kill it".
+The feature of init is run all script in a fixed order one-by-one, so it is easy to find the error, while costs lots of time.
+
+### systemd
+
+In contrast, systemd concurrently runs all scripts.
+
+In a system that initialized with systemd, the init file, which is `/usr/sbin/init` will be a symbolic to the `/lib/systemd/systemd`.
+The default configuration file of systemd is `/usr/lib/systemd/system/default.target`, which is also a symbolic link to `/usr/lib/systemd/system/graphical.target`.
+You can find the default target with
+
+`systemctl get-default`
+
+## Live CD
+
+This section discribes how to create a custom Live CD in Fedora with `livemedia-creator`.
+
+@example
+# Install mock, which provides an independent compose environment.
+sudo dnf install mock
+# Init mock
+mock -r <live_cd_name> --init
+# Install packages into the composed environment
+mock -r <live_cd_name> --install lorax-lmc-novirt vim-minimal pykickstart livecd-tools
+# chroot into the environment
+mock -r <live_cd_name --shell --enable-network --isolation=simple
+@end example
+
+After that, the user has been changed into the compose environment, and the packages for composion have been installed.
+The next step is get the configuration files for the target ISO.
+These files are named as kickstart files, and `.ks` is the file extension.
+The kickstart files are in the [fedora kickstarts project](https://pagure.io/fedora-kickstarts.git).
+Download the files and move it into the mock environment.
+
+The home directory of <live_cd_name> is under the `/var/lib/mock/<live_cd_name>/root/builddir`.
+The project can be directly copied into the builddir of the compose environment.
+Another method is to copy the project with the command
+
+`mock -r <live_cd_name> --copyin <project name> /builddir`
+
+The kickstart files in the project are templates, it should be resolved by flattening in the compose environment.
+
+`ksflatten --config <template.ks> -o flat-<template.ks>`
+
+In X64 system, compose the Fedora 42 system lacks `shim-ia32` package.
+It should be installed manually.
+To do that, add the package name, i.e. `shim-ia32` after the `%packages` in the flatten kickstart file.
+
+Finally, run the livemedia-creator
+
+`livemedia-creator --ks flat-<template>.ks --no-virt --resultdir /var/lmc --project <project_name> --make-iso --volid <volume ID> --iso-only --iso-name <live_cd>.iso --releasever <version> --macboot`
+
+The target ISO is under the `var/lmc`.
+
+The official page is [How to create and use a Live CD](https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD).
+
+## Linux To Go
+
+Linux To Go (LTG) is a method to install Linux in external USB disk.
+The main advantage of LTG is to boot your owe system in multiple computers that have same architecture (for example, x86 system).
+
+The LTG is based on Fedora since it has stable version, so it does not need to be updated frequently.
+The boot method is UEFI, so allocate a partition with 1 GiB to support UEFI.
+In addition, install the bootloader to the USB disk.
+After that, the installation process is the same as a normal installation in any disk.

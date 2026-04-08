@@ -1,0 +1,406 @@
+---
+title: Editor
+layout: default
+---
+
+# Editor
+
+## Vim
+
+Vim has six modes: normal, insert, operator-pending, visual, select, and command-line modes.
+All the keys in the keyboard have been used as a command in these mode.
+
+### Normal/Visual Mode
+
+Most keymappings both can work in normal and visual mode with slightly difference.
+
+@subsubsection Movement
+
+@example
+h/j/k/l     Character-level movement: left/down/up/right
+F/f<char>   Character-level movement: Find the <char> on left/right
+T/t<char>   Character-level movement: Till (Find) before/after <char> on left/right
+;           Repeat: F/f/T/t
+,           Repeat: F/f/T/t in opposite direction
+w/W         Word-level movement: forward to the begin of the word/WORD 
+e/E         Word-level movement: forward to the end of the word/WORD 
+b/B         Word-level movement: backward to the begin of the word/WORD 
+0/$         Line-level movement: Begin/End of the line
+^           Line-level movement: The first non-blank character of the line
+<count>|    Line-level movement: The <count> column in this line
++/-         Line-level movement: Downward/Upward
+<count>_    Line-level movement: Downward <count>-1 lines, on the first non-blank character
+H/M/L       Window-level movement: Top/Middle/Bottom of the window
+G           Document-level movement: End of the document
+'           Document-level movement: Jump to the line of the mark
+`           Document-level movement: Jump to the mark
+K           Run an external predefined program with word (i.e., !<Program> <word>)
+@end example
+
+@subsubsection Mark
+
+@example
+m<A-Z>              Set global marks
+m<a-z>              Set local marks
+'<A-Za-z0-9>        Document-level movement: Jump to the mark
+`<A-Za-z0-9>        Document-level movement: Jump to the mark
+:mark <A-Za-z>      Set global/local marks
+:marks              List all marks
+:delmarks <A-Za-z>  Delete mark
+:delmarks!          Delete all marks
+@end example
+
+@subsubsection Edit and Register
+
+Replace, delete, and yank commands in normal mode save the characters in to registers.
+
+@example
+r/R         Character-level edit: Replace/Enter replace mode
+X/x         Character-level edit: Delete at previous/current cursor
+s           Character-level edit: Delete and enter the insert mode
+~           Character-level edit: Swap case
+D           Line-level edit: Delete (cut) from the cursor to the end
+S           Line-level edit: Delete (cut) the line and enter the insert mode
+C           Line-level edit: Delete from the cursor to the end and enter the insert mode
+Y           Line-level edit: Yank the line
+J           Line-level edit: Join the forward line to the current one
+P/p         Document-level edit: Put (Paste) the text before/after the cursor
+u/U         Document-level edit: Undo the last change / Undo all changes in the line
+.           Repeat: The last edit command
+"<reg>      Use <reg> for d/y/p
+<C-a/x>     Character-level edit: The first number after the cursor plus/minus 1
+@end example
+
+Recording-related command
+
+@example
+q<reg>      Recording: Record operations into <reg> until "q" is typed in normal mode
+@@<reg>      Recording: Run the operations in <reg>
+@@@@          Repeat: The last @@<reg>
+@end example
+
+In normal mode, "d/c/y/</>" are operators.
+If an operator is typed, it will wait for a motion, like "h/j/k/l/w/W/e/E/b/B".
+Type an operator twice indicates line-level edit.
+
+@example
+d/y         Delete (Cut) / Yank (Copy)
+C           Delete (Cut/Change) to the end of the line and enter the insert mode
+<           Shift left
+>           Shift right
+dd/yy       Line-level edit: Delete (Cut) / Yank
+cc          Line-level edit: Delete and enter the insert mode
+<<          Line-level edit: Shift left
+>>          Line-level edit: Shift right
+@end example
+
+Register-related Command-line mode command 
+
+@example
+:reg            Show the registers
+:messages       Show messages and errors
+@end example
+
+@subsubsection Text Object
+
+@example
+[a/i][w/W]          # a/inner word/WORD. Select a word/WORD with/without the space behind
+[a/i][s/p/t]        # a/inner setence/paragraph/tag block
+a[/@{/(/</"/'/`      # a [\@{\( block with [\@{\(
+i[/@{/(/</"/'/`      # inner [\@{\( block without [\@{\(
+@end example
+
+@subsubsection Keymapings start with 'Z' and 'z'
+
+This is not full list. Use `help z` in vim to find all the keymappings.
+
+Quit vim
+@example
+ZQ          Close and quit vim without saving
+ZZ          Save and close the current window
+@end example
+
+Folding
+
+@example
+za/A                Toggle a fold/folds recursively
+zc/C                Close a fold/folds recursively
+zd/D                Delete a fold/ folds recursively
+zf<motion>/F        Create folds
+zj                  Move to the start of the next fold
+zo/O                Open a fold/folds recursively
+@end example
+
+Redraw the window
+
+@example
+zb/t/z      Redraw the cursor to the bottom/top/middle of the window
+
+z.          Give spell suggestion 
+@end example
+
+@subsubsection Keymappings start with 'g'
+
+Part of the commands have been listed.
+
+@example
+gd/gD       Document-level movement: Go to local/global decleration
+ge/gE       Word-level movement: Backward to the end of the word/WORD
+gg/G        Document-level movement: The first/last line
+<count>g_   Line-level movement: Downward <count>-1 lines, on the last non-blank character
+@end example
+
+@subsubsection Window 
+
+@example
+<C-w>s/v        Horizontal/Vertical split
+<C-w>w          Switch
+<C-w>h/j/k/l    Move left/down/up/right
+<C-w>q          Quit
+@end example
+
+@subsubsection Filter
+
+Filter can lint to other formatters.
+
+@example
+!/=             Filter text through an external program 
+@end example
+
+### Insert Mode
+
+@example
+A/a             Enter insert mode and append at the end of the line/cursor
+I/i             Enter insert mode and insert at the beginning of the line/cursor
+O/o             Enter insert mode and insert a new line above/below the current line
+@end example
+
+Most commands in insert mode uses CTRL at first.
+
+### Command-Line Mode
+
+Command-line mode can be entered from normal mode by typing ':', '/', '?', '!'.
+The above commands are related to command-line mode, while part of them works in normal mode.
+
+@example
+:<command>      Run <command> (Enter command-line mode)
+Q               Enter Ex mode
+@end example
+
+@subsubsection Search
+
+@example
+%               Line-level search: Forward to the `@{[(` and jump to its match
+/<pattern>      Document-level search: Forward for <pattern>
+?<pattern>      Document-level search: Backward for <pattern>
+n/N             Repeat: '/' or '?' in the same/opposite direction
+*/#             Document-level search: Forward/Backward for the next word under the cursor
+@end example
+
+@subsubsection Substitute
+The substitute command is 
+@example
+:[range]s[ubstitute]/<pattern>/<string>/[flags] [count]
+@end example
+
+It has one repeat single-character command in normal mode.
+@example
+&               Repeat: The last substitute
+@end example
+
+@subsubsection vimgrep
+
+vimgrep is the built-in search command in vim.
+The results can be listed in quickfix window.
+
+@example
+:vimgrep /<PATTERN>/<FLAGS> <FILES>
+:vimgrep /foo/g <DIR>/**        Search all foo patterns recursively in <DIR>
+:cnext                          Search the next position
+:cprevious                      Search the previous position
+:clist                          List all matched patterns
+:cwindow                        Open the quickfix window
+@end example
+
+### Test Vim Script
+
+Vim is an awesome editor with powerful plugin ecosystems.
+Most of the time, the plugin can be directly used by downloading them into the directory.
+The plugin manager, which is also a plugin, can add the other plugins in to the runtime directory of vim.
+
+This subsection is not about how to install and use plugins, but is related to how to write a plugin.
+The goal of this post is to give a brief introduction on test Vim plugins like test a command line.
+Specifically, test is the basic function if someone wants to write their custom plugin.
+Test the source code of a well-known plugin is also a good way to learn the idea of other developers' plugins.
+
+The plugin language of writing plugins is Vimscript.
+There are at least two vim processes, one for edit, and the other for running test.
+Although vim is an editor, it provides a non-interactive mode to run Vim scripts without open the window.
+Redirect the output of vim to other command with pipeline in shell like this
+
+`vim -u NONE --not-a-term -c "echoconsole \"hello world \"  | q" >> vim2stdout.txt`
+
+where `-u`, `-c`, `--not-a-term` are vim options.
+The detail can be found in `vim --help`.
+`echoconsole` is a vim command can be used to output a message, which is "hello world" in this case, to the terminal.
+The output is redirect to a file vim2stdout.txt and the string "hello world" can be found in the file, with some other strings.
+
+In addition, a recommand method for unit test is to write a script with a test case, and redirect the output to the awk tool, such as
+
+    vim -u -NOME --not-a-term -S <run_test_file> <test_case> | awk <pattern>
+
+Note that there must be `echoconsole` and `quit` in the <run_test_file>.
+
+Debug the unit test of vim plugin can be implemented by the `clientserver` feature of Vim.
+There is a good plugin [breakpts](https://github.com/vim-scripts/BreakPts).
+
+### Vim Distribution
+
+Vim is one of the most famous editors in the world with powerful scalability.
+However, Vim is extremely unfriendly for newbies, especially for those who uses graphical user interfaces (GUI).
+NeoVim is a new version of Vim.
+It is community-driven and deprecates lots of old-fashions in Vim.
+
+Due to the extensibility of Vim and Neovim, lots of developers contribute thousands of plugins for them.
+So many plugins give both Vim and Neovim unlimited possibilities, but they also dazzle newbies who want to try these famous editors and don't know how to select a suitable configuration that meet their requirements.
+
+To solve this problem, recently, multiple developers and open source projects provide community-driven out-of-box configurations for Vim.
+The relationship between these projects and Vim (or Neovim) is like the relationship between a Linux distribution and the kernel.
+Therefore, I call these projects as "Vim distributions", which means they use Vim (or Neovim) as the "editor kernel".
+The development of Vim distribution is more easier then before, thanks to the language server protocol (LSP).
+The follows are some Vim distributions.
+
+@subsubsection SpaceVim
+
+[SpaceVim](https://spacevim.org) is inspired by spacemacs.
+It is community-driven and provides layers to encapsulated the low-level configuration of Vim/Neovim.
+Each layer in SpaceVim indicates a collection of plugins that provides a similar function.
+Users can choose different plugins for the layer.
+However, although SpaceVim change the <leader> to <Space>, it lacks a local easy-to-use document about all the keybindings (like vim).
+SpaceVim provides a new configuration interface that uses `.toml` in the directory `~/.Spacevim.d/`.
+SpaceVim is only distribution that can support both Vim and NeoVim.
+
+@subsubsection LunarVim
+
+[LunarVim](https://www.lunarvim.org/), or lvim in short, is another distribution that only supports Neovim.
+It needs npm, node, and cargo as the prerequisites.
+LunarVim is also community-driven and provides good support for multiple languages.
+It provides a shortcut named as lvim in `.local/bin/`.
+
+@subsubsection NvChad
+
+[NvChad](https://nvchad.com/) is a pure lua distribution with a customized colorscheme.
+The aim of NvChad is to be a "basic configuration", so the configuration logic of NvChad is pretty simple.
+It is quitely easy to extend.
+
+@subsubsection Doom-nvim
+
+[Doom-nvim](https://github.com/doom-neovim/doom-nvim) is also inspired by an emacs-based project.
+It also proposes modules that includes plugins and keybindings.
+The prerequisites includes npm and tree-sitter, which are both based on javascript.
+If the Linux does not contains the prerequisites, the installation would have some problem.
+
+## Micro Editor
+
+Micro is a easily used terminal editor with intuitive key bindings as well as modern build-in features, including command line, auto-pair and linter.
+
+Install it in Debian (Test on Debian 12)
+
+`sudo apt install micro`
+
+A universal installation method for most Linux distributions
+
+`mkdir ~/bin`
+`cd ~/bin`
+`curl https://getmic.ro | bash`
+
+The configuration files are in `~/.config/micro/*`
+
+The recommended plugins are follows
+@itemize @bullet
+@item linter (default installation)
+@item filemanager
+@item wc
+@item quickfix
+@end itemize
+
+The linter requires out-of-box support for each language (see, `help linter` in the command line mode).
+Enter the command line mode by typing `<C-e>`, run
+
+	`plugin install filemanager wc quickfix`
+
+### Configuration
+
+Micro uses `json` as the configuration file.
+The follows are the default keymappings for it.
+
+@example
+@{
+  // The keymappings both can be used in normal pane and command pane.
+    "Ctrl-a":          "SelectAll",
+    "Ctrl-b":          "ShellMode",
+    "Ctrl-c":          "CopyLine|Copy",
+    "Ctrl-d":          "DuplicateLine",
+    "Ctrl-e":          "CommandMode",
+    "Ctrl-f":          "Find",
+    "Ctrl-g":          "ToggleHelp",
+    "Ctrl-h":          "Backspace",
+    "Ctrl-j":          "PlayMacro",
+    "Ctrl-k":          "CutLine",
+    "Ctrl-l":          "command-edit:goto ",
+    "Ctrl-n":          "FindNext",
+    "Ctrl-o":          "OpenFile",
+    "Ctrl-p":          "FindPrevious",
+    "Ctrl-q":          "Quit",
+    "Ctrl-r":          "ToggleRuler",
+    "Ctrl-s":          "Save",
+    "Ctrl-t":          "AddTab",
+    "Ctrl-u":          "ToggleMacro",
+    "Ctrl-v":          "Paste",
+    "Ctrl-w":          "NextSplit",
+    "Ctrl-x":          "Cut",
+    "Ctrl-y":          "Redo",
+    "Ctrl-z":          "Undo",
+
+    "Alt-F":          "FindLiteral",
+    "Alt-a":          "StartOfLine",
+    "Alt-b":          "WordLeft",
+    "Alt-c":          "RemoveAllMultiCursors",
+    "Alt-e":          "EndOfLine",
+    "Alt-f":          "WordRight",
+    "Alt-g":          "ToggleKeyMenu",
+    "Alt-m":          "SpawnMultiCursorSelect",
+    "Alt-n":          "SpawnMultiCursor",
+    "Alt-p":          "RemoveMultiCursor",
+    "Alt-x":          "SkipMultiCursor",
+    "Alt-@{":          "ParagraphPrevious",
+    "Alt-@}":          "ParagraphNext",
+    "Alt-,":          "PreviousTab",
+    "Alt-.":          "NextTab",
+
+    "CtrlUp":         "CursorStart",
+    "CtrlDown":       "CursorEnd",
+
+    "AltUp":          "MoveLinesUp",
+    "AltDown":        "MoveLinesDown",
+
+    "Alt-CtrlH":      "DeleteWordLeft",
+
+    "CtrlShiftUp":    "SelectToStart",
+    "CtrlShiftDown":  "SelectToEnd",
+    "CtrlShiftRight": "SelectWordRight",
+    "CtrlShiftLeft":  "SelectWordLeft",
+
+    "AltShiftUp":     "SpawnMultiCursorUp",
+    "AltShiftDown":   "SpawnMultiCursorDown",
+    "AltShiftLeft":   "SelectToStartOfTextToggle",
+    "AltShiftRight":  "SelectToEndOfLine",
+
+    // Keymapping for terminal mode
+   "terminal": @{
+          "<Ctrl-q><Ctrl-q>": "Exit",
+          "<Ctrl-e><Ctrl-e>": "CommandMode",
+          "<Ctrl-w><Ctrl-w>": "NextSplit"
+      @},
+@}
+@end example
