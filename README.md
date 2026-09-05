@@ -25,10 +25,10 @@ The follow installs jekyll and bundler
 
 ## Jekyll Themes
 
-The blog is based on [just-the-docs](https://just-the-docs.com/) theme.
-Download the theme and copy it into the knowledge base's git directory by
+The blog uses the default [minima](https://just-the-docs.com/) theme.
 
-    git clone https://github.com/just-the-docs/just-the-docs
+This [GitHub page](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll) give a detailed reference about how to create the website.
+
 
 ## Usage
 
