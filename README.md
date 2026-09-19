@@ -36,7 +36,7 @@ The directory of the packages can be found by use
 
     gem env | grep DIRECTORY
 
-## Jekyll Themes
+## Jekyll Theme
 
 The blog uses the default [minima](https://github.com/jekyll/minima) theme.
 
