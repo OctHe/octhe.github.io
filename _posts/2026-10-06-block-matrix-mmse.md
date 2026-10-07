@@ -127,7 +127,7 @@ $$
 
 ## 3.2 Method 2: Expand $$2 \times 2$$
 
-We split the $$ 3 \times 3 $$ $$\mathbf{A}$$ into a $$2 \times 2$$ block and a 1×1 block.
+We split the $$ 3 \times 3 $$ $$\mathbf{A}$$ into a $$2 \times 2$$ block and a $$1 \times 1$$ block.
 The first two components are denoted $$\hat{\mathbf{x}}_0$$ (a 2-vector), and the third component $$\hat{x}_2$$ degenerates to a scalar; $$\mathbf{z}$$ is split the same way, its first two components being $$\mathbf{z}_0 = [z_0, \ z_1]^T$$.
 
 $$
@@ -188,7 +188,7 @@ $$
 | Method 1 | Method 2 | Method 2 vs Method 1 |
 |:---|:---|:---|
 | $$\mathbf{A}^*$$ | $$\mathbf{S} = \begin{bmatrix} M_{11} & -M_{10}\\ -M_{01} & M_{00} \end{bmatrix}$$ |  3 fewer cofactors |
-| $$\det(\mathbf{A}) = a_{00}M_{00} + a_{01}M_{01} + a_{02}M_{02}$$ | $$\det(\mathbf{S})$$ | 1 fewer complex×complex multiplication |
+| $$\det(\mathbf{A}) = a_{00}M_{00} + a_{01}M_{01} + a_{02}M_{02}$$ | $$\det(\mathbf{S})$$ | 1 fewer complex-complex multiplication |
 | - | $$D = a_{22} \det(\mathbf{S})$$ | 1 more real-complex multiplication |
 | - | $$\mathbf{p} = \mathbf{S}^* (a_{22} \mathbf{z}_0 - \mathbf{b} z_2)$$ | 8 more complex-complex multiplications |
 | $$\hat{\mathbf{x}}_0 = \dfrac{1}{\det(\mathbf{A})} \begin{bmatrix} M_{00}z_0 + M_{10}z_1 + M_{20}z_2\\ M_{01}z_0 + M_{11}z_1 + M_{21}z_2 \end{bmatrix}$$ | $$\hat{\mathbf{x}}_0 = \dfrac{a_{22}}{D} \mathbf{p}$$ | 3 fewer complex-complex multiplications |
