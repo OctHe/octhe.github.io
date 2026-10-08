@@ -1,10 +1,12 @@
 ---
-title: Matrix Inversion-based MMSE
+title: MMSE for Rank-Deficient Matrix
 layout: default
 ai_assist: true
 ---
 
 This post derives adjugate-based expression for MMSE estimation.
+This method suits the rank-deficient case, where the number of streams is smaller than the number of antennas, $$N_t < N_r$$, so that $$\mathbf{H} \mathbf{H}^H$$ is rank-deficient.
+What has to be inverted is then only the $$N_t \times N_t$$ $$\mathbf{A}$$, smaller than the antenna-side dimension, and the estimate needs nothing more than the $$N_t$$-dimensional $$\mathbf{z} = \mathbf{H}^H \mathbf{y}$$, so the cost of the inversion is governed by $$N_t$$ rather than by $$N_r$$.
 
 > **Notation**
 >
@@ -372,7 +374,7 @@ However, in this case, the number of operations is not reduced.
 
 ## 4.4 Complexity analysis
 
-| Method 1d | Method 3 | Method 3 vs Method 1 |
+| Method 1 | Method 3 | Method 3 vs Method 1 |
 |:---|:---|:---|
 | $$\mathbf{C}_0 = \mathbf{A}_{01} \mathbf{A}_{11}^*$$ <br> $$\mathbf{C}_1 = \mathbf{A}_{01}^H \mathbf{A}_{00}^*$$ | $$\mathbf{C} = \mathbf{A}_{01} \mathbf{A}_{11}^*$$ | Skip $$\mathbf{C}_{1}$$ |
 | $$\mathbf{T}_0 = \det(\mathbf{A}_{11}) \mathbf{A}_{00} - \mathbf{C}_0 \mathbf{A}_{01}^H$$ $$\mathbf{T}_1 = \det(\mathbf{A}_{00}) \mathbf{A}_{11} - \mathbf{C}_1 \mathbf{A}_{01}$$ | $$\mathbf{T} = \det(\mathbf{A}_{11}) \mathbf{A}_{00} - \mathbf{C} \mathbf{A}_{01}^H$$ | Skip $$\mathbf{T}_{1}$$ |
