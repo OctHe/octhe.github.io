@@ -33,18 +33,18 @@ $$
 
 Note that the minimum mean square error (MMSE) estimate is equivalent to solving the linear equation: $$ \mathbf{A} \hat{\mathbf{x}} = \mathbf{z} $$.
 
-The estimation approach avoids the explicit construction of the weight matrix $$\mathbf{W}$$, which is referred to as the implicit estimation.
+The estimation approach avoids the explicit construction of the weight matrix $$\mathbf{W}$$ and is therefore referred to as implicit estimation.
 This suits fast-varying channels where the same $$\mathbf{W}$$ cannot be reused across multiple symbols, and cases where $$N_t \ll N_r$$, since only $$\mathbf{A}^{-1}$$ needs to be stored rather than the full matrix $$\mathbf{W}$$.
 
 # 2. $$2 \times 2$$ MMSE
 
-We define the matrix $$\mathbf{A}$$ in $$2 \times 2$$ dimention as
+We define the matrix $$\mathbf{A}$$ in $$2 \times 2$$ dimension as
 
 $$
 \mathbf{A} = \begin{bmatrix} a_{00} & a_{01}\\ a_{01}^H & a_{11} \end{bmatrix}.
 $$
 
-The adjugate matrix of $$\mathbf{A}$$ under $$2 \times 2$$ dimension can be obtained by swapping the the elements in $$\mathbf{A}$$.
+The adjugate matrix of $$\mathbf{A}$$ under $$2 \times 2$$ dimension can be obtained by swapping the elements in $$\mathbf{A}$$.
 
 $$
 \mathbf{A}^* = \begin{bmatrix} a_{11} & -a_{01}\\ -a_{01}^H & a_{00} \end{bmatrix}, \qquad
@@ -59,9 +59,8 @@ $$
 
 where 
 $$
-\det(\mathbf{A}) = a_{00}a_{11} - \lvert a_{01} \rvert^2
+\det(\mathbf{A}) = a_{00}a_{11} - \lvert a_{01} \rvert^2.
 $$
-.
 
 # 3. $$3 \times 3$$ MMSE
 
@@ -78,7 +77,7 @@ a_{02}^H & a_{12}^H & a_{22}
 \end{bmatrix}.
 $$
 
-Since the symmetry of $$\mathbf{A}$$, only the 6 upper-triangular cofactors are needed:
+Due to the symmetry of $$\mathbf{A}$$, only the 6 upper-triangular cofactors are needed:
 
 $$
 \left\{
@@ -301,13 +300,13 @@ $$
 \hat{\mathbf{x}}_1 = \mathbf{A}_{11}^{-1} (\mathbf{z}_1 - \mathbf{A}_{01}^H \hat{\mathbf{x}}_0)
 $$
 
-This back-substitution form requires less computation,, but it first necessitates $$\hat{\mathbf{x}}_0$$, which imposes certain timing requirements.
+This back-substitution form requires less computation, but it first necessitates $$\hat{\mathbf{x}}_0$$, which imposes certain timing requirements.
 
 ## 4.3 Method 3: Schur Complement with 1 Division
 
 In the previous section, calculating $\mathbf{S}^{-1}$ and $\mathbf{A}_{11}^{-1}$ requires a total of two divisions.
 The inverse of a $2 \times 2$ matrix can be written directly using the adjugate matrix.
-Thus, 2 division operations can be reduced into one.
+Thus, 2 division operations can be reduced to one.
 
 In equation ($\ref{eq:S}$), the definition of $$\mathbf{S}$$ involves $$\mathbf{A}_{11}^{-1}$$.
 To move this inverse matrix to the denominator, one must first express $$\mathbf{S}$$ with a common denominator:
@@ -394,4 +393,4 @@ However, in this case, the number of operations is not reduced.
 | $$\hat{\mathbf{x}}_0 = \mathbf{p} / \det(\mathbf{S})$$ | $$\hat{\mathbf{x}}_0 = \det(\mathbf{A}_{11}) \mathbf{p} / D$$ | 1 more multiplication by $$\det(\mathbf{A}_{11})$$ |
 | $$\hat{\mathbf{x}}_1 = \mathbf{A}_{11}^{-1} (\mathbf{z}_1 - \mathbf{A}_{01}^H \mathbf{p} / \det(\mathbf{S}))$$ | $$\hat{\mathbf{x}}_1 = \mathbf{A}_{11}^* (\det(\mathbf{T}) \mathbf{z}_1 - \mathbf{A}_{01}^H \mathbf{p}) / D$$ | 1 more multiplication by $$\det(\mathbf{T})$$ |
 
-Compare to method 2, method 3 reduces the number of division operations, at the cost of several additional multiplications.
+Compared to method 2, method 3 reduces the number of division operations, at the cost of several additional multiplications.

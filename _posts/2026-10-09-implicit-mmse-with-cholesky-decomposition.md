@@ -1,10 +1,8 @@
 ---
-title: Cholesky Decomposition-based MMSE
+title: Implicit MMSE with Cholesky Decomposition
 layout: default
 ai_assist: true
 ---
-
-This post derives the MMSE estimate from the Cholesky and LDL decompositions of the regularized Gram matrix, and compares the cost of the two solves.
 
 > **Notation**
 >
@@ -21,7 +19,6 @@ This post derives the MMSE estimate from the Cholesky and LDL decompositions of 
 > | $$\mathbf{L}$$ | lower triangular factor; its diagonal is unit for the LDL decomposition |
 > | $$\mathbf{D}$$ | real positive diagonal factor |
 > | $$\hat{\mathbf{z}}$$ | forward substitution intermediate |
-> | indices | run from $$0$$ to $$n - 1$$ |
 
 # 1. System model
 
@@ -46,6 +43,7 @@ $$
 \mathbf{A} \hat{\mathbf{x}} = \mathbf{z}.
 $$
 
+The estimation approach does not construct weight matrix $$\mathbf{W}$$ and is therefore referred to as implicit estimation.
 The matrix $$\mathbf{A}$$ is Hermitian, and with $$\sigma^2 > 0$$ it is also positive definite even when $$\mathbf{H}$$ is rank-deficient.
 This is the property both decompositions below rely on: it guarantees that the triangular factors exist.
 
