@@ -1,12 +1,8 @@
 ---
-title: MMSE for Rank-Deficient Matrix
+title: Implicit MMSE with Matrix Inversion
 layout: default
 ai_assist: true
 ---
-
-This post derives adjugate-based expression for MMSE estimation.
-This method suits the rank-deficient case, where the number of streams is smaller than the number of antennas, $$N_t < N_r$$, so that $$\mathbf{H} \mathbf{H}^H$$ is rank-deficient.
-What has to be inverted is then only the $$N_t \times N_t$$ $$\mathbf{A}$$, smaller than the antenna-side dimension, and the estimate needs nothing more than the $$N_t$$-dimensional $$\mathbf{z} = \mathbf{H}^H \mathbf{y}$$, so the cost of the inversion is governed by $$N_t$$ rather than by $$N_r$$.
 
 > **Notation**
 >
@@ -36,6 +32,9 @@ $$
 $$
 
 Note that the minimum mean square error (MMSE) estimate is equivalent to solving the linear equation: $$ \mathbf{A} \hat{\mathbf{x}} = \mathbf{z} $$.
+
+The estimation approach avoids the explicit construction of the weight matrix $$\mathbf{W}$$, which is referred to as the implicit estimation.
+This suits fast-varying channels where the same $$\mathbf{W}$$ cannot be reused across multiple symbols, and cases where $$N_t \ll N_r$$, since only $$\mathbf{A}^{-1}$$ needs to be stored rather than the full matrix $$\mathbf{W}$$.
 
 # 2. $$2 \times 2$$ MMSE
 
