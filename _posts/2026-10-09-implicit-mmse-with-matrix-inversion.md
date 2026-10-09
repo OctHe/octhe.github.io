@@ -269,10 +269,10 @@ This form exhibits symmetry.
 However, since calculating the two components involves different matrices, the same set of intermediate variables cannot be shared during the computation.
 To address this, we expand the two equations into a form that allows for the sharing of the same set of intermediate variables.
 
-## 4.2 Method 2: Asymmetric Method with 2 Divisions
+## 4.2 Method 2: Schur Complement with 2 Divisions
 
 First, substitute $$\hat{\mathbf{x}}_1$$ into the equation to eliminate it.
-The $$2 \times 2$$ matrix corresponding to the remaining variable $$\hat{\mathbf{x}}_0$$ is denoted as $$\mathbf{S}$$:
+The $$2 \times 2$$ Schur complement of the $$\mathbf{A}_{11}$$ block, corresponding to the remaining variable $$\hat{\mathbf{x}}_0$$, is denoted as $$\mathbf{S}$$:
 
 $$
 \label{eq:S}
@@ -303,7 +303,7 @@ $$
 
 This back-substitution form requires less computation,, but it first necessitates $$\hat{\mathbf{x}}_0$$, which imposes certain timing requirements.
 
-## 4.3 Method 3: Asymmetric Method with 1 Division
+## 4.3 Method 3: Schur Complement with 1 Division
 
 In the previous section, calculating $\mathbf{S}^{-1}$ and $\mathbf{A}_{11}^{-1}$ requires a total of two divisions.
 The inverse of a $2 \times 2$ matrix can be written directly using the adjugate matrix.
