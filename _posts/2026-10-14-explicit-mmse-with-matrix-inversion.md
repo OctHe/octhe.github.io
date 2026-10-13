@@ -1,5 +1,5 @@
 ---
-title: Explicit MMSE with Adjugate Matrix
+title: Explicit MMSE with Matrix Inversion
 layout: default
 ai_assist: true
 ---
@@ -36,15 +36,17 @@ $$
 The estimator here is explicit.
 The rest of the post focuses on the derivation of $$\mathbf{A}^{-1}$$.
 
-# 2. $$2 \times 2$$ MMSE
+# 2. Matrix Inversion by Adjugate Matrix
 
-We define the matrix $$\mathbf{A}$$ in $$2 \times 2$$ dimension as
+## 2.1 $$N_t = 2$$
+
+We define the matrix $$\mathbf{A}$$ of size $$2 \times 2$$ as
 
 $$
 \mathbf{A} = \begin{bmatrix} a_{00} & a_{01}\\ a_{01}^H & a_{11} \end{bmatrix}.
 $$
 
-The adjugate matrix of $$\mathbf{A}$$ under $$2 \times 2$$ dimension can be obtained by swapping the elements in $$\mathbf{A}$$.
+For a $$2 \times 2$$ matrix the adjugate is obtained by swapping the elements of $$\mathbf{A}$$.
 
 $$
 \mathbf{A}^* = \begin{bmatrix} a_{11} & -a_{01}\\ -a_{01}^H & a_{00} \end{bmatrix}, \qquad
@@ -60,7 +62,7 @@ $$
 \det(\mathbf{A}) = a_{00}a_{11} - \lvert a_{01} \rvert^2.
 $$
 
-# 3. $$3 \times 3$$ MMSE
+## 2.2  $$N_t = 3$$
 
 We define
 
@@ -114,11 +116,11 @@ $$
 \mathbf{A}^{-1} = \frac{\mathbf{A}^*}{\det(\mathbf{A})}.
 $$
 
-# 4. $$4 \times 4$$ MMSE
+## 2.3  $$N_t = 4$$
 
 If the inverse of a $4 \times 4$ matrix is calculated directly using the adjugate matrix, one must compute 16 third-order algebraic cofactors. 
 Since each cofactor itself requires expansion into a $3 \times 3$ determinant, the computational cost is high.
-Therefore, we employ a block-based approach, partitioning matrix $\mathbf{A}$ into $2 \times 2$ blocks:
+Therefore, we employ a block-based approach, partitioning the matrix $\mathbf{A}$ into $2 \times 2$ blocks:
 
 $$
 \mathbf{A} = \begin{bmatrix} \mathbf{A}_{00} & \mathbf{A}_{01}\\ \mathbf{A}_{01}^H & \mathbf{A}_{11} \end{bmatrix}, \qquad
@@ -127,7 +129,7 @@ $$
 \mathbf{A}_{01} = \begin{bmatrix} a_{02} & a_{03}\\ a_{12} & a_{13} \end{bmatrix}
 $$
 
-## 4.1 Method 1: Schur Complement with 2 Divisions
+### 2.3.1 Method 1: Schur Complement with 2 Divisions
 
 First, eliminate the second block row.
 The Schur complement of the $$\mathbf{A}_{11}$$ block is denoted as $$\mathbf{S}$$:
@@ -145,7 +147,7 @@ $$
 \mathbf{A}^{-1} = \begin{bmatrix} \mathbf{S}^{-1} & -\mathbf{S}^{-1} \mathbf{C}\\ -\mathbf{C}^H \mathbf{S}^{-1} & \mathbf{A}_{11}^{-1} + \mathbf{C}^H \mathbf{S}^{-1} \mathbf{C} \end{bmatrix}
 $$
 
-## 4.2 Method 2: Schur Complement with 1 Division
+### 2.3.2 Method 2: Schur Complement with 1 Division
 
 In the previous section, calculating $\mathbf{S}^{-1}$ and $\mathbf{A}_{11}^{-1}$ requires a total of two divisions.
 The inverse of a $2 \times 2$ matrix can be written directly using the adjugate matrix.
@@ -171,7 +173,7 @@ $$
 \mathbf{T} = \det(\mathbf{A}_{11}) \mathbf{A}_{00} - \mathbf{C} \mathbf{A}_{01}^H
 $$
 
-There is no division in the expression of $$\mathbf{T}$$.
+There is no division in the expression.
 The two denominators are folded into
 
 $$
@@ -188,7 +190,54 @@ $$
 \end{bmatrix}.
 $$
 
-# 5. Signal-to-Noise Ratio (SNR)
+
+# 3. Matrix Inversion by Cholesky Decomposition
+
+Since $$\mathbf{A}$$ is Hermitian positive definite, the inverse matrix can be constructed from its Cholesky decomposition.
+
+## 3.1 Cholesky Decomposition
+
+$$
+\mathbf{A} = \mathbf{L} \mathbf{L}^H
+$$
+
+The inverse is 
+
+$$
+\mathbf{A}^{-1} = \mathbf{L}^{-H} \mathbf{L}^{-1}
+$$
+
+The diagonal itself is never formed: only its reciprocal is stored, and it is taken directly as a reciprocal square root, $$\operatorname{rsqrt}(\cdot) = 1 / \sqrt{\cdot}$$.
+
+$$
+\begin{cases}
+\dfrac{1}{l_{00}} = \operatorname{rsqrt}(a_{00}), & j = 0 \\[10pt]
+\dfrac{1}{l_{jj}} = \operatorname{rsqrt}\biggl( a_{jj} - \sum_{k=0}^{j-1} \lvert l_{jk} \rvert^2 \biggr), & j \ge 1 \\[10pt]
+l_{ij} = \dfrac{1}{l_{jj}} \biggl( a_{ij} - \sum_{k=0}^{j-1} l_{ik} l_{jk}^H \biggr), & i = j + 1, \dots, n - 1
+\end{cases}
+$$
+
+We define the inverse matrix $$\mathbf{M} = \mathbf{L}^{-1}$$, which is lower triangular. 
+
+$$
+\begin{cases}
+M_{jj} = \dfrac{1}{l_{jj}}, \qquad j = 0, \dots, n - 1 \\
+M_{ij} = -\dfrac{1}{l_{ii}} \sum_{k=j}^{i-1} l_{ik} M_{kj}, \qquad i = j + 1, \dots, n - 1
+\end{cases}
+$$
+
+The inverse of $$\mathbf{A}$$ is the Hermitian product $$\mathbf{A}^{-1} = \mathbf{M}^H \mathbf{M}$$, whose lower triangle is
+
+$$
+\begin{cases}
+[\mathbf{A}^{-1}]_{ii} = \sum_{k=i}^{n-1} \lvert M_{ki} \rvert^2, \qquad i = 0, \dots, n - 1 \\
+[\mathbf{A}^{-1}]_{ij} = \sum_{k=i}^{n-1} M_{ki}^H M_{kj}, \qquad i > j
+\end{cases}
+$$
+
+The upper triangle is its conjugate transpose and is therefore never formed.
+
+# 4. Signal-to-Noise Ratio (SNR)
 
 With $$\hat{\mathbf{x}} = \mathbf{W} \mathbf{y}$$ and $$\mathbf{W} = \mathbf{A}^{-1} \mathbf{H}^H$$, the error $$\mathbf{e} = \hat{\mathbf{x}} - \mathbf{x}$$ splits into a signal part and a noise part,
 
