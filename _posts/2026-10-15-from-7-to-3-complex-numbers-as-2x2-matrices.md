@@ -73,34 +73,29 @@ $$
 \mathbf{B} = \begin{bmatrix} b_{00} & b_{01} \\ b_{10} & b_{11} \end{bmatrix}
 $$
 
-the product $$\mathbf{C} = \mathbf{A}\mathbf{B}$$ needs only 7 multiplications:
+The naive product uses 8 multiplications:
 
 $$
-m_1 = a_{00} (b_{01} - b_{11})
+\mathbf{C} = \mathbf{A}\mathbf{B}
+=
+\begin{bmatrix}
+a_{00} b_{00} + a_{01} b_{10} & a_{00} b_{01} + a_{01} b_{11} \\
+a_{10} b_{00} + a_{11} b_{10} & a_{10} b_{01} + a_{11} b_{11}
+\end{bmatrix}
 $$
 
-$$
-m_2 = (a_{00} + a_{01}) b_{11}
-$$
+The product $$\mathbf{C} = \mathbf{A}\mathbf{B}$$ needs only 7 multiplications:
 
 $$
-m_3 = (a_{10} + a_{11}) b_{00}
-$$
-
-$$
-m_4 = a_{11} (b_{10} - b_{00})
-$$
-
-$$
-m_5 = (a_{00} + a_{11})(b_{00} + b_{11})
-$$
-
-$$
-m_6 = (a_{01} - a_{11})(b_{10} + b_{11})
-$$
-
-$$
+\begin{cases}
+m_1 = a_{00} (b_{01} - b_{11}) \\[4pt]
+m_2 = (a_{00} + a_{01}) b_{11} \\[4pt]
+m_3 = (a_{10} + a_{11}) b_{00} \\[4pt]
+m_4 = a_{11} (b_{10} - b_{00}) \\[4pt]
+m_5 = (a_{00} + a_{11})(b_{00} + b_{11}) \\[4pt]
+m_6 = (a_{01} - a_{11})(b_{10} + b_{11}) \\[4pt]
 m_7 = (a_{00} - a_{10})(b_{00} + b_{01})
+\end{cases}
 $$
 
 The entries of the result are
@@ -117,18 +112,21 @@ $$
 # 3. 3 Multiplications
 
 This is a special case of a $$2 \times 2$$ matrix.
+The two complex numbers are
+
+$$
+z = x + jy, \qquad
+w = u + jv
+$$
+
 Three products are enough:
 
 $$
-m_1 = xu
-$$
-
-$$
-m_2 = yv
-$$
-
-$$
+\begin{cases}
+m_1 = xu \\[4pt]
+m_2 = yv \\[4pt]
 m_3 = (x + y)(u + v)
+\end{cases}
 $$
 
 The result is
