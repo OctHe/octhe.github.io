@@ -1,5 +1,5 @@
 ---
-title: Implicit MMSE with Adjugate Matrix
+title: Implicit MMSE based on Adjugate Matrix
 layout: default
 ai_assist: true
 ---

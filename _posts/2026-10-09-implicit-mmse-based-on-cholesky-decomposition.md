@@ -1,5 +1,5 @@
 ---
-title: Implicit MMSE with Cholesky Decomposition
+title: Implicit MMSE based on Cholesky Decomposition
 layout: default
 ai_assist: true
 ---

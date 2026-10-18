@@ -1,5 +1,5 @@
 ---
-title: Explicit MMSE with Matrix Inversion
+title: Explicit MMSE based on Matrix Inversion
 layout: default
 ai_assist: true
 ---
